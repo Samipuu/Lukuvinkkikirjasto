@@ -1,0 +1,15 @@
+plugins {
+	id 'java'
+	id 'jacoco'
+	id 'application'
+}
+
+mainClassName = 'ReadingTips.Main'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation     'junit:junit:4.13'
+}
