@@ -11,18 +11,22 @@ import java.util.List;
  *
  * @author aatukallio
  */
-public class Book {     
-    private String title;
-    private String author;
+public class Book extends Tip{   
     private String isbn;
-    private List<Tag> tags;
-    private List<Course> courses;
     
-    public Book(String title, String author,String isbn,List<Tag> tags, List <Course> courses) {
-        this.title = title;
-        this.author = author;
+    public Book(String title, String description, String author, List<String> tags,List<String> courses, String isbn) {
+        super("Book",title,description,author,tags,courses);
         this.isbn = isbn;
-        this.tags = tags;
-        this.courses = courses;
+    }
+    
+    public String getIsbn() {
+        return this.isbn;
+    }
+    
+    @Override
+    public String toString() {
+        String palautus = super.toString();
+        if (this.getIsbn() != null & !this.getIsbn().isEmpty()) palautus += "\nISBN: " + this.isbn;
+        return palautus;
     }
 }
