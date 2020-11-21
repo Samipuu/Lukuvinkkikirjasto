@@ -30,7 +30,7 @@ public class Podcast extends Tip{
     @Override
     public String toString() {
         String returnString = super.toString();
-        if (!this.getPodcastName().isEmpty()) returnString += "\nPodcast's name" + this.getPodcastName();
+        if (!this.getPodcastName().isEmpty()) returnString += "\nPodcast: " + this.getPodcastName();
         return returnString;
     }
     

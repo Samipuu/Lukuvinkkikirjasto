@@ -88,6 +88,7 @@ public abstract class Tip {
         String coursesString = this.getCourses().toString();
         
         returnString += "Type: " + this.getType();
+        if (!this.getTitle().isEmpty()) returnString += "\nTitle: " + this.getTitle();
         if (!this.getAuthor().isEmpty()) returnString += "\nAuthor: " + this.getAuthor();
         if (!this.getDescription().isEmpty()) returnString += "\nDescription: " + this.getDescription();
         if (tagsString.length() != 2) returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
