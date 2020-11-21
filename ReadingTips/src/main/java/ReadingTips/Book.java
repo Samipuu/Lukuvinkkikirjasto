@@ -7,15 +7,14 @@ package ReadingTips;
 
 /**
  *
- * @author tiitinha
+ * @author aatukallio
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("testi");
-    }
+public class Book {
+    String title;
+    String author;
+    String isbn;
+    
+    
+    
     
 }
