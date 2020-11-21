@@ -3,17 +3,45 @@ plugins {
 	id 'jacoco'
 	id 'application'
         id 'checkstyle'
+    id 'build-dashboard'		
 }
 
 mainClassName = 'ReadingTips.Main'
 
 repositories {
     jcenter()
+    mavenCentral()	
+}
+
+task( browse, dependsOn: jar, type: JavaExec ) {
+    main = 'ReadingTips.Tester'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+project.ext {
+    cucumberVersion = '6.8.1'
+    junitVersion = '4.13'    
+    seleniumVersion = '3.14.0'
+    fluentleniumVersion = '4.3.0'
+    sparkVersion = '2.7.1'
 }
 
 dependencies {
     testImplementation 'junit:junit:4.13'
     implementation 'com.google.guava:guava:29.0-jre'	
+
+    testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
+    testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
+    testCompile 'junit:junit:' + junitVersion
+    compile group: 'com.sparkjava', name: 'spark-core', version: sparkVersion
+    compile group: 'com.sparkjava', name: 'spark-template-velocity', version: sparkVersion
+    testCompile group: 'org.fluentlenium', name: 'fluentlenium-core', version: fluentleniumVersion
+    testCompile group: 'org.fluentlenium', name: 'fluentlenium-assertj', version: fluentleniumVersion  
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version:seleniumVersion
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version:seleniumVersion
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-api', version:seleniumVersion
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:seleniumVersion   
+    compile group: 'org.seleniumhq.selenium', name: 'htmlunit-driver', version: '2.33.0'	
 }
 
 jar {
@@ -22,6 +50,10 @@ jar {
     }
 }
 
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
 
 run{
     standardInput = System.in
