@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package UI;
 
 /**
  *
  * @author aatukallio
  */
-public class Tui implements Interface{
+public interface UI {
     
 }

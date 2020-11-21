@@ -32,7 +32,7 @@ public class Main {
         
         Video v = new Video("The hardest problem on the hardest test","3Blue1Brown",null,courses,tags,"https://www.youtube.com/watch?v=OkmNXy7er84");
         
-        Podcast p = new Podcast("mumbling sokrates",null,null,null,null,"Philosophize this!");
+        Podcast p = new Podcast("mumbling sokrates",null,null,null,null,"");
         System.out.println(a + "\n");
         System.out.println(v+ "\n");
         System.out.println(p + "\n");
