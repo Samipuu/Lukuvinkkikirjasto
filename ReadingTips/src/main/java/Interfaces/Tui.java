@@ -9,6 +9,6 @@ package Interfaces;
  *
  * @author aatukallio
  */
-public class Tui {
+public class Tui implements Interface{
     
 }
