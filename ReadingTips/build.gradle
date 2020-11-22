@@ -6,7 +6,7 @@ plugins {
     id 'build-dashboard'		
 }
 
-mainClassName = 'ReadingTips.Main'
+mainClassName = 'readingtips.Main'
 
 repositories {
     jcenter()
@@ -48,7 +48,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'ReadingTips.Main'
+        attributes 'Main-Class': 'readingtips.Main'
     }
 }
 
