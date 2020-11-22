@@ -35,19 +35,25 @@ public class Tui implements UI {
                 + "Exit : Close the program");
         
         while(true) {
+            System.out.println("Command:");
             switch(scanner.nextLine().toLowerCase()) {
                 case "add":
                     add();   
+                    continue;
                 case "delete":
                     delete();
+                    continue;
                 case "exit":
                     return;
                 case "print all":
                     printAll();
+                    continue;
                 case "print":
                     print();
+                    continue;
                 case "edit":
                     edit();
+                    continue;
                 default:
                     System.out.println("Invalid command.");
             }
@@ -86,20 +92,24 @@ public class Tui implements UI {
                 String isbn = scanner.nextLine();
                 Tip book = new Book(title, description, author, tags, courses, isbn);
                 tipDao.createTip(book);
+                break;
             case "podcast":
                 System.out.println("Podcast name: ");
                 String podcastName = scanner.nextLine();
                 Tip podcast = new Podcast(title, author, description, tags, courses, podcastName);
                 tipDao.createTip(podcast);
+                break;
             case "video":
                 System.out.println("URL :");
                 String url = scanner.nextLine();
                 Tip video = new Video(title, author, description, tags, courses, url);
                 tipDao.createTip(video);
+                break;
             case "blog post":
                 System.out.println("URL :");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
+                break;
             default:
                 System.out.println("Invalid type. Valid types " + Arrays.toString(types));
         }
@@ -132,26 +142,32 @@ public class Tui implements UI {
         System.out.println("Title: ");
         String title = scanner.nextLine();
         
-        Tip tip = new Book(null,null,null,null,null,null);
-        System.out.println(tip);
-        while(true) {
+        Tip tip = new Book("Book",null,null,null,null,null);
+        //System.out.println(tip);
+        Boolean run = true;
+        while(run) {
             System.out.println("Choose attribute to change. Type cancel to cancel.");
             switch(scanner.nextLine().toLowerCase()) {
                 case "title":
                     System.out.println("Title: ");
                     String newTitle = scanner.nextLine();
+                    continue;
                 case "author":
                     System.out.println("Author: ");
                     String newAuthor = scanner.nextLine();
+                    continue;
                 case "description":
                     System.out.println("Description: ");
                     String newDescription = scanner.nextLine();
+                    continue;
                 case "tags":
                     System.out.println("Tags (comma seperated): ");
                     String tagsString = scanner.nextLine();
+                    continue;
                 case "courses":
                     System.out.println("Courses (comma seperated): ");
                     String coursesString = scanner.nextLine();
+                    continue;
                 case "url": 
                     if(tip.getType() != "Video" || tip.getType() != "BlogPost") {
                         System.out.println("Invalid attribute");
@@ -159,6 +175,7 @@ public class Tui implements UI {
                     }
                     System.out.println("Url: ");
                     String url = scanner.nextLine();
+                    continue;
                 case "isbn":
                     if(tip.getType() != "Book") {
                         System.out.println("Invalid attribute");
@@ -166,6 +183,7 @@ public class Tui implements UI {
                     }
                     System.out.println("ISBN: ");
                     String newIsbn = scanner.nextLine();
+                    continue;
                 case "podcast name":
                     if(tip.getType() != "Podcast") {
                         System.out.println("Invalid attribute");
@@ -173,15 +191,16 @@ public class Tui implements UI {
                     }
                     System.out.println("Podcast name: ");
                     String newPodCastName = scanner.nextLine();
+                    continue;
                 case "cancel":
-                    return;
+                    run = false;
+                    continue;
                 default:
                     System.out.println("Invalid attribute.");
             }
             
             
         }
-        
         
     }
     
