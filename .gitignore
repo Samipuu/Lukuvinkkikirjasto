@@ -1,2 +1,6 @@
 /ReadingTips/.gradle/
 /ReadingTips/build/
+.classpath
+.project
+.settings/
+bin/

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package readingtips.ui;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author aatukallio
  */
-public class Tui implements UI{
+public class Tui implements UI {
     Scanner scanner;
     
     public Tui () {

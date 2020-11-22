@@ -1,4 +1,4 @@
-package ReadingTips;
+package readingtips;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;

@@ -1,4 +1,4 @@
-package ReadingTips;
+package readingtips;
 
 //import ohtu.data_access.UserDao;
 //import ohtu.domain.User;

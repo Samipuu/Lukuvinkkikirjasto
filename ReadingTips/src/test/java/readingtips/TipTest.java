@@ -1,4 +1,4 @@
-package ReadingTips;
+package readingtips;
 
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
