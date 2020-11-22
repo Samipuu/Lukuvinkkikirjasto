@@ -13,6 +13,7 @@ import java.util.Scanner;
  */
 public interface UI {
     
-    public void launch(Scanner scanner);
+    
+    public void launch();
     
 }

@@ -40,9 +40,9 @@ public class Main {
         System.out.println(v+ "\n");
         System.out.println(p + "\n");
         
-        Tui ui = new Tui();
         Scanner scanner = new Scanner(System.in);
-        ui.launch(scanner);
+        Tui ui = new Tui(scanner);
+        ui.launch();
     }
     
 }
