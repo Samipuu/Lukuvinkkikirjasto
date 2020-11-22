@@ -61,8 +61,8 @@ public class BookDao extends Dao {
         try {
 
             String sql = "SELECT title, author, description, isbn, GROUP_CONCAT(tag) as tags, GROUP_CONCAT(course) as courses FROM Book "
-                    + "LEFT JOIN Tag on Book.id = Tag.tipId "
-                    + "LEFT JOIN Course on Book.id = Course.tipId "
+                    + "INNER JOIN Tag on Book.id = Tag.tipId "
+                    + "INNER JOIN Course on Book.id = Course.tipId "
                     + "GROUP BY title, author, description, isbn";
 
             Statement stmt = conn.createStatement();
@@ -87,7 +87,7 @@ public class BookDao extends Dao {
                     courses = null;
                 }
                 
-                Book book = new Book(title, description, author, tags, courses, isbn); // TODO: id, collections
+                Book book = new Book(title, author, description, tags, courses, isbn); // TODO: id, collections
                 returnValue.add(book);
             }
 
