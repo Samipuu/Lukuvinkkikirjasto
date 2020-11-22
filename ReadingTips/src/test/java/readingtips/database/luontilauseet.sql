@@ -1,0 +1,10 @@
+
+DROP TABLE IF EXISTS Book;
+
+CREATE TABLE Book (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    isbn VARCHAR(100) NOT NULL
+);
