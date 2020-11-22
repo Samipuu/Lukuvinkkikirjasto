@@ -5,10 +5,14 @@
  */
 package UI;
 
+import java.util.Scanner;
+
 /**
  *
  * @author aatukallio
  */
 public interface UI {
+    
+    public void launch(Scanner scanner);
     
 }
