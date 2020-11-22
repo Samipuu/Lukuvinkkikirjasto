@@ -1,5 +1,6 @@
 package readingtips.database;
 
+import java.util.Arrays;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -29,21 +30,24 @@ public class BookDaoTest {
 
     @Test
     public void insertBook() {
-        Book book = new Book("Muumi2020", "sairas tarina", "Toove", null, null, "2020-2020");
-        Integer id = dao.create(book);        
+        List<String> tags = Arrays.asList("tag1", "tag2");
+        List<String> courses = Arrays.asList("course1", "course2");
+        Book book = new Book("Muumi2020", "sairas tarina", "Toove", tags, courses, "2020-2020");
+        Integer id = dao.create(book);
         assertTrue(id > 0);
     }
 
     @Test
     public void listBooks() {
-        Book book = new Book("Muumi2020", "sairas tarina", "Toove", null, null, "2020-2020");
-        Integer id = dao.create(book);        
-        Book book2 = new Book("Muumi2021", "sairas tarina2", "Toove", null, null, "2020-2021");
-        Integer id2 = dao.create(book2);        
+        List<String> tags = Arrays.asList("tag1", "tag2");
+        List<String> courses = Arrays.asList("course1", "course2");
+        Book book = new Book("Muumi2020", "sairas tarina", "Toove", tags, courses, "2020-2020");
+        Integer id = dao.create(book);
+        Book book2 = new Book("Muumi2021", "sairas tarina2", "Toove", tags, courses, "2020-2021");
+        Integer id2 = dao.create(book2);
 
         List<Book> list = dao.list();
 
         assertTrue(list.size() > 1);
-    }    
+    }
 }
-
