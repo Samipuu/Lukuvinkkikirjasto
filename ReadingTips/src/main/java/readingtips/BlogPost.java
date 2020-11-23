@@ -12,7 +12,7 @@ import java.util.List;
  * @author tiitinha
  */
 public class BlogPost extends Tip {
-private String url;
+    private String url;
     
     public BlogPost(String title, String author, String description, List<String> tags, List<String> courses,String url) {
         super("BlogPost", title, author, description, tags, courses);

@@ -169,7 +169,7 @@ public class Tui implements UI {
                     String coursesString = scanner.nextLine();
                     continue;
                 case "url": 
-                    if(tip.getType() != "Video" || tip.getType() != "BlogPost") {
+                    if(!tip.getType().equals("Video") || !tip.getType().equals("BlogPost")) {
                         System.out.println("Invalid attribute");
                         continue;
                     }
@@ -177,7 +177,7 @@ public class Tui implements UI {
                     String url = scanner.nextLine();
                     continue;
                 case "isbn":
-                    if(tip.getType() != "Book") {
+                    if(!tip.getType().equals("Book")) {
                         System.out.println("Invalid attribute");
                         continue;
                     }
@@ -185,7 +185,7 @@ public class Tui implements UI {
                     String newIsbn = scanner.nextLine();
                     continue;
                 case "podcast name":
-                    if(tip.getType() != "Podcast") {
+                    if(!tip.getType().equals("Podcast")) {
                         System.out.println("Invalid attribute");
                         continue;
                     }
