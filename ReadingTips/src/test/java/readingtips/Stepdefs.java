@@ -27,7 +27,7 @@ public class Stepdefs {
     
     
     @When("command exit is given")
-    public void commandAdd() {
+    public void commandExit() {
         //Scanner scanner = new Scanner(System.in);
         UIStub ui = new UIStub("exit");
         new Tui(ui).launch();
@@ -36,8 +36,17 @@ public class Stepdefs {
         //ui.add();
     }
     
+    @When("command add is given")
+    public void commandAdd() {
+        //Scanner scanner = new Scanner(System.in);
+        UIStub ui2 = new UIStub("add", "title", "description", "author", "1", "2", "book", "isbn", "exit");
+        new Tui(ui2).launch();
+
+        //assertEquals("summa: 4\n", io.outputs.get(2));
+        //ui.add();
+    }
     
-    @Then("question Title is printed")
+    @Then("program is quit")
     public void questionTitleIsPrinted() {
         //assertTrue(io.getPrints().contains("Title"));
         //assertTrue(driver.getPageSource().contains("Title"));
