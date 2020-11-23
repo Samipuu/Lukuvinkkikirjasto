@@ -2,7 +2,7 @@ package readingtips.ui;
 import readingtips.ui.UI;
 import java.util.ArrayList;
 
-public class UIStub implements UI {
+public class UIStub implements IO {
 
     String[] inputs;
     int command;

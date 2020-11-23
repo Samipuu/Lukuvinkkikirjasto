@@ -2,7 +2,7 @@ package readingtips.ui;
 import readingtips.ui.UI;
 import java.util.Scanner;
 
-public class Konsoli implements UI {
+public class Konsoli implements IO {
     private Scanner lukija;
 
     public Konsoli() {

@@ -1,5 +1,6 @@
 package readingtips;
 import readingtips.ui.UI;
+import readingtips.ui.IO;
 import readingtips.ui.Konsoli;
 import java.util.Arrays;
 import java.util.List;
@@ -7,11 +8,11 @@ import java.util.Scanner;
 import readingtips.*;
 import readingtips.database.TipDao;
 
-public class Tui {
-    UI scanner;
+public class Tui implements UI{
+    IO scanner;
     TipDao tipDao;
     
-    public Tui (UI scanner) {
+    public Tui (IO scanner) {
         this.scanner = scanner;
         this.tipDao = new TipDao();
     }
