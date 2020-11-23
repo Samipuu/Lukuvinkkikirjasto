@@ -57,6 +57,6 @@ test {
     systemProperties System.getProperties()
 }
 
-run{
+run {
     standardInput = System.in
 }

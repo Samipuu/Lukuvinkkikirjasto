@@ -14,6 +14,6 @@ import org.junit.runner.RunWith;
 )
 
 public class RunCucumberTest {
-    @ClassRule
-    public static ServerRule server = new ServerRule(4567);
+    // @ClassRule
+    // public static ServerRule server = new ServerRule(4567);
 }

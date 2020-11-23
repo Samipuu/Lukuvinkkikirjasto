@@ -1,32 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package readingtips.ui;
-
+package readingtips;
+import readingtips.ui.UI;
+import readingtips.ui.Konsoli;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import readingtips.*;
 import readingtips.database.TipDao;
 
-/**
- *
- * @author aatukallio
- */
 public class Tui implements UI {
-    Scanner scanner;
+    //Scanner scanner;
+    UI scanner;
     TipDao tipDao;
     
-    public Tui (Scanner scanner) {
+    public Tui (UI scanner) {
         this.scanner = scanner;
+        //this.scanner = scanner;
         this.tipDao = new TipDao();
     }
-    
+    @Override
+    public void print(String m) {
+        //TYHJÄ METODI
+    }
+    // @Override
+    // public int nextInt() {
+    //     return 0;
+    // }
+    @Override
+    public String nextLine() {
+        return ("String");
+    }
+
     @Override
     public void launch() {
-        System.out.println("Commands: \n"
+        scanner.print("Commands: \n"
+        //System.out.println("Commands: \n"
                 + "Add : Add new reading tip\n"
                 + "Delete : Delete specific readig tip\n"
                 + "Edit : Edit specific reading tip\n"
@@ -35,8 +42,10 @@ public class Tui implements UI {
                 + "Exit : Close the program");
         
         while(true) {
-            System.out.println("Command:");
+            //System.out.println("Command:");
+            scanner.print("Command:");
             switch(scanner.nextLine().toLowerCase()) {
+            //switch(scanner.nextLine().toLowerCase()) {
                 case "add":
                     add();   
                     continue;
@@ -49,13 +58,14 @@ public class Tui implements UI {
                     printAll();
                     continue;
                 case "print":
-                    print();
+                    printSomething();
                     continue;
                 case "edit":
                     edit();
                     continue;
                 default:
-                    System.out.println("Invalid command.");
+                    scanner.print("Invalid command.\n");
+                    //System.out.println("Invalid command.");
             }
             
         }
@@ -71,47 +81,47 @@ public class Tui implements UI {
         List<String> tags;
         List<String> courses;
         
-        System.out.println("Title: ");
+        scanner.print("Title: ");
         title = scanner.nextLine();
-        System.out.println("Description: ");
+        scanner.print("Description: ");
         description = scanner.nextLine();
-        System.out.println("Author: ");
+        scanner.print("Author: ");
         author = scanner.nextLine();
-        System.out.println("Tags (comma seperated): ");
+        scanner.print("Tags (comma seperated): ");
         String tagsString = scanner.nextLine();
         tags = Arrays.asList(tagsString.split("\\s*, \\s*"));
-        System.out.println("Courses (comma seperated): ");
+        scanner.print("Courses (comma seperated): ");
         String courseString = scanner.nextLine();
         courses = Arrays.asList(courseString.split("\\s*,"));
         
-        System.out.println("Available types: " + Arrays.toString(types));
-        System.out.println("Type: ");
+        scanner.print("Available types: " + Arrays.toString(types));
+        scanner.print("Type: ");
         switch(scanner.nextLine().toLowerCase()) {
             case "book":
-                System.out.println("ISBN :");
+                scanner.print("ISBN :");
                 String isbn = scanner.nextLine();
                 Tip book = new Book(title, description, author, tags, courses, isbn);
                 tipDao.createTip(book);
                 break;
             case "podcast":
-                System.out.println("Podcast name: ");
+                scanner.print("Podcast name: ");
                 String podcastName = scanner.nextLine();
                 Tip podcast = new Podcast(title, author, description, tags, courses, podcastName);
                 tipDao.createTip(podcast);
                 break;
             case "video":
-                System.out.println("URL :");
+                scanner.print("URL :");
                 String url = scanner.nextLine();
                 Tip video = new Video(title, author, description, tags, courses, url);
                 tipDao.createTip(video);
                 break;
             case "blog post":
-                System.out.println("URL :");
+                scanner.print("URL :");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
                 break;
             default:
-                System.out.println("Invalid type. Valid types " + Arrays.toString(types));
+                scanner.print("Invalid type. Valid types " + Arrays.toString(types));
         }
 
 
@@ -119,7 +129,7 @@ public class Tui implements UI {
     }
 
     private void delete() {
-        System.out.println("Title: ");
+        scanner.print("Title: ");
         String title = scanner.nextLine();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -127,76 +137,76 @@ public class Tui implements UI {
     private void printAll() {
         List<Tip> tipList = tipDao.getAllTips();
         for(Tip tip : tipList) {
-            System.out.println(tip);
-            System.out.println("");
+            scanner.print(tip.getTitle());
+            scanner.print("");
         }
     }
 
-    private void print() {
-        System.out.println("Title: ");
+    private void printSomething() {
+        scanner.print("Title: ");
         String title = scanner.nextLine();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void edit() {
-        System.out.println("Title: ");
+        scanner.print("Title: ");
         String title = scanner.nextLine();
         
         Tip tip = new Book("Book",null,null,null,null,null);
         //System.out.println(tip);
         Boolean run = true;
         while(run) {
-            System.out.println("Choose attribute to change. Type cancel to cancel.");
+            scanner.print("Choose attribute to change. Type cancel to cancel.");
             switch(scanner.nextLine().toLowerCase()) {
                 case "title":
-                    System.out.println("Title: ");
+                    scanner.print("Title: ");
                     String newTitle = scanner.nextLine();
                     continue;
                 case "author":
-                    System.out.println("Author: ");
+                    scanner.print("Author: ");
                     String newAuthor = scanner.nextLine();
                     continue;
                 case "description":
-                    System.out.println("Description: ");
+                    scanner.print("Description: ");
                     String newDescription = scanner.nextLine();
                     continue;
                 case "tags":
-                    System.out.println("Tags (comma seperated): ");
+                    scanner.print("Tags (comma seperated): ");
                     String tagsString = scanner.nextLine();
                     continue;
                 case "courses":
-                    System.out.println("Courses (comma seperated): ");
+                    scanner.print("Courses (comma seperated): ");
                     String coursesString = scanner.nextLine();
                     continue;
                 case "url": 
                     if(!tip.getType().equals("Video") || !tip.getType().equals("BlogPost")) {
-                        System.out.println("Invalid attribute");
+                        scanner.print("Invalid attribute");
                         continue;
                     }
-                    System.out.println("Url: ");
+                    scanner.print("Url: ");
                     String url = scanner.nextLine();
                     continue;
                 case "isbn":
                     if(!tip.getType().equals("Book")) {
-                        System.out.println("Invalid attribute");
+                        scanner.print("Invalid attribute");
                         continue;
                     }
-                    System.out.println("ISBN: ");
+                    scanner.print("ISBN: ");
                     String newIsbn = scanner.nextLine();
                     continue;
                 case "podcast name":
                     if(!tip.getType().equals("Podcast")) {
-                        System.out.println("Invalid attribute");
+                        scanner.print("Invalid attribute");
                         continue;
                     }
-                    System.out.println("Podcast name: ");
+                    scanner.print("Podcast name: ");
                     String newPodCastName = scanner.nextLine();
                     continue;
                 case "cancel":
                     run = false;
                     continue;
                 default:
-                    System.out.println("Invalid attribute.");
+                    scanner.print("Invalid attribute.");
             }
             
             

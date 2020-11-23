@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package readingtips;
+import readingtips.ui.Konsoli;
 
-import readingtips.ui.Tui;
 import readingtips.ui.UI;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,8 @@ public class Main {
         System.out.println(p + "\n");
         
         Scanner scanner = new Scanner(System.in);
-        Tui ui = new Tui(scanner);
+        //Tui ui = new Tui(scanner);
+        Tui ui = new Tui(new Konsoli());
         ui.launch();
     }
     
