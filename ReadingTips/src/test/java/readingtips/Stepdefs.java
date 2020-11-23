@@ -41,7 +41,8 @@ public class Stepdefs {
         //Scanner scanner = new Scanner(System.in);
         UIStub ui2 = new UIStub("add", "title", "description", "author", "1", "2", "book", "isbn", "exit");
         new Tui(ui2).launch();
-
+        
+        assertEquals("Title: ", ui2.getOutputs().get(2));
         //assertEquals("summa: 4\n", io.outputs.get(2));
         //ui.add();
     }
@@ -50,6 +51,7 @@ public class Stepdefs {
     public void questionTitleIsPrinted() {
         //assertTrue(io.getPrints().contains("Title"));
         //assertTrue(driver.getPageSource().contains("Title"));
+        
         driver.close();
     
     }  

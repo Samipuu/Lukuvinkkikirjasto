@@ -7,33 +7,18 @@ import java.util.Scanner;
 import readingtips.*;
 import readingtips.database.TipDao;
 
-public class Tui implements UI {
-    //Scanner scanner;
+public class Tui {
     UI scanner;
     TipDao tipDao;
     
     public Tui (UI scanner) {
         this.scanner = scanner;
-        //this.scanner = scanner;
         this.tipDao = new TipDao();
     }
-    @Override
-    public void print(String m) {
-        //TYHJÄ METODI
-    }
-    // @Override
-    // public int nextInt() {
-    //     return 0;
-    // }
-    @Override
-    public String nextLine() {
-        return ("String");
-    }
 
-    @Override
+
     public void launch() {
         scanner.print("Commands: \n"
-        //System.out.println("Commands: \n"
                 + "Add : Add new reading tip\n"
                 + "Delete : Delete specific readig tip\n"
                 + "Edit : Edit specific reading tip\n"
@@ -42,10 +27,8 @@ public class Tui implements UI {
                 + "Exit : Close the program");
         
         while(true) {
-            //System.out.println("Command:");
             scanner.print("Command:");
             switch(scanner.nextLine().toLowerCase()) {
-            //switch(scanner.nextLine().toLowerCase()) {
                 case "add":
                     add();   
                     continue;
@@ -65,7 +48,6 @@ public class Tui implements UI {
                     continue;
                 default:
                     scanner.print("Invalid command.\n");
-                    //System.out.println("Invalid command.");
             }
             
         }

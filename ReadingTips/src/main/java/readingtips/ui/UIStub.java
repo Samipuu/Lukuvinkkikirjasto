@@ -18,17 +18,6 @@ public class UIStub implements UI {
     //     return("Add");
     // }
 
-    @Override 
-    public void launch() {
-        // TODO Auto-generated method stub
-        
-    } 
-
-    // @Override
-    // public int nextInt() {
-    //     return inputs[command++];
-    // }
-
     @Override
     public String nextLine() {
         return inputs[command++];
@@ -37,5 +26,9 @@ public class UIStub implements UI {
     @Override
     public void print(String m) {
         outputs.add(m);
+    }
+    
+    public ArrayList<String> getOutputs() {
+        return outputs;
     }
 }

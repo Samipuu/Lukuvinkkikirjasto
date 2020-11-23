@@ -21,9 +21,4 @@ public class Konsoli implements UI {
         System.out.println(m);
     }
 
-    @Override 
-    public void launch() {
-        // TODO Auto-generated method stub
-        
-    } 
 }
