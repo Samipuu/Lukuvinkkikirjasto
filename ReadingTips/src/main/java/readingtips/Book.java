@@ -11,8 +11,8 @@ public class Book extends Tip {
 
     private String isbn;
 
-    public Book(String title, String description, String author, List<String> tags, List<String> courses, String isbn) {
-        super("Book", title, description, author, tags, courses);
+    public Book(String title, String author, String description, List<String> tags, List<String> courses, String isbn) {
+        super("Book", title, author, description, tags, courses);
         this.isbn = isbn;
     }
 

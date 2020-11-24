@@ -66,10 +66,10 @@ public class Tui implements UI{
         
         scanner.print("Title: ");
         title = scanner.nextLine();
-        scanner.print("Description: ");
-        description = scanner.nextLine();
         scanner.print("Author: ");
         author = scanner.nextLine();
+        scanner.print("Description: ");
+        description = scanner.nextLine();
         scanner.print("Tags (comma seperated): ");
         String tagsString = scanner.nextLine();
         tags = Arrays.asList(tagsString.split("\\s*, \\s*"));

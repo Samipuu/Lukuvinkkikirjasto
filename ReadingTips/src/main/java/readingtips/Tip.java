@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package readingtips;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- *
- * @author aatukallio
- */
 public abstract class Tip {
     private String type;
     private String title;
@@ -30,38 +21,32 @@ public abstract class Tip {
         this.tags = tags;
         this.courses = courses;
     }
-    
-    
+        
     public String getType() {
         return this.type;
-       
     }
-    
-    
+        
     public String getTitle() {
         if (this.title != null) {
             return this.title;
         }
         return "";
     }
-    
-    
+        
     public String getAuthor() {
         if (this.author != null) {
             return this.author;
         }
         return "";
     }
-    
-    
+        
     public String getDescription() {
         if (this.description != null) {
             return this.description;
         }
         return "";
     }
-    
-    
+        
     public List<String> getTags() {
         if (this.tags != null) {
             Collections.sort(tags);
@@ -69,8 +54,7 @@ public abstract class Tip {
         }
         return new ArrayList<>();
     }
-    
-    
+        
     public List<String> getCourses() {
         if (this.courses != null) {
             Collections.sort(this.courses);
@@ -78,8 +62,7 @@ public abstract class Tip {
         }
         return new ArrayList<>();
     }
-    
-    
+        
     @Override
     public String toString() {
         String returnString = "";
