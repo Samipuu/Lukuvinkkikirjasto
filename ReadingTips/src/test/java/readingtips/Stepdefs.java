@@ -1,6 +1,7 @@
 package readingtips;
 import java.util.Scanner;
 import readingtips.ui.UIStub;
+import readingtips.ui.Tui;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;

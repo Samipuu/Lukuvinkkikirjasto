@@ -6,10 +6,10 @@
 package readingtips;
 import readingtips.ui.Konsoli;
 
-import readingtips.ui.UI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import readingtips.ui.Tui;
 
 /**
  *

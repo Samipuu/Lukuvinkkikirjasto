@@ -23,30 +23,31 @@ public class TipDao {
     private VideoDao videoDao;
     private PodcastDao podcastDao;
     private BlogPostDao blogPostDao;
+    private List<Tip> allTips;
 
     public TipDao() {
         bookDao = new BookDao();
         videoDao = new VideoDao();
         podcastDao = new PodcastDao();
         blogPostDao = new BlogPostDao();
+
+        allTips = new ArrayList();
+
+        List<Book> books = getAllBooks();
+        allTips.addAll(books);
+
+        List<Video> videos = getAllVideos();
+        allTips.addAll(videos);
+
+        List<Podcast> podcasts = getAllPodcasts();
+        allTips.addAll(podcasts);
+
+        List<BlogPost> blogPosts = getAllBlogPosts();
+        allTips.addAll(blogPosts);
     }
 
     public List<Tip> getAllTips() {
-        List<Tip> tips = new ArrayList<>();
-
-        List<Book> books = getAllBooks();
-        tips.addAll(books);
-        
-        List<Video> videos = getAllVideos();
-        tips.addAll(videos);
-        
-        List<Podcast> podcasts = getAllPodcasts();
-        tips.addAll(podcasts);
-        
-        List<BlogPost> blogPosts = getAllBlogPosts();
-        tips.addAll(blogPosts);
-        
-        return tips;
+        return allTips;
     }
 
     private List<Book> getAllBooks() {
@@ -73,15 +74,14 @@ public class TipDao {
         return blogPosts;
     }
 
-    public boolean createTip(Tip tip) {
+    public void createTip(Tip tip) {
+        allTips.add(tip);
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
             bookDao.create(book);
-            return true;
         } else if (tip.getClass() == Video.class) {
             Video video = (Video) tip;
             videoDao.create(video);
-            return true;
         } else if (tip.getClass() == Podcast.class) {
             Podcast podcast = (Podcast) tip;
             podcastDao.create(podcast);
@@ -89,7 +89,6 @@ public class TipDao {
             BlogPost blogPost = (BlogPost) tip;
             blogPostDao.create(blogPost);
         }
-        return false;
     }
 
 }

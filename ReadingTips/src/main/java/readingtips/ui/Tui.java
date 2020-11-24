@@ -1,22 +1,23 @@
-package readingtips;
-import readingtips.ui.UI;
-import readingtips.ui.IO;
-import readingtips.ui.Konsoli;
+package readingtips.ui;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import readingtips.*;
+import readingtips.BlogPost;
+import readingtips.Book;
+import readingtips.Podcast;
+import readingtips.Tip;
+import readingtips.Video;
 import readingtips.database.TipDao;
 
-public class Tui implements UI{
+public class Tui implements UI {
+
     IO scanner;
     TipDao tipDao;
-    
-    public Tui (IO scanner) {
+
+    public Tui(IO scanner) {
         this.scanner = scanner;
         this.tipDao = new TipDao();
     }
-
 
     public void launch() {
         scanner.print("Commands: \n"
@@ -24,14 +25,14 @@ public class Tui implements UI{
                 + "Delete : Delete specific readig tip\n"
                 + "Edit : Edit specific reading tip\n"
                 + "Print All : Print title of all reading tips\n"
-                + "Print : Print specific reading tip by title\n" 
+                + "Print : Print specific reading tip by title\n"
                 + "Exit : Close the program");
-        
-        while(true) {
+
+        while (true) {
             scanner.print("Command:");
-            switch(scanner.nextLine().toLowerCase()) {
+            switch (scanner.nextLine().toLowerCase()) {
                 case "add":
-                    add();   
+                    add();
                     continue;
                 case "delete":
                     delete();
@@ -50,20 +51,19 @@ public class Tui implements UI{
                 default:
                     scanner.print("Invalid command.\n");
             }
-            
+
         }
     }
 
     private void add() {
-        String[] types = new String[] {"Book", "Podcast", "Video", "Blog Post"};
-        
-        String type;
+        String[] types = new String[]{"Book", "Podcast", "Video", "Blog Post"};
+
         String title;
         String author;
         String description;
         List<String> tags;
         List<String> courses;
-        
+
         scanner.print("Title: ");
         title = scanner.nextLine();
         scanner.print("Description: ");
@@ -76,10 +76,10 @@ public class Tui implements UI{
         scanner.print("Courses (comma seperated): ");
         String courseString = scanner.nextLine();
         courses = Arrays.asList(courseString.split("\\s*,"));
-        
+
         scanner.print("Available types: " + Arrays.toString(types));
         scanner.print("Type: ");
-        switch(scanner.nextLine().toLowerCase()) {
+        switch (scanner.nextLine().toLowerCase()) {
             case "book":
                 scanner.print("ISBN :");
                 String isbn = scanner.nextLine();
@@ -107,8 +107,6 @@ public class Tui implements UI{
                 scanner.print("Invalid type. Valid types " + Arrays.toString(types));
         }
 
-
-
     }
 
     private void delete() {
@@ -119,7 +117,7 @@ public class Tui implements UI{
 
     private void printAll() {
         List<Tip> tipList = tipDao.getAllTips();
-        for(Tip tip : tipList) {
+        for (Tip tip : tipList) {
             scanner.print(tip.getTitle());
             scanner.print("");
         }
@@ -134,13 +132,13 @@ public class Tui implements UI{
     private void edit() {
         scanner.print("Title: ");
         String title = scanner.nextLine();
-        
-        Tip tip = new Book("Book",null,null,null,null,null);
+
+        Tip tip = new Book("Book", null, null, null, null, null);
         //System.out.println(tip);
         Boolean run = true;
-        while(run) {
+        while (run) {
             scanner.print("Choose attribute to change. Type cancel to cancel.");
-            switch(scanner.nextLine().toLowerCase()) {
+            switch (scanner.nextLine().toLowerCase()) {
                 case "title":
                     scanner.print("Title: ");
                     String newTitle = scanner.nextLine();
@@ -161,8 +159,8 @@ public class Tui implements UI{
                     scanner.print("Courses (comma seperated): ");
                     String coursesString = scanner.nextLine();
                     continue;
-                case "url": 
-                    if(!tip.getType().equals("Video") || !tip.getType().equals("BlogPost")) {
+                case "url":
+                    if (!tip.getType().equals("Video") || !tip.getType().equals("BlogPost")) {
                         scanner.print("Invalid attribute");
                         continue;
                     }
@@ -170,7 +168,7 @@ public class Tui implements UI{
                     String url = scanner.nextLine();
                     continue;
                 case "isbn":
-                    if(!tip.getType().equals("Book")) {
+                    if (!tip.getType().equals("Book")) {
                         scanner.print("Invalid attribute");
                         continue;
                     }
@@ -178,7 +176,7 @@ public class Tui implements UI{
                     String newIsbn = scanner.nextLine();
                     continue;
                 case "podcast name":
-                    if(!tip.getType().equals("Podcast")) {
+                    if (!tip.getType().equals("Podcast")) {
                         scanner.print("Invalid attribute");
                         continue;
                     }
@@ -191,10 +189,9 @@ public class Tui implements UI{
                 default:
                     scanner.print("Invalid attribute.");
             }
-            
-            
+
         }
-        
+
     }
-    
+
 }
