@@ -5,10 +5,24 @@
  */
 package readingtips.database;
 
+import java.util.ArrayList;
+import java.util.List;
+import readingtips.Video;
+
 /**
  *
  * @author tiitinha
  */
 public class VideoDao {
+    
+    public void create(Video video) {
+        
+    }
+    
+    public List<Video> list() {
+        List<Video> videoList = new ArrayList();
+        
+        return videoList;
+    }
     
 }

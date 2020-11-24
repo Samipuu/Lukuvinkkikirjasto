@@ -5,10 +5,23 @@
  */
 package readingtips.database;
 
+import java.util.ArrayList;
+import java.util.List;
+import readingtips.BlogPost;
+
 /**
  *
  * @author tiitinha
  */
 public class BlogPostDao {
-    
+
+    public void create(BlogPost video) {
+
+    }
+
+    public List<BlogPost> list() {
+        List<BlogPost> BlogPostList = new ArrayList();
+
+        return BlogPostList;
+    }
 }
