@@ -43,7 +43,7 @@ public class Tui implements UI {
                     printAll();
                     continue;
                 case "print":
-                    printSomething();
+                    printTitle();
                     continue;
                 case "edit":
                     edit();
@@ -66,10 +66,10 @@ public class Tui implements UI {
 
         scanner.print("Title: ");
         title = scanner.nextLine();
-        scanner.print("Description: ");
-        description = scanner.nextLine();
         scanner.print("Author: ");
         author = scanner.nextLine();
+        scanner.print("Description: ");
+        description = scanner.nextLine();
         scanner.print("Tags (comma seperated): ");
         String tagsString = scanner.nextLine();
         tags = Arrays.asList(tagsString.split("\\s*, \\s*"));
@@ -102,6 +102,7 @@ public class Tui implements UI {
                 scanner.print("URL :");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
+                tipDao.createTip(blogpost); //Tää puuttui, varmaan piti olla?
                 break;
             default:
                 scanner.print("Invalid type. Valid types " + Arrays.toString(types));
@@ -123,7 +124,7 @@ public class Tui implements UI {
         }
     }
 
-    private void printSomething() {
+    private void printTitle() {
         scanner.print("Title: ");
         String title = scanner.nextLine();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

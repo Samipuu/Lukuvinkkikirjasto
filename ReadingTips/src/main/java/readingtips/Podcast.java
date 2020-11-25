@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package readingtips;
-
 import java.util.List;
 
-/**
- *
- * @author aatukallio
- */
 public class Podcast extends Tip{
     private String podcastName;
 
@@ -33,6 +23,5 @@ public class Podcast extends Tip{
         if (!this.getPodcastName().isEmpty()) returnString += "\nPodcast: " + this.getPodcastName();
         return returnString;
     }
-    
     
 }

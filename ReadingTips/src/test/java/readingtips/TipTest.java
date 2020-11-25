@@ -11,9 +11,31 @@ public class TipTest {
         
     // }
 
-    // @Test
-    // public void tyyppiOikein() {
-    //     Tip tip = new Tip("Type", "Title", "Author", "Description", null, null);
-    //     assertEquals("Type", tip.getType());
-    // }
+    @Test
+    public void getTitleEmpty() {
+        //Tip tip = new Tip("Type", "", "Author", "Description", null, null);
+        Book book = new Book("", "Author", "Description", null, null, "isbn");
+        assertEquals("", book.getTitle());
+    }
+
+    @Test
+    public void getTitleRight() {
+        //Tip tip = new Tip("Type", "", "Author", "Description", null, null);
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        assertEquals("Title", book.getTitle());
+    }
+
+    @Test
+    public void getAuthorEmpty() {
+        //Tip tip = new Tip("Type", "", "Author", "Description", null, null);
+        Book book = new Book("Title", "", "Description", null, null, "isbn");
+        assertEquals("", book.getAuthor());
+    }
+
+    @Test
+    public void getAuthorRight() {
+        //Tip tip = new Tip("Type", "", "Author", "Description", null, null);
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        assertEquals("Author", book.getAuthor());
+    }    
 }
