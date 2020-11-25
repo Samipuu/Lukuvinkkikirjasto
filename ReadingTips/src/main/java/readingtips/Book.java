@@ -1,12 +1,7 @@
 package readingtips;
-
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author aatukallio
- */
 public class Book extends Tip {
 
     private String isbn;

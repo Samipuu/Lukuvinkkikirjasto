@@ -6,11 +6,6 @@ import org.junit.Test;
 
 public class PodcastTest {
 
-    // @Before
-    // public static void setUp() {
-        
-    // }
-
     @Test
     public void nameIsCorrect() {
         Podcast podcast = new Podcast("Title", "Author", null, null, null, "PodcastName");
@@ -55,6 +50,5 @@ public class PodcastTest {
                         
         assertEquals(returnString, podcast.toString());
     }
-
 
 }
