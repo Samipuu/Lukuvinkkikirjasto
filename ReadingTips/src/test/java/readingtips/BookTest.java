@@ -1,5 +1,6 @@
 package readingtips;
 
+import java.util.List;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
@@ -23,30 +24,6 @@ public class BookTest {
     }
 
     @Test
-    public void toStringOikeinPelkkaNimiKuvausJaISBN() {
-        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
-        String returnString = "";
-        returnString += "Type: " + "Book";
-        returnString += "\nTitle: " + "Title";
-        returnString += "\nAuthor: " + "Author";        
-        returnString += "\nDescription: " + "Description";
-        returnString += "\nISBN: " + "isbn";
-        assertEquals(returnString, book.toString());
-    }
-
-    @Test
-    public void superToStringOikein() {
-        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
-        String returnString = "";
-        returnString += "Type: " + "Book";
-        returnString += "\nTitle: " + "Title";
-        returnString += "\nAuthor: " + "Author";        
-        returnString += "\nDescription: " + "Description";
-        returnString += "\nISBN: " + "isbn";
-        assertEquals(returnString, book.toString());
-    }
-
-    @Test
     public void equalsFalse() {
         Book book = new Book("Title", "Author", "Description", null, null, "isbn");
         Book bookTesti = new Book(null, null, null, null, null, null);
@@ -58,4 +35,131 @@ public class BookTest {
         Book book1 = new Book("Title", "Author", "Description", null, null, "isbn");
         assertEquals(true, book.equals(book1));
     }    
+    @Test
+    public void bookGetTitleNull() {
+        Book book = new Book(null, "Author", "Description", null, null, "isbn");
+        assertEquals("", book.getTitle());
+    }
+    @Test
+    public void bookGetAuthorNull() {
+        Book book = new Book("Title", null, "Description", null, null, "isbn");
+        assertEquals("", book.getAuthor());
+    }    
+    @Test
+    public void bookGetAuthor() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        assertEquals("Author", book.getAuthor());
+    } 
+
+    @Test
+    public void bookGetDescriptionNull() {
+        Book book = new Book("Title", "Author", null, null, null, "isbn");
+        assertEquals("", book.getDescription());
+    }    
+    @Test
+    public void bookGetDescription() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        assertEquals("Description", book.getDescription());
+    }
+
+    @Test
+    public void bookToString() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        String returnString = "";
+        returnString += "Type: " + "Book";
+        returnString += "\nTitle: " + "Title";
+        returnString += "\nAuthor: " + "Author";        
+        returnString += "\nDescription: " + "Description";
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
+
+    @Test
+    public void toStringIlmanAutor() {
+        Book book = new Book("Title", null, "Description", null, null, "isbn");
+        String returnString = "";
+        returnString += "Type: " + "Book";
+        returnString += "\nTitle: " + "Title";
+      
+        returnString += "\nDescription: " + "Description";
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
+
+    @Test
+    public void bookToStringOikein() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        String returnString = "";
+        returnString += "Type: " + "Book";
+        returnString += "\nTitle: " + "Title";
+        returnString += "\nAuthor: " + "Author";        
+        returnString += "\nDescription: " + "Description";
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
+
+    @Test
+    public void bookToStringOikeinEiTitle() {
+        Book book = new Book(null, "Author", "Description", null, null, "isbn");
+        String returnString = "";
+        returnString += "Type: " + "Book";
+
+        returnString += "\nAuthor: " + "Author";        
+        returnString += "\nDescription: " + "Description";
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
+
+    public void bookToStringOikeinVainAuthor() {
+        Book book = new Book(null, "Author", null, null, null, "isbn");
+        String returnString = "";
+        returnString += "Type: " + "Book";
+
+        returnString += "\nAuthor: " + "Author";        
+
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
+
+    @Test
+    public void bookToStringOikeinListatMyos() {
+        List<String> tags = new ArrayList();
+        List<String> courses = new ArrayList();
+        tags.add("eka");
+        courses.add("tira");
+        Book book = new Book("Title", "Author", "Description", tags, courses, "isbn");        
+        String tagsString = book.getTags().toString();
+        String coursesString = book.getCourses().toString();        
+        String returnString = "";
+        returnString += "Type: " + "Book";
+        returnString += "\nTitle: " + "Title";
+        returnString += "\nAuthor: " + "Author";        
+        returnString += "\nDescription: " + "Description";
+        returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
+        returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+                
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
+
+    @Test
+    public void bookToStringOikeinListatMyosEiTitle() {
+        List<String> tags = new ArrayList();
+        List<String> courses = new ArrayList();
+        tags.add("eka");
+        courses.add("tira");
+        Book book = new Book("Title", "Author", null, tags, courses, "isbn");        
+        String tagsString = book.getTags().toString();
+        String coursesString = book.getCourses().toString();        
+        String returnString = "";
+        returnString += "Type: " + "Book";
+        returnString += "\nTitle: " + "Title";
+        returnString += "\nAuthor: " + "Author";        
+
+        returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
+        returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+                
+        returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }
 }
