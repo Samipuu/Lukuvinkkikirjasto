@@ -162,4 +162,12 @@ public class BookTest {
         returnString += "\nISBN: " + "isbn";
         assertEquals(returnString, book.toString());
     }
+
+    @Test
+    public void equalsTunnistaaSamaksiJosParametritSamat() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        Book book2 = new Book("Title", "Author", "Description", null, null, "isbn");
+
+        assertTrue(book.equals(book2));
+    }
 }
