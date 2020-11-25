@@ -1,3 +1,5 @@
+![Java CI with Gradle](https://github.com/Samipuu/Reading-tips-2020-covid-edition/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 # Lukuvinkkikirjasto
 
 [Backlog](https://docs.google.com/spreadsheets/d/1kZ0gFiGDwlGnhyhhpXqEHOJM38GCwa6GD7lcROB76bw/edit?usp=sharing)
