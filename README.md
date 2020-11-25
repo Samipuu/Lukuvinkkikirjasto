@@ -13,7 +13,7 @@ Määrittelemme valmiiksi tehdyn tarkoittamaan sitä, että vaatimus on analysoi
 
 ### Suorittaminen
 
-Ohjelma voidaan suorittaa komennolla ```./gradlew run``` komentorivillä.
+Ohjelma voidaan suorittaa komennolla ```./gradlew run``` komentorivillä projektin juuressa kansiossa ReadingTips.
 
 ### Lukuvinkkikirjaston käyttö
 
