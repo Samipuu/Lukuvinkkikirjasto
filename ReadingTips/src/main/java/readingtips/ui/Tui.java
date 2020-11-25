@@ -43,7 +43,7 @@ public class Tui implements UI {
                     printAll();
                     continue;
                 case "print":
-                    printTitle();
+                    printTip();
                     continue;
                 case "edit":
                     edit();
@@ -119,15 +119,20 @@ public class Tui implements UI {
     private void printAll() {
         List<Tip> tipList = tipDao.getAllTips();
         for (Tip tip : tipList) {
-            scanner.print(tip.getTitle());
+            scanner.print(tip.toString());
             scanner.print("");
         }
     }
 
-    private void printTitle() {
+    private void printTip() {
         scanner.print("Title: ");
         String title = scanner.nextLine();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Tip> tipList = tipDao.getAllTips();
+        for(Tip tip : tipList) {
+            if(tip.getTitle().toLowerCase().equals(title)) {
+                scanner.print(tip.toString());
+            }
+        }
     }
 
     private void edit() {
