@@ -1,10 +1,13 @@
 package readingtips;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class Tip {
+import readingtips.entity.Entity;
+
+public abstract class Tip extends Entity {
     private String type;
     private String title;
     private String author;
@@ -12,6 +15,7 @@ public abstract class Tip {
     private List<String> tags;
     private List<String> courses;
     
+    public Tip() {}
  
     public Tip(String type, String title, String author, String description, List<String> tags,List<String> courses) {
         this.author = author;
@@ -21,6 +25,24 @@ public abstract class Tip {
         this.tags = tags;
         this.courses = courses;
     }
+
+    public void updateCommon(LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags,List<String> courses) {
+        this.author = author;
+        this.description = description;
+        this.title = title;
+        this.tags = tags;
+        this.courses = courses;
+        updateEntity(created, modified);
+    }    
+
+    public void updateCommon(LocalDateTime created, LocalDateTime modified, String title, String author, String description) {
+        this.author = author;
+        this.description = description;
+        this.title = title;
+        // this.tags = tags;
+        // this.courses = courses;
+        updateEntity(created, modified);
+    }    
         
     public String getType() {
         return this.type;

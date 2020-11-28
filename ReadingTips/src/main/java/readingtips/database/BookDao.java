@@ -4,19 +4,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import readingtips.Book;
 
-public class BookDao extends Dao {
+public class BookDao extends CommonDao {
 
-    // TODO: read, update, delete, list, muuta?
-    public int create(Book book) {
+    public BookDao() {
+        this.table = "Book";
+    }
+
+    public void create(Book book) {
 
         try {
-
-            String sql = "INSERT INTO Book(title, author, description, isbn) VALUES(?, ?, ?, ?) ";
+            String sql = "INSERT INTO BOOK(created, modified, title, author, description, isbn) "
+                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?) ";
 
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, book.getTitle());
@@ -24,78 +26,64 @@ public class BookDao extends Dao {
             ps.setString(3, book.getDescription());
             ps.setString(4, book.getIsbn());
             ps.executeUpdate();
-
-            ResultSet keys = ps.getGeneratedKeys();
-            int id = 0;
-            if (keys.next()) {
-                id = keys.getInt(1);
-            }
-
-            //TODO: tags, courses
-            for (String tag : book.getTags()) {
-                String tagSql = "INSERT INTO Tag(tag, tipId) VALUES(?, ?)";
-                ps = conn.prepareStatement(tagSql);
-                ps.setString(1, tag);
-                ps.setInt(2, id);
-                ps.executeUpdate();
-            }
-
-            for (String course : book.getCourses()) {
-                String courseSql = "INSERT INTO Course(course, tipId) VALUES(?, ?)";
-                ps = conn.prepareStatement(courseSql);
-                ps.setString(1, course);
-                ps.setInt(2, id);
-                ps.executeUpdate();
-            }
-
-            return id; // TODO: mitä palautetaan?
-
+            book.setId(getId(ps));
+            addTags(book);
+            addCourses(book);
+        
+            reload(book);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
 
+    public void reload(Book book) {
+        try {
+
+            String sql = "SELECT id, created, modified, title, author, description, isbn FROM BOOK WHERE id = ? ";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, book.getId());
+
+            System.out.println("idhän on: " + book.getId());
+
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                getCommonFields(rs, book);
+                String isbn = rs.getString("isbn");
+                book.setIsbn(isbn);
+            }
+
+        } catch (Exception x) {
+            throw new RuntimeException(x);
+        }
     }
 
     public List<Book> list() {
 
+        List<Book> returnValue = new ArrayList<Book>();
+
         try {
 
-            String sql = "SELECT title, author, description, isbn, GROUP_CONCAT(tag) as tags, GROUP_CONCAT(course) as courses FROM Book "
-                    + "INNER JOIN Tag on Book.id = Tag.tipId "
-                    + "INNER JOIN Course on Book.id = Course.tipId "
-                    + "GROUP BY title, author, description, isbn";
+            String sql = "SELECT id, created, modified, title, author, description, isbn FROM Book";
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-
-            List<Book> returnValue = new ArrayList<Book>();
-
             while (rs.next()) {
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                String description = rs.getString("description");
+                Book book = new Book();
+                getCommonFields(rs, book);
                 String isbn = rs.getString("isbn");
-                
-                List<String> tags;
-                List<String> courses;
-                
-                if (rs.getString("tags") != null && rs.getString("courses") != null) {
-                    tags = Arrays.asList(rs.getString("tags").split(","));
-                    courses = Arrays.asList(rs.getString("courses").split(","));
-                } else {
-                    tags = null;
-                    courses = null;
-                }
-                
-                Book book = new Book(title, author, description, tags, courses, isbn); // TODO: id, collections
+                book.setIsbn(isbn);
                 returnValue.add(book);
             }
 
-            return returnValue;
-
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return null;
+            throw new RuntimeException(ex);
         }
+        return returnValue;
     }
+
+
+
+
+
 }

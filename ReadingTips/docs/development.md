@@ -25,13 +25,13 @@ https://dbeaver.io/download/
     for example:
     E:\github_tsekkaukset\ohjelmistotuotanto\miniprojekti\Reading-tips-2020-covid-edition\ReadingTips\readingtips.mv.db
 
-    Username: sa
+    Username: sa  
     Password: <tyhjä>
 
-4. see ER-diagram:
+4. see ER-diagram:  
 PUBLIC -> ER Diagram
 
-5. make SQL-queries:
+5. make SQL-queries:  
 Main Menu -> SQL Editor
 
 6. other fancy database stuff

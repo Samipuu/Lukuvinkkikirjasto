@@ -4,6 +4,8 @@ import java.util.List;
 public class BlogPost extends Tip {
     private String url;
     
+    public BlogPost() {}
+
     public BlogPost(String title, String author, String description, List<String> tags, List<String> courses,String url) {
         super("BlogPost", title, author, description, tags, courses);
         this.url = url;
@@ -16,6 +18,10 @@ public class BlogPost extends Tip {
         return "";
     }
     
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         String returnString = super.toString();

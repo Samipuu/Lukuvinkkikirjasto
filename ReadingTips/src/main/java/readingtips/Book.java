@@ -1,4 +1,6 @@
 package readingtips;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -6,13 +8,29 @@ public class Book extends Tip {
 
     private String isbn;
 
+    public Book() {}
+
     public Book(String title, String author, String description, List<String> tags, List<String> courses, String isbn) {
         super("Book", title, author, description, tags, courses);
         this.isbn = isbn;
     }
 
+    public Book(int id, LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags, List<String> courses, String isbn) {
+        super("Book", title, author, description, tags, courses);
+        this.isbn = isbn;
+    }
+
+    public void update(LocalDateTime created, LocalDateTime modified, String isbn, String title, String author, String description, List<String> tags, List<String> courses) {
+        this.isbn = isbn;
+        updateCommon(created, modified, title, author, description, tags, courses);
+    }
+
     public String getIsbn() {
         return this.isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     @Override

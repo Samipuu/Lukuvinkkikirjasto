@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 
-public class Dao {
+public abstract class Dao {
     
     public Connection conn;
 
@@ -17,7 +17,7 @@ public class Dao {
         checkDB();
         
         try {
-            conn = DriverManager.getConnection("jdbc:h2:./readingtips", "sa", "");
+            conn = DriverManager.getConnection("jdbc:h2:./readingtips", "sa", ""); // TODO: test/operational..
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -43,7 +43,5 @@ public class Dao {
             throw new RuntimeException(ex);
         }
     }
-    
-    
 
 }
