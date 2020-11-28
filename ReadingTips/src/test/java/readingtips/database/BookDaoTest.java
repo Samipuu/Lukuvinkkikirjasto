@@ -67,4 +67,18 @@ public class BookDaoTest {
 
         assertTrue(book.equals(list.get((0))));
     }
+
+    @Test
+    public void updateBookUpdatesBook() {
+        List<String> tags = Arrays.asList("tag1", "tag2");
+        List<String> courses = Arrays.asList("course1", "course2");
+        Book book = new Book("Muumi2020", "sairas tarina", "Toove", tags, courses, "2020-2020");
+        dao.create(book);
+        Book book2 = new Book("Muumi2020", "sairas tarina2", "Toove", tags, courses, "2020-2021");
+        dao.update(book2);
+
+        List<Book> list = dao.list();
+        
+        assertTrue(book2.equals(list.get(0)));
+    }
 }

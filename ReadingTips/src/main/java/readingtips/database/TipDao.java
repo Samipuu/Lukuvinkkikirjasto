@@ -115,16 +115,16 @@ public class TipDao {
         
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
-            bookDao.create(book);
+            //bookDao.update(book);
         } else if (tip.getClass() == Video.class) {
             Video video = (Video) tip;
-            videoDao.create(video);
+            //videoDao.update(video);
         } else if (tip.getClass() == Podcast.class) {
             Podcast podcast = (Podcast) tip;
-            podcastDao.create(podcast);
+            //podcastDao.update(podcast);
         } else if (tip.getClass() == BlogPost.class) {
             BlogPost blogPost = (BlogPost) tip;
-            blogPostDao.create(blogPost);
+            //blogPostDao.update(blogPost);
         }
 
     }

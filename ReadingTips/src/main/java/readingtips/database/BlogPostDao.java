@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import readingtips.BlogPost;
+import readingtips.Book;
 
 /**
  *
@@ -37,7 +38,7 @@ public class BlogPostDao extends CommonDao {
             blogpost.setId(getId(ps));
             addTags(blogpost);
             addCourses(blogpost);
-        
+
             reload(blogpost);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -53,7 +54,7 @@ public class BlogPostDao extends CommonDao {
             ps.setInt(1, blogpost.getId());
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 getCommonFields(rs, blogpost);
                 String url = rs.getString("url");
                 blogpost.setUrl(url);
@@ -86,6 +87,22 @@ public class BlogPostDao extends CommonDao {
             throw new RuntimeException(ex);
         }
         return returnValue;
+    }
+
+    public void update(BlogPost blogPost) {
+        try {
+            String sql = "UPDATE BlogPost SET modified = CURRENT_TIMESTAMP, title = ?, author = ?, description = ?, url = ? WHERE title = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, blogPost.getTitle());
+            ps.setString(2, blogPost.getAuthor());
+            ps.setString(3, blogPost.getDescription());
+            ps.setString(4, blogPost.getUrl());
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
 }

@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import readingtips.BlogPost;
+import readingtips.Book;
 
 /**
  *
@@ -41,7 +42,7 @@ public class PodcastDao extends CommonDao {
             podcast.setId(getId(ps));
             addTags(podcast);
             addCourses(podcast);
-        
+
             reload(podcast);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -57,7 +58,7 @@ public class PodcastDao extends CommonDao {
             ps.setInt(1, podcast.getId());
 
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 getCommonFields(rs, podcast);
                 String nimi = rs.getString("nimi");
                 podcast.setPodcastName(nimi);
@@ -90,5 +91,21 @@ public class PodcastDao extends CommonDao {
             throw new RuntimeException(ex);
         }
         return returnValue;
+    }
+
+    public void update(Podcast podcast) {
+        try {
+            String sql = "UPDATE Podcast SET modified = CURRENT_TIMESTAMP, title = ?, author = ?, description = ?, podcastName = ? WHERE title = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, podcast.getTitle());
+            ps.setString(2, podcast.getAuthor());
+            ps.setString(3, podcast.getDescription());
+            ps.setString(4, podcast.getPodcastName());
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }
