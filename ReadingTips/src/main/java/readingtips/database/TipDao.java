@@ -33,16 +33,16 @@ public class TipDao {
 
         allTips = new ArrayList();
 
-        List<Book> books = getAllBooks();
+        List<Book> books = getAllBooksFromDatabase();
         allTips.addAll(books);
 
-        List<Video> videos = getAllVideos();
+        List<Video> videos = getAllVideosFromDatabase();
         allTips.addAll(videos);
 
-        List<Podcast> podcasts = getAllPodcasts();
+        List<Podcast> podcasts = getAllPodcastsFromDatabase();
         allTips.addAll(podcasts);
 
-        List<BlogPost> blogPosts = getAllBlogPosts();
+        List<BlogPost> blogPosts = getAllBlogPostsFromDatabase();
         allTips.addAll(blogPosts);
     }
 
@@ -50,25 +50,25 @@ public class TipDao {
         return allTips;
     }
 
-    private List<Book> getAllBooks() {
+    private List<Book> getAllBooksFromDatabase() {
         List<Book> books = bookDao.list();
 
         return books;
     }
 
-    private List<Video> getAllVideos() {
+    private List<Video> getAllVideosFromDatabase() {
         List<Video> videos = videoDao.list();
 
         return videos;
     }
 
-    private List<Podcast> getAllPodcasts() {
+    private List<Podcast> getAllPodcastsFromDatabase() {
         List<Podcast> podcasts = podcastDao.list();
 
         return podcasts;
     }
 
-    private List<BlogPost> getAllBlogPosts() {
+    private List<BlogPost> getAllBlogPostsFromDatabase() {
         List<BlogPost> blogPosts = blogPostDao.list();
 
         return blogPosts;
@@ -89,6 +89,51 @@ public class TipDao {
             BlogPost blogPost = (BlogPost) tip;
             blogPostDao.create(blogPost);
         }
+    }
+
+    public void deleteTip(String identificator) {
+        Tip tip = findTip(identificator);
+        
+        if (tip.getClass() == Book.class) {
+            Book book = (Book) tip;
+            bookDao.delete(book);
+        } else if (tip.getClass() == Video.class) {
+            Video video = (Video) tip;
+            videoDao.delete(video);
+        } else if (tip.getClass() == Podcast.class) {
+            Podcast podcast = (Podcast) tip;
+            podcastDao.delete(podcast);
+        } else if (tip.getClass() == BlogPost.class) {
+            BlogPost blogPost = (BlogPost) tip;
+            blogPostDao.delete(blogPost);
+        }
+
+    }
+
+    public void editTip(String identificator) {
+        Tip tip = findTip(identificator);
+        
+        if (tip.getClass() == Book.class) {
+            Book book = (Book) tip;
+            bookDao.create(book);
+        } else if (tip.getClass() == Video.class) {
+            Video video = (Video) tip;
+            videoDao.create(video);
+        } else if (tip.getClass() == Podcast.class) {
+            Podcast podcast = (Podcast) tip;
+            podcastDao.create(podcast);
+        } else if (tip.getClass() == BlogPost.class) {
+            BlogPost blogPost = (BlogPost) tip;
+            blogPostDao.create(blogPost);
+        }
+
+    }
+    
+    private Tip findTip(String identificator) {
+        Tip tip = null;
+        allTips.stream().filter(t -> t.getTitle().equals(identificator)).findFirst();
+        
+        return tip;
     }
 
 }

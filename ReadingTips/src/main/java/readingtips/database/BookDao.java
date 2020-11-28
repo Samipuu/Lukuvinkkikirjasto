@@ -31,22 +31,8 @@ public class BookDao extends Dao {
                 id = keys.getInt(1);
             }
 
-            //TODO: tags, courses
-            for (String tag : book.getTags()) {
-                String tagSql = "INSERT INTO Tag(tag, tipId) VALUES(?, ?)";
-                ps = conn.prepareStatement(tagSql);
-                ps.setString(1, tag);
-                ps.setInt(2, id);
-                ps.executeUpdate();
-            }
-
-            for (String course : book.getCourses()) {
-                String courseSql = "INSERT INTO Course(course, tipId) VALUES(?, ?)";
-                ps = conn.prepareStatement(courseSql);
-                ps.setString(1, course);
-                ps.setInt(2, id);
-                ps.executeUpdate();
-            }
+            addTags(id, book.getTags());
+            addCourses(id, book.getCourses());
 
             return id; // TODO: mitä palautetaan?
 
@@ -60,10 +46,10 @@ public class BookDao extends Dao {
 
         try {
 
-            String sql = "SELECT title, author, description, isbn, GROUP_CONCAT(tag) as tags, GROUP_CONCAT(course) as courses FROM Book "
+            String sql = "SELECT Book.id, title, author, description, isbn, GROUP_CONCAT(tag) as tags, GROUP_CONCAT(course) as courses FROM Book "
                     + "INNER JOIN Tag on Book.id = Tag.tipId "
                     + "INNER JOIN Course on Book.id = Course.tipId "
-                    + "GROUP BY title, author, description, isbn";
+                    + "GROUP BY Book.id, title, author, description, isbn";
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -71,14 +57,15 @@ public class BookDao extends Dao {
             List<Book> returnValue = new ArrayList<Book>();
 
             while (rs.next()) {
+                int id = rs.getInt(1);
                 String title = rs.getString("title");
                 String author = rs.getString("author");
                 String description = rs.getString("description");
                 String isbn = rs.getString("isbn");
-                
+
                 List<String> tags;
                 List<String> courses;
-                
+
                 if (rs.getString("tags") != null && rs.getString("courses") != null) {
                     tags = Arrays.asList(rs.getString("tags").split(","));
                     courses = Arrays.asList(rs.getString("courses").split(","));
@@ -86,7 +73,7 @@ public class BookDao extends Dao {
                     tags = null;
                     courses = null;
                 }
-                
+
                 Book book = new Book(title, author, description, tags, courses, isbn); // TODO: id, collections
                 returnValue.add(book);
             }
@@ -94,8 +81,23 @@ public class BookDao extends Dao {
             return returnValue;
 
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    private void addTags(int id, List<String> tags) {
+        DatabaseService.addTags(conn, id, tags);
+    }
+
+    private void addCourses(int id, List<String> courses) {
+        DatabaseService.addCourses(conn, id, courses);
+    }
+
+    public boolean delete(Book book) {
+        return false;
+    }
+
+    public boolean edit(String id, Book book) {
+        return false;
     }
 }
