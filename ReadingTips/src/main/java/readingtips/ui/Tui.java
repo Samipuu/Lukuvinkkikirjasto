@@ -102,7 +102,7 @@ public class Tui implements UI {
                 scanner.print("URL :");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
-                tipDao.createTip(blogpost); //Tää puuttui, varmaan piti olla?
+                tipDao.createTip(blogpost); //Tää puuttui, varmaan piti olla? Joo unohtunut todennäköisesti. 
                 break;
             default:
                 scanner.print("Invalid type. Valid types " + Arrays.toString(types));
@@ -129,7 +129,7 @@ public class Tui implements UI {
         String title = scanner.nextLine();
         List<Tip> tipList = tipDao.getAllTips();
         for(Tip tip : tipList) {
-            if(tip.getTitle().toLowerCase().equals(title)) {
+            if(tip.getTitle().toLowerCase().startsWith(title) || tip.getTitle().startsWith(title)) {
                 scanner.print(tip.toString());
             }
         }

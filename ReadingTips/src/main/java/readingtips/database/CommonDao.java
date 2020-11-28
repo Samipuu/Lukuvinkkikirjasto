@@ -27,6 +27,10 @@ public abstract class CommonDao extends Dao {
         }
     }
 
+    public void delete(Tip tip) {
+        delete(tip.getId());
+    }
+
     public void delete(int key) {
         try {
             // e.g. BookTag-table

@@ -44,8 +44,6 @@ public class BookDao extends CommonDao {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, book.getId());
 
-            System.out.println("idhän on: " + book.getId());
-
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 getCommonFields(rs, book);
