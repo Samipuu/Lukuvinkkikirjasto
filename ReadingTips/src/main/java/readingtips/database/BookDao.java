@@ -80,21 +80,8 @@ public class BookDao extends CommonDao {
         return returnValue;
     }
 
-    public void update(Book book) {
-        try {
-            String sql = "UPDATE Book SET modified = CURRENT_TIMESTAMP, title = ?, author = ?, description = ?, isbn = ? WHERE title = ?";
-            
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, book.getTitle());
-            ps.setString(2, book.getAuthor());
-            ps.setString(3, book.getDescription());
-            ps.setString(4, book.getIsbn());
-            ps.setString(5, book.getTitle());
-            ps.executeUpdate();
-            
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+    public void update(Book book) {       
+        update(book, "isbn", book.getIsbn());
     }
 
 

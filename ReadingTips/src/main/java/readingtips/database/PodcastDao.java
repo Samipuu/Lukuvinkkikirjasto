@@ -93,19 +93,7 @@ public class PodcastDao extends CommonDao {
         return returnValue;
     }
 
-    public void update(Podcast podcast) {
-        try {
-            String sql = "UPDATE Podcast SET modified = CURRENT_TIMESTAMP, title = ?, author = ?, description = ?, podcastName = ? WHERE title = ?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, podcast.getTitle());
-            ps.setString(2, podcast.getAuthor());
-            ps.setString(3, podcast.getDescription());
-            ps.setString(4, podcast.getPodcastName());
-            ps.executeUpdate();
-
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+    public void update(Podcast podcast) {       
+        update(podcast, "podcastName", podcast.getPodcastName());
     }
 }

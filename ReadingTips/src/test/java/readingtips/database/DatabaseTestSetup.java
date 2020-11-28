@@ -1,4 +1,3 @@
-
 package readingtips.database;
 
 import java.io.File;
@@ -36,7 +35,7 @@ public class DatabaseTestSetup {
                 // remove sql comments as PreparedStatement can't handle them.
                 List<String> fileLines = new ArrayList<String>();
                 for (String rivi : rawFileLines) {
-                    String parsittuRivi = rivi.replaceAll("--.*$","");
+                    String parsittuRivi = rivi.replaceAll("--.*$", "");
                     // if(!parsittuRivi.equals(rivi)) {
                     //     System.out.println("rivi kommenteilla:\n " + rivi);
                     //     System.out.println("rivis ilman kommentteja:\n " + parsittuRivi);
@@ -47,10 +46,10 @@ public class DatabaseTestSetup {
                 // System.out.println("KOMMENTEISTA PARSITTU KANNANLUONTI:");
                 // fileLines.stream().forEach(System.out::println);
                 // luodaan yksi stringi koko scriptistä
-                luontilauseet = fileLines.stream().reduce((t, u) -> t + u).get();                
+                luontilauseet = fileLines.stream().reduce((t, u) -> t + u).get();
             }
             Connection conn = DriverManager.getConnection("jdbc:h2:./readingtips", "sa", "");
-            for (String lause : luontilauseet.split(";")) {                            
+            for (String lause : luontilauseet.split(";")) {
                 conn.prepareStatement(lause).executeUpdate();
             }
 
@@ -67,22 +66,22 @@ public class DatabaseTestSetup {
 
             // test insert something
             conn.prepareStatement(
-                    "insert into BOOK(created, modified, title, author, description, isbn) "+
-                    " values('2020-11-28 01:23:45.67', '2020-11-28 02:23:45.67', 'muumix', 'tove', 'hejee', '1234-5') ")
+                    "insert into BOOK(created, modified, title, author, description, isbn) "
+                    + " values('2020-11-28 01:23:45.67', '2020-11-28 02:23:45.67', 'muumix', 'tove', 'hejee', '1234-5') ")
                     .executeUpdate();
 
-                    // test the dao way
-                    {
-                        String sql = "INSERT INTO BOOK(created, modified, title, author, description, isbn)"
-                        +" VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?) ";
+            // test the dao way
+            {
+                String sql = "INSERT INTO BOOK(created, modified, title, author, description, isbn)"
+                        + " VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?) ";
 
-                        PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                        ps.setString(1, "Rahastus");
-                        ps.setString(2, "Sysimetsä");
-                        ps.setString(3, "has been");
-                        ps.setString(4, "000-000");
-                        ps.executeUpdate();        
-                    }
+                PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, "Rahastus");
+                ps.setString(2, "Sysimetsä");
+                ps.setString(3, "has been");
+                ps.setString(4, "000-000");
+                ps.executeUpdate();
+            }
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);

@@ -89,20 +89,7 @@ public class BlogPostDao extends CommonDao {
         return returnValue;
     }
 
-    public void update(BlogPost blogPost) {
-        try {
-            String sql = "UPDATE BlogPost SET modified = CURRENT_TIMESTAMP, title = ?, author = ?, description = ?, url = ? WHERE title = ?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, blogPost.getTitle());
-            ps.setString(2, blogPost.getAuthor());
-            ps.setString(3, blogPost.getDescription());
-            ps.setString(4, blogPost.getUrl());
-            ps.executeUpdate();
-
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+    public void update(BlogPost blogPost) {       
+        update(blogPost, "url", blogPost.getUrl());
     }
-
 }

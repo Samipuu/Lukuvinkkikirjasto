@@ -100,20 +100,8 @@ public class VideoDao extends CommonDao {
         return returnValue;
     }
 
-    public void update(Video video) {
-        try {
-            String sql = "UPDATE Video SET modified = CURRENT_TIMESTAMP, title = ?, author = ?, description = ?, url = ? WHERE title = ?";
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, video.getTitle());
-            ps.setString(2, video.getAuthor());
-            ps.setString(3, video.getDescription());
-            ps.setString(4, video.getUrl());
-            ps.executeUpdate();
-
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+    public void update(Video video) {       
+        update(video, "url", video.getUrl());
     }
 
 }
