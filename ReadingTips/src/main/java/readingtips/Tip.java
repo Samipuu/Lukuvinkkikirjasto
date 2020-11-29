@@ -54,6 +54,10 @@ public abstract class Tip extends Entity {
         }
         return "";
     }
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
         
     public String getAuthor() {
         if (this.author != null) {
@@ -61,12 +65,20 @@ public abstract class Tip extends Entity {
         }
         return "";
     }
+    
+    public void setAuthor(String author) {
+        this.author = author;
+    }
         
     public String getDescription() {
         if (this.description != null) {
             return this.description;
         }
         return "";
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
     }
         
     public List<String> getTags() {
@@ -76,6 +88,10 @@ public abstract class Tip extends Entity {
         }
         return new ArrayList<>();
     }
+    
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
         
     public List<String> getCourses() {
         if (this.courses != null) {
@@ -83,6 +99,10 @@ public abstract class Tip extends Entity {
             return this.courses;
         }
         return new ArrayList<>();
+    }
+    
+    public void setCourses(List<String> courses) {
+        this.courses = courses;
     }
     
     protected String stringTime(Long time) {
@@ -109,6 +129,7 @@ public abstract class Tip extends Entity {
         if (!this.getDescription().isEmpty()) returnString += "\nDescription: " + this.getDescription();
         if (tagsString.length() != 2) returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
         if (coursesString.length() != 2) returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+        if (this.id != null) returnString += "\nID: " + this.id;
         return returnString;
     }
 }

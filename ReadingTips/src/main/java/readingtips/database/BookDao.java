@@ -43,6 +43,7 @@ public class BookDao extends CommonDao {
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, book.getId());
+            
 
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {

@@ -62,11 +62,11 @@ public class Stepdefs {
         tui2.launch();
         
         ArrayList<String> tags = new ArrayList<>() {{
-            add("1");
-        }};
+                add("1");
+            }};
         ArrayList<String> courses = new ArrayList<>() {{
-            add("2");
-        }};
+                add("2");
+            }};
         
         verify(mockDao).createTip(new Book("title", "author", "description", tags, courses, "isbn"));
         verify(mockDao, times(1)).createTip(new Book("title", "author", "description", tags, courses, "isbn"));
@@ -81,11 +81,11 @@ public class Stepdefs {
         tui2.launch();
         
         ArrayList<String> tags = new ArrayList<>() {{
-            add("1");
-        }};
+                add("1");
+            }};
         ArrayList<String> courses = new ArrayList<>() {{
-            add("2");
-        }};
+                add("2");
+            }};
         
         verify(mockDao).createTip(new Book(title, author, description, tags, courses, "isbn"));
         assertEquals("Title: ", ui2.getOutputs().get(2));
