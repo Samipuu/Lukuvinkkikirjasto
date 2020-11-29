@@ -7,6 +7,7 @@ import readingtips.Book;
 import readingtips.Podcast;
 import readingtips.Tip;
 import readingtips.Video;
+import readingtips.database.Dao;
 import readingtips.database.TipDao;
 
 public class Tui implements UI {
@@ -14,9 +15,9 @@ public class Tui implements UI {
     IO scanner;
     TipDao tipDao;
 
-    public Tui(IO scanner) {
+    public Tui(IO scanner, TipDao tipDao) {
         this.scanner = scanner;
-        this.tipDao = new TipDao();
+        this.tipDao = tipDao;
     }
 
     public void launch() {
@@ -102,7 +103,7 @@ public class Tui implements UI {
                 scanner.print("URL :");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
-                tipDao.createTip(blogpost); //Tää puuttui, varmaan piti olla? Joo unohtunut todennäköisesti. 
+                tipDao.createTip(blogpost);  
                 break;
             default:
                 scanner.print("Invalid type. Valid types " + Arrays.toString(types));
@@ -113,7 +114,7 @@ public class Tui implements UI {
     private void delete() {
         scanner.print("Title: ");
         String title = scanner.nextLine();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tipDao.deleteTip(title);
     }
 
     private void printAll() {
@@ -138,8 +139,8 @@ public class Tui implements UI {
     private void edit() {
         scanner.print("Title: ");
         String title = scanner.nextLine();
-
-        Tip tip = new Book("Book", null, null, null, null, null);
+        
+        Tip tip = new Book("title", null, null, null, null, null);
         //System.out.println(tip);
         Boolean run = true;
         while (run) {
@@ -194,6 +195,8 @@ public class Tui implements UI {
                     continue;
                 default:
                     scanner.print("Invalid attribute.");
+                    
+                tipDao.editTip(title);
             }
 
         }

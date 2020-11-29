@@ -4,6 +4,7 @@ import readingtips.ui.Konsoli;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import readingtips.database.TipDao;
 import readingtips.ui.Tui;
 
 public class Main {
@@ -30,7 +31,8 @@ public class Main {
         
         Scanner scanner = new Scanner(System.in);
         //Tui ui = new Tui(scanner);
-        Tui ui = new Tui(new Konsoli());
+        TipDao tipDao = new TipDao();
+        Tui ui = new Tui(new Konsoli(), tipDao);
         ui.launch();
     }
     
