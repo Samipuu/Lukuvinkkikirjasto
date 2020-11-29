@@ -1,5 +1,7 @@
 ![Java CI with Gradle](https://github.com/Samipuu/Reading-tips-2020-covid-edition/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
+[![codecov](https://codecov.io/gh/Samipuu/Reading-tips-2020-covid-edition/branch/main/graph/badge.svg?token=PHH5CGO9F2)](https://codecov.io/gh/Samipuu/Reading-tips-2020-covid-edition)
+
 # Lukuvinkkikirjasto
 
 [Backlog](https://docs.google.com/spreadsheets/d/1kZ0gFiGDwlGnhyhhpXqEHOJM38GCwa6GD7lcROB76bw/edit?usp=sharing)
