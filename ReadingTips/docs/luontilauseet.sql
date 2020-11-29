@@ -50,7 +50,10 @@ CREATE TABLE Podcast (
     title VARCHAR(100) NOT NULL, --common
     author VARCHAR(100) NOT NULL, --common
     description VARCHAR(500) NOT NULL, --common
-    nimi VARCHAR(100) NOT NULL --special
+    nimi VARCHAR(100) NOT NULL, --special
+    length BIGINT NOT NULL DEFAULT 0, -- special
+    position BIGINT NOT NULL DEFAULT 0, --special
+    positionComment VARCHAR(100) NOT NULL --common
 );
 
 -- Video;
@@ -63,7 +66,8 @@ CREATE TABLE Video (
     description VARCHAR(500) NOT NULL, --common
     url VARCHAR(100) NOT NULL, --special
     length BIGINT NOT NULL DEFAULT 0, -- special
-    position BIGINT NOT NULL DEFAULT 0 --special
+    position BIGINT NOT NULL DEFAULT 0, --special
+    positionComment VARCHAR(100) NOT NULL --common
 );
 
 

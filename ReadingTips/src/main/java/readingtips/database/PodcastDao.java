@@ -30,14 +30,17 @@ public class PodcastDao extends CommonDao {
     public void create(Podcast podcast) {
 
         try {
-            String sql = "INSERT INTO Podcast(created, modified, title, author, description, nimi) "
-                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO Podcast(created, modified, title, author, description, nimi, length, position, positionComment) "
+                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?) ";
 
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, podcast.getTitle());
             ps.setString(2, podcast.getAuthor());
             ps.setString(3, podcast.getDescription());
             ps.setString(4, podcast.getPodcastName());
+            ps.setLong(5, podcast.getLength());
+            ps.setLong(6, podcast.getPosition());
+            ps.setString(7, podcast.getPositionComment());
             ps.executeUpdate();
             podcast.setId(getId(ps));
             addTags(podcast);
@@ -52,7 +55,7 @@ public class PodcastDao extends CommonDao {
     public void reload(Podcast podcast) {
         try {
 
-            String sql = "SELECT id, created, modified, title, author, description, nimi FROM Podcast WHERE id = ? ";
+            String sql = "SELECT id, created, modified, title, author, description, nimi, length, position, positionComment FROM Podcast WHERE id = ? ";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, podcast.getId());
@@ -61,7 +64,14 @@ public class PodcastDao extends CommonDao {
             if (rs.next()) {
                 getCommonFields(rs, podcast);
                 String nimi = rs.getString("nimi");
+                Long length = rs.getLong("length");
+                Long position = rs.getLong("position");
+                String positionComment = rs.getString("positionComment");
+                
                 podcast.setPodcastName(nimi);
+                podcast.setLength(length);
+                podcast.setPosition(position);
+                podcast.setPositionComment(positionComment);
             }
 
         } catch (Exception x) {
@@ -75,7 +85,7 @@ public class PodcastDao extends CommonDao {
 
         try {
 
-            String sql = "SELECT id, created, modified, title, author, description, nimi FROM Podcast";
+            String sql = "SELECT id, created, modified, title, author, description, nimi, length, position, positionComment FROM Podcast";
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -83,7 +93,14 @@ public class PodcastDao extends CommonDao {
                 Podcast podcast = new Podcast();
                 getCommonFields(rs, podcast);
                 String nimi = rs.getString("nimi");
+                Long length = rs.getLong("length");
+                Long position = rs.getLong("position");
+                String positionComment = rs.getString("positionComment");
+                
                 podcast.setPodcastName(nimi);
+                podcast.setLength(length);
+                podcast.setPosition(position);
+                podcast.setPositionComment(positionComment);
                 returnValue.add(podcast);
             }
 

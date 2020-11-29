@@ -27,8 +27,8 @@ public class VideoDao extends CommonDao {
     public void create(Video video) {
 
         try {
-            String sql = "INSERT INTO Video(created, modified, title, author, description, url, length, position) "
-                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO Video(created, modified, title, author, description, url, length, position, positionComment) "
+                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?) ";
 
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, video.getTitle());
@@ -37,6 +37,7 @@ public class VideoDao extends CommonDao {
             ps.setString(4, video.getUrl());
             ps.setLong(5, video.getLength());
             ps.setLong(6, video.getPosition());
+            ps.setString(7, video.getPositionComment());
             ps.executeUpdate();
             video.setId(getId(ps));
             addTags(video);
@@ -51,7 +52,7 @@ public class VideoDao extends CommonDao {
     public void reload(Video video) {
         try {
 
-            String sql = "SELECT id, created, modified, title, author, description, url, length, position FROM Video WHERE id = ? ";
+            String sql = "SELECT id, created, modified, title, author, description, url, length, position, positionComment FROM Video WHERE id = ? ";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, video.getId());
@@ -62,9 +63,11 @@ public class VideoDao extends CommonDao {
                 String url = rs.getString("url");
                 Long length = rs.getLong("length");
                 Long position = rs.getLong("position");
+                String positionComment = rs.getString("positionComment");
                 video.setUrl(url);
                 video.setLength(length);
                 video.setPosition(position);
+                video.setPositionComment(positionComment);
             }
 
         } catch (Exception x) {
@@ -78,7 +81,7 @@ public class VideoDao extends CommonDao {
 
         try {
 
-            String sql = "SELECT id, created, modified, title, author, description, url, length, position FROM Video";
+            String sql = "SELECT id, created, modified, title, author, description, url, length, position, positionComment FROM Video";
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -88,9 +91,11 @@ public class VideoDao extends CommonDao {
                 String url = rs.getString("url");
                 Long length = rs.getLong("length");
                 Long position = rs.getLong("position");
+                String positionComment = rs.getString("positionComment");
                 video.setUrl(url);
                 video.setLength(length);
                 video.setPosition(position);
+                video.setPositionComment(positionComment);
                 returnValue.add(video);
             }
 

@@ -84,6 +84,17 @@ public abstract class Tip extends Entity {
         }
         return new ArrayList<>();
     }
+    
+    protected String stringTime(Long time) {
+        String ret = "";
+        Long hours = time/3600;
+        if (hours>0) ret += hours + " h ";
+        Long minutes = time % 3600 /60;
+        if (minutes>0) ret += minutes + " min ";
+        Long seconds = time % 60;
+        ret += seconds + " s";
+        return ret;
+    } 
         
     @Override
     public String toString() {

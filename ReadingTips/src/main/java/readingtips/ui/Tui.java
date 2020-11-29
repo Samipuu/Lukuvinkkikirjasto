@@ -59,6 +59,8 @@ public class Tui implements UI {
     private void add() {
         String[] types = new String[]{"Book", "Podcast", "Video", "Blog Post"};
 
+        String positionComment;
+        Long position;
         String title;
         String author;
         String description;
@@ -90,14 +92,28 @@ public class Tui implements UI {
             case "podcast":
                 scanner.print("Podcast name: ");
                 String podcastName = scanner.nextLine();
-                Tip podcast = new Podcast(title, author, description, tags, courses, podcastName);
-                tipDao.createTip(podcast);
+                Podcast podcast = new Podcast(title, author, description, tags, courses, podcastName);
+                position = this.getTime();
+                if (position != -1) {
+                    podcast.setPosition(position);
+                    scanner.print("Timestamp information :");
+                    positionComment = scanner.nextLine();
+                    podcast.setPositionComment(positionComment);
+                }
+                tipDao.createTip((Tip) podcast);
                 break;
             case "video":
                 scanner.print("URL :");
                 String url = scanner.nextLine();
-                Tip video = new Video(title, author, description, tags, courses, url);
-                tipDao.createTip(video);
+                Video video = new Video(title, author, description, tags, courses, url);
+                position = this.getTime();
+                if (position != -1) {
+                    video.setPosition(position);
+                    scanner.print("Timestamp information :");
+                    positionComment = scanner.nextLine();
+                    video.setPositionComment(positionComment);
+                }
+                tipDao.createTip((Tip) video);
                 break;
             case "blog post":
                 scanner.print("URL :");
@@ -109,6 +125,30 @@ public class Tui implements UI {
                 scanner.print("Invalid type. Valid types " + Arrays.toString(types));
         }
 
+    }
+    
+    private Long getTime() {
+        scanner.print("Insert timestamp? Type (y) if yes :");
+        String answer = scanner.nextLine().strip().toLowerCase();
+        if (!answer.equals("y")) {
+            return (long) -1;
+        }  
+        while (true) {
+            try {
+                scanner.print("Hours: ");
+                long hours = Long.parseLong(scanner.nextLine().strip());
+                scanner.print("Minutes: ");
+                long minutes = Long.parseLong(scanner.nextLine().strip());
+                scanner.print("Seconds: ");
+                long seconds = Long.parseLong(scanner.nextLine().strip());
+                if (hours < 0 | minutes < 0 | minutes > 60 | seconds < 0 | seconds > 60) {
+                    throw new IllegalArgumentException();
+                }
+                return (long) hours * 3600 + minutes * 60 + seconds;
+            } catch (Exception e) {
+                scanner.print("All values must be positive integers. Minutes and seconds must be in a range of 0-60");
+            }
+        }
     }
 
     private void delete() {
