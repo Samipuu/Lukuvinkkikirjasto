@@ -67,7 +67,7 @@ public class Stepdefs {
             }};
         //ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
         ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
-            add("2");
+                add("2");
             }};
         
         verify(mockDao).createTip(new Book("title", "author", "description", tags, courses, "isbn"));
@@ -84,11 +84,11 @@ public class Stepdefs {
         
         //ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
         ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
-            add("1");
+                add("1");
             }};
         //ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
         ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
-            add("2");
+                add("2");
             }};
         
         verify(mockDao).createTip(new Book(title, author, description, tags, courses, "isbn"));

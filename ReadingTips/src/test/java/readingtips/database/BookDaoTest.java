@@ -43,7 +43,8 @@ public class BookDaoTest {
     @Test
     public void exceptionTesting() {
         RuntimeException exception = assertThrows(
-            RuntimeException.class, () -> { throw new RuntimeException("a message"); }
+            RuntimeException.class, () -> {
+                throw new RuntimeException("a message"); }
         );
     
         assertEquals("a message", exception.getMessage());
