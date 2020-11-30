@@ -61,12 +61,12 @@ public class Stepdefs {
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch();
         
-        ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
-        //ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA     
+        //ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA     
                 add("1");
             }};
-        ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
-        //ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+        //ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
             add("2");
             }};
         
@@ -82,12 +82,12 @@ public class Stepdefs {
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch();
         
-        ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
-        //ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+        //ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
             add("1");
             }};
-        ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
-        //ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+        //ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
             add("2");
             }};
         
