@@ -1,4 +1,5 @@
 package readingtips;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Podcast extends Tip{
@@ -16,6 +17,12 @@ public class Podcast extends Tip{
         super("Podcast", title, author, description, tags, courses);
         this.podcastName = podcastName;
     }
+
+    // NOT WORKING YET
+    // public void update(LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags, List<String> courses, String podcastName) {
+    //     this.podcastName = podcastName;
+    //     updateCommon(created, modified, title, author, description, tags, courses);
+    // }    
     
     public String getPodcastName() {
         if (this.podcastName != null) {

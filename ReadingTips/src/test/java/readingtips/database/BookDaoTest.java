@@ -1,10 +1,12 @@
 package readingtips.database;
 
-import java.util.Arrays;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
+import java.util.Arrays;
 import java.util.List;
-
+import org.junit.Rule;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +39,28 @@ public class BookDaoTest {
         dao.create(book);
         assertTrue(book.getId() > 0);
     }
+
+    @Test
+    public void exceptionTesting() {
+        RuntimeException exception = assertThrows(
+            RuntimeException.class, () -> { throw new RuntimeException("a message"); }
+        );
+    
+        assertEquals("a message", exception.getMessage());
+    }
+
+    // @Test (expected = RuntimeException.class)
+    // public void insertBookWithException() {
+    //     try {
+    //         List<String> tags = Arrays.asList("tag1", "tag2");
+    //         List<String> courses = Arrays.asList("course1", "course2");
+    //         Book book = new Book("Muumi2020", "sairas tarina", "Toove", tags, courses, "2020-2020");
+    //         dao.create(book);
+    //     }
+    //     catch(RuntimeException re) {
+    //         fail("tuliko ex?");
+    //     }
+    // }
 
     @Test
     public void listBooks() {

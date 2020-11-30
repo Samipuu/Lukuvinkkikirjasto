@@ -61,11 +61,13 @@ public class Stepdefs {
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch();
         
-        ArrayList<String> tags = new ArrayList<>() {{
+        ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        //ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA     
                 add("1");
             }};
-        ArrayList<String> courses = new ArrayList<>() {{
-                add("2");
+        ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        //ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+            add("2");
             }};
         
         verify(mockDao).createTip(new Book("title", "author", "description", tags, courses, "isbn"));
@@ -80,11 +82,13 @@ public class Stepdefs {
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch();
         
-        ArrayList<String> tags = new ArrayList<>() {{
-                add("1");
+        ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        //ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+            add("1");
             }};
-        ArrayList<String> courses = new ArrayList<>() {{
-                add("2");
+        ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        //ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+            add("2");
             }};
         
         verify(mockDao).createTip(new Book(title, author, description, tags, courses, "isbn"));

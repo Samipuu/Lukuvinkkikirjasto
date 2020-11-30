@@ -129,18 +129,22 @@ public class Tui implements UI {
     
     private Long getTime() {
         scanner.print("Insert timestamp? Type (y) if yes :");
-        String answer = scanner.nextLine().strip().toLowerCase();
+        //String answer = scanner.nextLine().toLowerCase(); //TÄMÄ TOIMII LAURALLA
+        String answer = scanner.nextLine().strip().toLowerCase(); //TÄMÄ TOIMII MUILLA  
         if (!answer.equals("y")) {
             return (long) -1;
         }  
         while (true) {
             try {
                 scanner.print("Hours: ");
-                long hours = Long.parseLong(scanner.nextLine().strip());
+                //long hours = Long.parseLong(scanner.nextLine()); //TÄMÄ TOIMII LAURALLA
+                long hours = Long.parseLong(scanner.nextLine().strip()); //TÄMÄ TOIMII MUILLA              
                 scanner.print("Minutes: ");
-                long minutes = Long.parseLong(scanner.nextLine().strip());
+                //long minutes = Long.parseLong(scanner.nextLine()); //TÄMÄ TOIMII LAURALLA
+                long minutes = Long.parseLong(scanner.nextLine().strip()); //TÄMÄ TOIMII MUILLA 
                 scanner.print("Seconds: ");
-                long seconds = Long.parseLong(scanner.nextLine().strip());
+                long seconds = Long.parseLong(scanner.nextLine().strip()); //TÄMÄ TOIMII MUILLA 
+                //long seconds = Long.parseLong(scanner.nextLine()); //TÄMÄ TOIMII LAURALLA             
                 if (hours < 0 | minutes < 0 | minutes > 60 | seconds < 0 | seconds > 60) {
                     throw new IllegalArgumentException();
                 }
