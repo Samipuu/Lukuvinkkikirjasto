@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+// import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Lists.newArrayList;
 
 public class DatabaseTestSetup {
 
@@ -25,7 +27,7 @@ public class DatabaseTestSetup {
         try {
             String luontilauseet;
             {
-                // File x = new File("");                
+                // File x = new File("");
                 // System.out.println("polulla: " + x.getAbsolutePath());
 
                 // Path path = new File("ReadingTips/docs/luontilauseet.sql").toPath();
@@ -37,8 +39,8 @@ public class DatabaseTestSetup {
                 for (String rivi : rawFileLines) {
                     String parsittuRivi = rivi.replaceAll("--.*$", "");
                     // if(!parsittuRivi.equals(rivi)) {
-                    //     System.out.println("rivi kommenteilla:\n " + rivi);
-                    //     System.out.println("rivis ilman kommentteja:\n " + parsittuRivi);
+                    // System.out.println("rivi kommenteilla:\n " + rivi);
+                    // System.out.println("rivis ilman kommentteja:\n " + parsittuRivi);
                     // }
                     fileLines.add(parsittuRivi);
                 }
@@ -65,8 +67,7 @@ public class DatabaseTestSetup {
             Connection conn = DriverManager.getConnection("jdbc:h2:./readingtips", "sa", "");
 
             // test insert something
-            conn.prepareStatement(
-                    "insert into BOOK(created, modified, title, author, description, isbn) "
+            conn.prepareStatement("insert into BOOK(created, modified, title, author, description, isbn) "
                     + " values('2020-11-28 01:23:45.67', '2020-11-28 02:23:45.67', 'muumix', 'tove', 'hejee', '1234-5') ")
                     .executeUpdate();
 
@@ -85,6 +86,21 @@ public class DatabaseTestSetup {
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);
+        }
+
+        // test different init lists
+        {
+            List<String> list = List.of("s1", "s2", "s3"); // JDK9 immutable
+            System.out.println("tyyppi: " + list.getClass());   // tyyppi: class java.util.ImmutableCollections$ListN
+        }
+        {
+            List<String> list = new ArrayList<String>(List.of("s1", "s2", "s3")); // JDK9 mutable
+            System.out.println("tyyppi: " + list.getClass()); // tyyppi: class java.util.ArrayList 
+        }
+        {
+            // import static com.google.common.collect.Lists.newArrayList;
+            List<String> list = newArrayList("s1", "s2", "s3"); // Guava
+            System.out.println("tyyppi2: " + list.getClass()); // tyyppi2: class java.util.ArrayList
         }
     }
 
