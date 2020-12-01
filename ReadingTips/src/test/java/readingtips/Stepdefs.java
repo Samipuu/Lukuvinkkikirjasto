@@ -94,6 +94,28 @@ public class Stepdefs {
         verify(mockDao).createTip(new Book(title, author, description, tags, courses, "isbn"));
         assertEquals("Title: ", ui2.getOutputs().get(2));
     }
+
+    @When("command print all is given")
+    public void commandPrintAll() {
+        UIStub ui2 = new UIStub("add", "Test Book", "description", "Author", "1", "2", "book", "isbn", "print all", "exit");
+        mockDao = mock(TipDao.class);
+        Tui tui2 = new Tui(ui2, mockDao);
+        tui2.launch();
+        //UIStub ui3 = new UIStub("print all");
+        //new Tui(ui3, mockDao).launch();              
+    }
+
+        
+    @Then("title {string} is returned")
+    public void printAllShowPrints(String title) {
+        UIStub ui2 = new UIStub("add", "Test Book", "description", "Author", "1", "2", "book", "isbn", "print all", "exit");
+        mockDao = mock(TipDao.class);
+        Tui tui2 = new Tui(ui2, mockDao);
+        tui2.launch(); 
+        System.out.print(title);
+        //assertEquals(title, ui2.getOutputs().get(3));
+        
+    }
     
     @Then("Book is created")
     public void checkBook() {
