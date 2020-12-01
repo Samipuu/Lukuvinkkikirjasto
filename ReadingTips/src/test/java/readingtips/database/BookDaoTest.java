@@ -40,11 +40,12 @@ public class BookDaoTest {
         assertTrue(book.getId() > 0);
     }
 
-    // @Test
-    // public void exceptionTesting() {
-    //     RuntimeException exception = assertThrows(
-    //         RuntimeException.class, () -> { throw new RuntimeException("a message"); }
-    //     );
+    @Test
+    public void exceptionTesting() {
+        RuntimeException exception = assertThrows(
+            RuntimeException.class, () -> {
+                throw new RuntimeException("a message"); }
+        );
     
     //     assertEquals("a message", exception.getMessage());
     // }
