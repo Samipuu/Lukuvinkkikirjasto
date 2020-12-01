@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+// import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class DatabaseTestSetup {
@@ -98,7 +99,7 @@ public class DatabaseTestSetup {
         }
         {
             // import static com.google.common.collect.Lists.newArrayList;
-            List<String> list = new ArrayList("s1", "s2", "s3"); // Guava
+            List<String> list = newArrayList("s1", "s2", "s3"); // Guava
             System.out.println("tyyppi2: " + list.getClass()); // tyyppi2: class java.util.ArrayList
         }
     }
