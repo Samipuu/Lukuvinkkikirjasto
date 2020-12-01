@@ -7,6 +7,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -95,6 +97,28 @@ public class Stepdefs {
         assertEquals("Title: ", ui2.getOutputs().get(2));
     }
 
+    @When("podcast is created with title {string} description {string} author {string}")
+    public void createPodcast(String title, String description, String author) {
+        UIStub ui2 = new UIStub("add", title, "Author", "description", "1", "2", "podcast", "Podcast name", "y", "0", "10", "10", "kommentti", "print all", "exit");
+        mockDao = mock(TipDao.class);
+        Tui tui2 = new Tui(ui2, mockDao);
+        tui2.launch();
+        
+        //ArrayList<String> tags = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+                add("1");
+            }};
+        //ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+                add("2");
+            }};
+        
+        //verify(mockDao).createTip(new Podcast(title, author, description, tags, courses, "Podcast Name", "10 min 10 s", "kommentti"));
+    //     verify(mockDao).createTip(new Podcast(title, author, description, tags, courses, "Podcast Name"));
+
+    //     assertEquals("Title: ", ui2.getOutputs().get(2));
+    }    
+
     @When("command print all is given")
     public void commandPrintAll() {
         UIStub ui2 = new UIStub("add", "Test Book", "description", "Author", "1", "2", "book", "isbn", "print all", "exit");
@@ -106,9 +130,19 @@ public class Stepdefs {
     }
 
         
-    @Then("title {string} is returned")
-    public void printAllShowPrints(String title) {
+    @Then("book title {string} is returned")
+    public void printAllShowBookPrints(String title) {
         UIStub ui2 = new UIStub("add", "Test Book", "description", "Author", "1", "2", "book", "isbn", "print all", "exit");
+        mockDao = mock(TipDao.class);
+        Tui tui2 = new Tui(ui2, mockDao);
+        tui2.launch(); 
+        System.out.print(title);
+        //assertEquals(title, ui2.getOutputs().get(3));
+        
+    }
+    @Then("podcast title {string} is returned")
+    public void printAllShowPodcastPrints(String title) {
+        UIStub ui2 = new UIStub("add", title, "description", "Author", "1", "2", "podcast", "Podcast name", "y", "0", "10", "10", "kommentti", "print all", "exit");
         mockDao = mock(TipDao.class);
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch(); 
