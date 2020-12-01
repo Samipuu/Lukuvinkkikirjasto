@@ -274,7 +274,7 @@ public class Tui implements UI {
             
         }
         
-        //tipDao.editTip(title);
+        tipDao.editTip(title);
     }
 
 }

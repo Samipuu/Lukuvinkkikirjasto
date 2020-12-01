@@ -7,6 +7,7 @@ package readingtips.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import readingtips.BlogPost;
 import readingtips.Book;
 import readingtips.Podcast;
@@ -113,26 +114,27 @@ public class TipDao {
     public void editTip(String identificator) {
         Tip tip = findTip(identificator);
         
+        System.out.println(tip);
+        
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
-            //bookDao.update(book);
+            bookDao.update(book);
         } else if (tip.getClass() == Video.class) {
             Video video = (Video) tip;
-            //videoDao.update(video);
+            videoDao.update(video);
         } else if (tip.getClass() == Podcast.class) {
             Podcast podcast = (Podcast) tip;
-            //podcastDao.update(podcast);
+            podcastDao.update(podcast);
         } else if (tip.getClass() == BlogPost.class) {
             BlogPost blogPost = (BlogPost) tip;
-            //blogPostDao.update(blogPost);
+            blogPostDao.update(blogPost);
         }
 
     }
     
-    private Tip findTip(String identificator) {
-        Tip tip = null;
-        allTips.stream().filter(t -> t.getTitle().equals(identificator)).findFirst();
-        
+    private Tip findTip(String identificator) {     
+        Tip tip = allTips.stream().filter(t -> t.getTitle().equals(identificator)).findFirst().orElse(null);
+
         return tip;
     }
 
