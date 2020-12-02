@@ -127,8 +127,8 @@ public abstract class Tip extends Entity {
         if (!this.getTitle().isEmpty()) returnString += "\nTitle: " + this.getTitle();
         if (!this.getAuthor().isEmpty()) returnString += "\nAuthor: " + this.getAuthor();
         if (!this.getDescription().isEmpty()) returnString += "\nDescription: " + this.getDescription();
-        if (tagsString.length() != 2) returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
-        if (coursesString.length() != 2) returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+        if (tagsString.length() != 2) returnString += "\nTagss: " + tagsString.substring(1, tagsString.length()-1);
+        if (coursesString.length() != 2) returnString += "\nCourses: " + coursesString.substring(1, coursesString.length()-1);
         if (this.id != null) returnString += "\nID: " + this.id;
         return returnString;
     }
