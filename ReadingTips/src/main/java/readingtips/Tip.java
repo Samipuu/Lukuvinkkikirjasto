@@ -26,19 +26,21 @@ public abstract class Tip extends Entity {
         this.courses = courses;
     }
 
-    public void updateCommon(LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags,List<String> courses) {
+    public void updateCommon(int id, LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags,List<String> courses) {
         this.author = author;
         this.description = description;
         this.title = title;
         this.tags = tags;
         this.courses = courses;
+        this.id = id;
         updateEntity(created, modified);
     }    
 
-    public void updateCommon(LocalDateTime created, LocalDateTime modified, String title, String author, String description) {
+    public void updateCommon(int id, LocalDateTime created, LocalDateTime modified, String title, String author, String description) {
         this.author = author;
         this.description = description;
         this.title = title;
+        this.id = id;
         // this.tags = tags;
         // this.courses = courses;
         updateEntity(created, modified);
@@ -127,8 +129,8 @@ public abstract class Tip extends Entity {
         if (!this.getTitle().isEmpty()) returnString += "\nTitle: " + this.getTitle();
         if (!this.getAuthor().isEmpty()) returnString += "\nAuthor: " + this.getAuthor();
         if (!this.getDescription().isEmpty()) returnString += "\nDescription: " + this.getDescription();
-        if (tagsString.length() != 2) returnString += "\nTags: " + tagsString.substring(1, tagsString.length()-1);
-        if (coursesString.length() != 2) returnString += "\nCourses: " + coursesString.substring(1, coursesString.length()-1);
+        if (tagsString.length() != 2) returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
+        if (coursesString.length() != 2) returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
         if (this.id != null) returnString += "\nID: " + this.id;
         return returnString;
     }

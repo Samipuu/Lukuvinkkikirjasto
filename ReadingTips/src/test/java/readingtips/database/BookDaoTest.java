@@ -46,10 +46,8 @@ public class BookDaoTest {
     //         RuntimeException.class, () -> {
     //             throw new RuntimeException("a message"); }
     //     );
-    
     //     assertEquals("a message", exception.getMessage());
     // }
-
     // @Test (expected = RuntimeException.class)
     // public void insertBookWithException() {
     //     try {
@@ -62,7 +60,6 @@ public class BookDaoTest {
     //         fail("tuliko ex?");
     //     }
     // }
-
     @Test
     public void listBooks() {
         List<String> tags = Arrays.asList("tag1", "tag2");
@@ -103,7 +100,20 @@ public class BookDaoTest {
         dao.update(book2);
 
         List<Book> list = dao.list();
-        
+
         assertTrue(book2.equals(list.get(0)));
+    }
+
+    @Test
+    public void deleteBookDeletesBook() {
+        List<String> tags = Arrays.asList("tag1", "tag2");
+        List<String> courses = Arrays.asList("course1", "course2");
+        Book book = new Book("Muumi2020", "sairas tarina", "Toove", tags, courses, "2020-2020");
+        dao.create(book);
+        dao.delete(book);
+
+        List<Book> list = dao.list();
+
+        assertTrue(list.size() == 0);
     }
 }
