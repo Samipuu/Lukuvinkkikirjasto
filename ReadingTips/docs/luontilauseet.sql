@@ -1,7 +1,7 @@
 
 -- DROPs;
 -- many-to-many tables;
-DROP TABLE IF EXISTS BlogTag;
+DROP TABLE IF EXISTS BlogpostTag;
 DROP TABLE IF EXISTS BookTag;
 DROP TABLE IF EXISTS PodcastTag;
 DROP TABLE IF EXISTS VideoTag;
@@ -79,10 +79,9 @@ CREATE TABLE Tag (
     teksti VARCHAR(100) NOT NULL,
     CONSTRAINT teksti_UNIQUE UNIQUE (teksti)
 );
--- many-to-many tables to Tag;
-CREATE TABLE BlogTag (
+CREATE TABLE BlogpostTag (
     id SERIAL PRIMARY KEY,
-    blog_id INTEGER REFERENCES BlogPost(id),
+    blogpost_id INTEGER REFERENCES BlogPost(id),
     tag_id INTEGER REFERENCES Tag(id)
 );
 CREATE TABLE BookTag (
@@ -109,10 +108,9 @@ CREATE TABLE Course (
     nimi VARCHAR(100) NOT NULL,
     CONSTRAINT nimi_UNIQUE UNIQUE (nimi)
 );
--- many-to-many tables to Course
 CREATE TABLE BlogPostCourse (
     id SERIAL PRIMARY KEY,
-    blog_id INTEGER REFERENCES BlogPost(id),
+    blogpost_id INTEGER REFERENCES BlogPost(id),
     course_id INTEGER REFERENCES Course(id)
 );
 CREATE TABLE BookCourse (
