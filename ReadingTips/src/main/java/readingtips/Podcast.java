@@ -11,7 +11,9 @@ public class Podcast extends Tip{
     
     
 
-    public Podcast() {}
+    public Podcast() {
+        this.setType("Podcast");
+    }
 
     public Podcast(String title, String author, String description, List<String> tags, List<String> courses,String podcastName) {
         super("Podcast", title, author, description, tags, courses);

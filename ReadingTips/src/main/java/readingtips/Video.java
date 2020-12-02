@@ -8,7 +8,9 @@ public class Video extends Tip{
     private Long position;
     private String positionComment;
     
-    public Video() {};
+    public Video() {
+        this.setType("Video");
+    }
 
     public Video(String title, String author, String description, List<String> tags, List<String> courses,String url) {
         super("Video", title, author, description, tags, courses);

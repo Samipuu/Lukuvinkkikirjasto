@@ -107,26 +107,27 @@ public class TipDao {
             BlogPost blogPost = (BlogPost) tip;
             blogPostDao.delete(blogPost);
         }
-
+        
+        allTips.remove(tip);
     }
 
     public void editTip(int identificator) {
         Tip tip = findTip(identificator);
-
+        
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
-            //bookDao.update(book);
+            bookDao.update(book);
         } else if (tip.getClass() == Video.class) {
             Video video = (Video) tip;
-            //videoDao.update(video);
+            videoDao.update(video);
         } else if (tip.getClass() == Podcast.class) {
             Podcast podcast = (Podcast) tip;
-            //podcastDao.update(podcast);
+            podcastDao.update(podcast);
         } else if (tip.getClass() == BlogPost.class) {
             BlogPost blogPost = (BlogPost) tip;
-            //blogPostDao.update(blogPost);
+            blogPostDao.update(blogPost);
         }
-
+        
     }
 
     private Tip findTip(int identificator) {

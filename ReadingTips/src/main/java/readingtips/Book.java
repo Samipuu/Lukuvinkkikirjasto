@@ -8,7 +8,9 @@ public class Book extends Tip {
 
     private String isbn;
 
-    public Book() {}
+    public Book() {
+        this.setType("Book");
+    }
 
     public Book(String title, String author, String description, List<String> tags, List<String> courses, String isbn) {
         super("Book", title, author, description, tags, courses);

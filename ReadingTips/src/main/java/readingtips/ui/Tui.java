@@ -19,7 +19,8 @@ public class Tui implements UI {
         this.scanner = scanner;
         this.tipDao = tipDao;
     }
-
+    
+    @Override
     public void launch() {
         scanner.print("Commands: \n"
                 + "Add : Add new reading tip\n"
@@ -86,7 +87,7 @@ public class Tui implements UI {
             case "book":
                 scanner.print("ISBN :");
                 String isbn = scanner.nextLine();
-                Book book = new Book(title, description, author, tags, courses, isbn);
+                Book book = new Book(title, author, description, tags, courses, isbn);
                 tipDao.createTip(book);
                 break;
             case "podcast":
@@ -191,7 +192,7 @@ public class Tui implements UI {
     }
 
     private Tip getTipById(int id) {
-        return tipDao.getAllTips().stream().findFirst().orElse(null);
+        return tipDao.getAllTips().stream().filter(t -> t.getId() == id).findFirst().orElse(null);
     }
 
     private void edit() {
@@ -199,10 +200,16 @@ public class Tui implements UI {
         int id = Integer.parseInt(scanner.nextLine());
 
         Tip tip = getTipById(id);
+        
+        if(tip == null) {
+            System.out.println("ID not found");
+            return;
+        }
+        
         System.out.println(tip);
         Boolean run = true;
         while (run) {
-            scanner.print("Choose attribute to change. Type cancel to cancel.");
+            scanner.print("Choose attribute to change. Type 'done' when ready.");
             switch (scanner.nextLine().toLowerCase()) {
                 case "title":
                     scanner.print("Title: ");
@@ -266,7 +273,7 @@ public class Tui implements UI {
                     Podcast podcast = (Podcast) tip;
                     podcast.setPodcastName(newPodCastName);
                     continue;
-                case "cancel":
+                case "done":
                     run = false;
                     continue;
                 default:

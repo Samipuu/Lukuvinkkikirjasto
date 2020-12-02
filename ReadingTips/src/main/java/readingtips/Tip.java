@@ -60,6 +60,10 @@ public abstract class Tip extends Entity {
     public void setTitle(String title) {
         this.title = title;
     }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
         
     public String getAuthor() {
         if (this.author != null) {
