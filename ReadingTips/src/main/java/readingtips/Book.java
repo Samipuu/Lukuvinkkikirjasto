@@ -20,9 +20,9 @@ public class Book extends Tip {
         this.isbn = isbn;
     }
 
-    public void update(int id, LocalDateTime created, LocalDateTime modified, String isbn, String title, String author, String description, List<String> tags, List<String> courses) {
+    public void update(LocalDateTime created, LocalDateTime modified, String isbn, String title, String author, String description, List<String> tags, List<String> courses) {
         this.isbn = isbn;
-        updateCommon(id, created, modified, title, author, description, tags, courses);
+        updateCommon(created, modified, title, author, description, tags, courses);
     }
 
     public String getIsbn() {

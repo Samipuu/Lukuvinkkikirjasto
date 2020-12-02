@@ -119,21 +119,21 @@ public class Tui implements UI {
                 scanner.print("URL :");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
-                tipDao.createTip(blogpost);  
+                tipDao.createTip(blogpost);
                 break;
             default:
                 scanner.print("Invalid type. Valid types " + Arrays.toString(types));
         }
 
     }
-    
+
     private Long getTime() {
         scanner.print("Insert timestamp? Type (y) if yes :");
         String answer = scanner.nextLine().toLowerCase(); //TÄMÄ TOIMII LAURALLA
         //String answer = scanner.nextLine().strip().toLowerCase(); //TÄMÄ TOIMII MUILLA  
         if (!answer.equals("y")) {
             return (long) -1;
-        }  
+        }
         while (true) {
             try {
                 scanner.print("Hours: ");
@@ -173,23 +173,23 @@ public class Tui implements UI {
         scanner.print("Title: ");
         String title = scanner.nextLine();
         List<Tip> tipList = tipDao.getAllTips();
-        for(Tip tip : tipList) {
-            if(tip.getTitle().toLowerCase().startsWith(title) || tip.getTitle().startsWith(title)) {
+        for (Tip tip : tipList) {
+            if (tip.getTitle().toLowerCase().startsWith(title) || tip.getTitle().startsWith(title)) {
                 scanner.print(tip.toString());
             }
         }
     }
-    
+
     private Tip getTipByTitle(String title) {
         List<Tip> tipList = tipDao.getAllTips();
-        for(Tip tip : tipList) {
-            if(tip.getTitle().toLowerCase().equals(title) || tip.getTitle().equals(title)) {
+        for (Tip tip : tipList) {
+            if (tip.getTitle().toLowerCase().equals(title) || tip.getTitle().equals(title)) {
                 return tip;
             }
         }
         return null;
     }
-    
+
     private Tip getTipById(int id) {
         return tipDao.getAllTips().stream().findFirst().orElse(null);
     }
@@ -197,7 +197,7 @@ public class Tui implements UI {
     private void edit() {
         scanner.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
-        
+
         Tip tip = getTipById(id);
         System.out.println(tip);
         Boolean run = true;
@@ -222,13 +222,13 @@ public class Tui implements UI {
                 case "tags":
                     scanner.print("Tags (comma seperated): ");
                     String tagsString = scanner.nextLine();
-                    List<String>tags = Arrays.asList(tagsString.split("\\s*, \\s*"));
+                    List<String> tags = Arrays.asList(tagsString.split("\\s*, \\s*"));
                     tip.setTags(tags);
                     continue;
                 case "courses":
                     scanner.print("Courses (comma seperated): ");
                     String coursesString = scanner.nextLine();
-                    List<String>courses = Arrays.asList(coursesString.split("\\s*, \\s*"));
+                    List<String> courses = Arrays.asList(coursesString.split("\\s*, \\s*"));
                     tip.setCourses(courses);
                     continue;
                 case "url":
@@ -238,11 +238,11 @@ public class Tui implements UI {
                     }
                     scanner.print("Url: ");
                     String url = scanner.nextLine();
-                    if(tip.getType().equals("Video")) {
-                        Video video = (Video)tip;
+                    if (tip.getType().equals("Video")) {
+                        Video video = (Video) tip;
                         video.setUrl(url);
                     } else {
-                        BlogPost blog = (BlogPost)tip;
+                        BlogPost blog = (BlogPost) tip;
                         blog.setUrl(url);
                     }
                     continue;
@@ -253,7 +253,7 @@ public class Tui implements UI {
                     }
                     scanner.print("ISBN: ");
                     String newIsbn = scanner.nextLine();
-                    Book book = (Book)tip;
+                    Book book = (Book) tip;
                     book.setIsbn(newIsbn);
                     continue;
                 case "podcast name":
@@ -263,7 +263,7 @@ public class Tui implements UI {
                     }
                     scanner.print("Podcast name: ");
                     String newPodCastName = scanner.nextLine();
-                    Podcast podcast = (Podcast)tip;
+                    Podcast podcast = (Podcast) tip;
                     podcast.setPodcastName(newPodCastName);
                     continue;
                 case "cancel":
@@ -271,14 +271,13 @@ public class Tui implements UI {
                     continue;
                 default:
                     scanner.print("Invalid attribute.");
-                    
-                
+
             }
-        
-            
+
         }
-        
+
         tipDao.editTip(id);
+
     }
 
 }

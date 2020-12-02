@@ -37,19 +37,19 @@ public abstract class CommonDao extends Dao {
             // e.g. BookTag-table
             {
                 PreparedStatement ps = conn.prepareStatement("DELETE FROM " + table + "Tag where " + table + "_id = ?");
-                ps.setInt(1, key);
+                ps.setInt(key, 1);
                 ps.executeUpdate();
             }
             // e.g. BookCourse-table
             {
                 PreparedStatement ps = conn
                         .prepareStatement("DELETE FROM " + table + "Course where " + table + "_id = ?");
-                ps.setInt(1, key);
+                ps.setInt(key, 1);
                 ps.executeUpdate();
             }
             // e.g. Book-table
             PreparedStatement ps = conn.prepareStatement("DELETE FROM " + table + " where id = ?");
-            ps.setInt(1, key);
+            ps.setInt(key, 1);
             ps.executeUpdate();
         } catch (Exception x) {
             throw new RuntimeException(x);
@@ -147,8 +147,7 @@ public abstract class CommonDao extends Dao {
             List<String> tags = getTags(id);
             List<String> courses = getCourses(id);
 
-            tip.updateCommon(id, created, modified, title, author, description, tags, courses);
-
+            tip.updateCommon(created, modified, title, author, description, tags, courses);
         } catch (Exception x) {
             throw new RuntimeException(x);
         }

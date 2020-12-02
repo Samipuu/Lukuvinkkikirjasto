@@ -26,21 +26,19 @@ public abstract class Tip extends Entity {
         this.courses = courses;
     }
 
-    public void updateCommon(int id, LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags,List<String> courses) {
+    public void updateCommon(LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags,List<String> courses) {
         this.author = author;
         this.description = description;
         this.title = title;
         this.tags = tags;
         this.courses = courses;
-        this.id = id;
         updateEntity(created, modified);
     }    
 
-    public void updateCommon(int id, LocalDateTime created, LocalDateTime modified, String title, String author, String description) {
+    public void updateCommon(LocalDateTime created, LocalDateTime modified, String title, String author, String description) {
         this.author = author;
         this.description = description;
         this.title = title;
-        this.id = id;
         // this.tags = tags;
         // this.courses = courses;
         updateEntity(created, modified);
