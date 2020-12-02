@@ -135,8 +135,8 @@ public class BookTest {
         returnString += "\nTitle: " + "Title";
         returnString += "\nAuthor: " + "Author";        
         returnString += "\nDescription: " + "Description";
-        returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
-        returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+        returnString += "\nTags: " + tagsString.substring(1, tagsString.length()-1);
+        returnString += "\nCourses: " + coursesString.substring(1, coursesString.length()-1);
                 
         returnString += "\nISBN: " + "isbn";
         assertEquals(returnString, book.toString());
@@ -156,8 +156,8 @@ public class BookTest {
         returnString += "\nTitle: " + "Title";
         returnString += "\nAuthor: " + "Author";        
 
-        returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
-        returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+        returnString += "\nTags: " + tagsString.substring(1, tagsString.length()-1);
+        returnString += "\nCourses: " + coursesString.substring(1, coursesString.length()-1);
                 
         returnString += "\nISBN: " + "isbn";
         assertEquals(returnString, book.toString());

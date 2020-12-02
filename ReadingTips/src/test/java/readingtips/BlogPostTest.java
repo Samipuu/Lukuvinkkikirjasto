@@ -46,8 +46,8 @@ public class BlogPostTest {
         returnString += "\nTitle: " + "Name";
         returnString += "\nAuthor: " + "Author";        
         returnString += "\nDescription: " + "Description";
-        returnString += "\nCourses: " + tagsString.substring(1, tagsString.length()-1);
-        returnString += "\nTags: " + coursesString.substring(1, coursesString.length()-1);
+        returnString += "\nTags: " + tagsString.substring(1, tagsString.length()-1);
+        returnString += "\nCourses: " + coursesString.substring(1, coursesString.length()-1);
                         
         assertEquals(returnString, blogPost.toString());
     }
