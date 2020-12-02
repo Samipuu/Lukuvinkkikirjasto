@@ -156,9 +156,9 @@ public class Tui implements UI {
     }
 
     private void delete() {
-        scanner.print("Title: ");
-        String title = scanner.nextLine();
-        tipDao.deleteTip(title);
+        scanner.print("ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        tipDao.deleteTip(id);
     }
 
     private void printAll() {
@@ -189,12 +189,16 @@ public class Tui implements UI {
         }
         return null;
     }
+    
+    private Tip getTipById(int id) {
+        return tipDao.getAllTips().stream().findFirst().orElse(null);
+    }
 
     private void edit() {
-        scanner.print("Title: ");
-        String title = scanner.nextLine();
+        scanner.print("ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
         
-        Tip tip = getTipByTitle(title);
+        Tip tip = getTipById(id);
         System.out.println(tip);
         Boolean run = true;
         while (run) {
@@ -274,7 +278,7 @@ public class Tui implements UI {
             
         }
         
-        tipDao.editTip(title);
+        tipDao.editTip(id);
     }
 
 }

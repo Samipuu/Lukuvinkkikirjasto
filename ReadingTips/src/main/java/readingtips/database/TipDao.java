@@ -92,7 +92,7 @@ public class TipDao {
         }
     }
 
-    public void deleteTip(String identificator) {
+    public void deleteTip(int identificator) {
         Tip tip = findTip(identificator);
         
         if (tip.getClass() == Book.class) {
@@ -111,10 +111,8 @@ public class TipDao {
 
     }
 
-    public void editTip(String identificator) {
+    public void editTip(int identificator) {
         Tip tip = findTip(identificator);
-        
-        System.out.println(tip);
         
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
@@ -132,8 +130,8 @@ public class TipDao {
 
     }
     
-    private Tip findTip(String identificator) {     
-        Tip tip = allTips.stream().filter(t -> t.getTitle().equals(identificator)).findFirst().orElse(null);
+    private Tip findTip(int identificator) {     
+        Tip tip = allTips.stream().filter(t -> t.getId() == identificator).findFirst().orElse(null);
 
         return tip;
     }
