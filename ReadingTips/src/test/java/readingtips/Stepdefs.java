@@ -56,9 +56,10 @@ public class Stepdefs {
         //ui.add();
     }
     
+    
     @When("command add is given")
     public void commandAdd() {
-        UIStub ui2 = new UIStub("add", "title", "description", "author", "1", "2", "book", "isbn", "exit");
+        UIStub ui2 = new UIStub("add", "title", "author", "description", "1", "2", "book", "isbn", "exit");
         mockDao = mock(TipDao.class);
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch();
@@ -79,7 +80,7 @@ public class Stepdefs {
     
     @When("book is created with title {string} description {string} author {string}")
     public void createBook(String title, String description, String author) {
-        UIStub ui2 = new UIStub("add", title, description, author, "1", "2", "book", "isbn", "exit");
+        UIStub ui2 = new UIStub("add", title, author, description, "1", "2", "book", "isbn", "exit");
         mockDao = mock(TipDao.class);
         Tui tui2 = new Tui(ui2, mockDao);
         tui2.launch();
@@ -164,7 +165,29 @@ public class Stepdefs {
         
         driver.close();
     
-    }  
+    } 
+    
+    @When("book is edit with id 1 with attributes title {string} author {string} description {string}")
+    public void bookCanBeEdit(String title, String author, String description) {
+        UIStub ui2 = new UIStub("edit", "1", "title", title, "done", "print all", "exit");
+        mockDao = mock(TipDao.class);
+        
+        ArrayList<String> tags = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+                add("1");
+            }};
+        //ArrayList<String> courses = new ArrayList<>() {{ //TÄMÄ TOIMII MUILLA
+        ArrayList<String> courses = new ArrayList<String>() {{ //TÄMÄ TOIMII LAURALLA
+                add("2");
+            }};
+        
+        Book book = new Book("Title", "Author", "Description", tags, courses, "12345");
+        mockDao.createTip(book);
+        Tui tui2 = new Tui(ui2, mockDao);
+        tui2.launch(); 
+        
+        //verify(mockDao).editTip(1);
+        //assertTrue(ui2.getOutputs().contains(title));
+    }
 
 
 

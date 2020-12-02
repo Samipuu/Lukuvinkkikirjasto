@@ -27,3 +27,8 @@ Feature: User can add a book information
         When podcast is created with title "Test Podcast" description "Podcast Description" author "Podcast Author"
         When command print all is given
         Then podcast title "Test Podcast" is returned
+
+    Scenario: User can edit a book
+        Given the system is launched
+        When book is edit with id 1 with attributes title "Title change" author "Change of author" description "Description is changed"
+        Then book title "Title change" is returned
