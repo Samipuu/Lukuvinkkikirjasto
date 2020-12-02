@@ -88,19 +88,19 @@ public class DatabaseTestSetup {
         }
 
         // test different init lists
-        {
-            List<String> list = List.of("s1", "s2", "s3"); // JDK9 immutable
-            System.out.println("tyyppi: " + list.getClass());   // tyyppi: class java.util.ImmutableCollections$ListN
-        }
-        {
-            List<String> list = new ArrayList<String>(List.of("s1", "s2", "s3")); // JDK9 mutable
-            System.out.println("tyyppi: " + list.getClass()); // tyyppi: class java.util.ArrayList 
-        }
-        {
-            // import static com.google.common.collect.Lists.newArrayList;
-            //List<String> list = new ArrayList("s1", "s2", "s3"); // Guava
-            //System.out.println("tyyppi2: " + list.getClass()); // tyyppi2: class java.util.ArrayList
-        }
+        // {
+        //     List<String> list = List.of("s1", "s2", "s3"); // JDK9 immutable
+        //     System.out.println("tyyppi: " + list.getClass());   // tyyppi: class java.util.ImmutableCollections$ListN
+        // }
+        // {
+        //     List<String> list = new ArrayList<String>(List.of("s1", "s2", "s3")); // JDK9 mutable
+        //     System.out.println("tyyppi: " + list.getClass()); // tyyppi: class java.util.ArrayList 
+        // }
+        // {
+        //     // import static com.google.common.collect.Lists.newArrayList;
+        //     //List<String> list = new ArrayList("s1", "s2", "s3"); // Guava
+        //     //System.out.println("tyyppi2: " + list.getClass()); // tyyppi2: class java.util.ArrayList
+        // }
     }
 
 }
