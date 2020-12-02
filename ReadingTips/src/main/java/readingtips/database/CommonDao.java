@@ -202,17 +202,19 @@ public abstract class CommonDao extends Dao {
     }
 
     protected void update(Tip tip, String uniqueField, String uniqueFieldValue) {
+        System.out.println(tip);
+        System.out.println(table);
         try {
             
             String sql = "UPDATE " + table + " SET modified = CURRENT_TIMESTAMP, "
-                    + "title = ?, author = ?, description = ?, " + uniqueField + " = ? WHERE title = ?";
+                    + "title = ?, author = ?, description = ?, " + uniqueField + " = ? WHERE id = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, tip.getTitle());
             ps.setString(2, tip.getAuthor());
             ps.setString(3, tip.getDescription());
             ps.setString(4, uniqueFieldValue);
-            ps.setString(5, tip.getTitle());
+            ps.setString(5, String.valueOf(tip.getId()));
             ps.executeUpdate();
 
         } catch (Exception ex) {

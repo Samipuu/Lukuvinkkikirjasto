@@ -113,7 +113,7 @@ public class TipDao {
 
     public void editTip(int identificator) {
         Tip tip = findTip(identificator);
-        
+
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
             bookDao.update(book);
