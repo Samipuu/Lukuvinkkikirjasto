@@ -14,15 +14,21 @@ DROP TABLE IF EXISTS BlogPost;
 DROP TABLE IF EXISTS Book;
 DROP TABLE IF EXISTS Podcast;
 DROP TABLE IF EXISTS Video;
--- common attribute tables
+-- common attribute tables;
 DROP TABLE IF EXISTS Tag;
 DROP TABLE IF EXISTS Course;
+-- sequences;
+DROP SEQUENCE IF EXISTS common_tip_id_sequence;
+
+
+-- SEQUENCES;
+CREATE SEQUENCE common_tip_id_sequence;
 
 -- TABLEs;
 
 -- BlogPost;
 CREATE TABLE BlogPost (
-    id SERIAL PRIMARY KEY,
+    id bigint default common_tip_id_sequence.nextval primary key,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP NOT NULL,
     title VARCHAR(100) NOT NULL, --common
@@ -33,7 +39,7 @@ CREATE TABLE BlogPost (
 
 -- Book;
 CREATE TABLE Book (
-    id SERIAL PRIMARY KEY,
+    id bigint default common_tip_id_sequence.nextval primary key,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP NOT NULL,    
     title VARCHAR(100) NOT NULL, --common
@@ -44,7 +50,7 @@ CREATE TABLE Book (
 
 -- Podcast;
 CREATE TABLE Podcast (
-    id SERIAL PRIMARY KEY,
+    id bigint default common_tip_id_sequence.nextval primary key,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP NOT NULL,    
     title VARCHAR(100) NOT NULL, --common
@@ -58,7 +64,7 @@ CREATE TABLE Podcast (
 
 -- Video;
 CREATE TABLE Video (
-    id SERIAL PRIMARY KEY,
+    id bigint default common_tip_id_sequence.nextval primary key,
     created TIMESTAMP NOT NULL,
     modified TIMESTAMP NOT NULL,    
     title VARCHAR(100) NOT NULL, --common
