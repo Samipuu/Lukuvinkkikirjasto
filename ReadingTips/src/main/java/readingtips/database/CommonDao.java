@@ -156,56 +156,69 @@ public abstract class CommonDao extends Dao {
 
     public void addTags(Tip tip) {
 
-        List<String> tags = tip.getTags();
+        try {
 
-        String tagSql = "INSERT INTO Tag(created, modified, teksti) "
-                + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)";
+            List<String> tags = tip.getTags();
 
-        for (String tag : tags) {
-            PreparedStatement ps;
-            try {
-                ps = conn.prepareStatement(tagSql);
+            String existsSql = "SELECT teksti FROM Tag WHERE teksti = ?";
+
+            String tagSql = "INSERT INTO Tag(created, modified, teksti) "
+                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)";
+
+            for (String tag : tags) {
+                PreparedStatement ps;
+                ps = conn.prepareStatement(existsSql);
                 ps.setString(1, tag);
-                ps.executeUpdate();
-            } catch (SQLException e) {
-                // this will throw exception when same tag alread exists.
-                // TODO: should check this and not throw exception
-                System.out.println("!! INSERTING TAG " + tag + " FAILED.");
+                ResultSet rs = ps.executeQuery();
+                if (!rs.next()) {
+                    ps = conn.prepareStatement(tagSql);
+                    ps.setString(1, tag);
+                    ps.executeUpdate();
+                }
             }
-        }
 
-        addManyToManyTags(tags, tip.getId());
+            addManyToManyTags(tags, tip.getId());
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addCourses(Tip tip) {
 
-        List<String> courses = tip.getCourses();
+        try {
 
-        String courseSql = "INSERT INTO Course(created, modified, nimi) "
-                + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)";
+            List<String> courses = tip.getCourses();
 
-        for (String course : courses) {
+            String existsSql = "SELECT nimi FROM Course WHERE nimi = ?";
 
-            PreparedStatement ps;
-            try {
-                ps = conn.prepareStatement(courseSql);
+            String courseSql = "INSERT INTO Course(created, modified, nimi) "
+                    + "VALUES(CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?)";
+
+            for (String course : courses) {
+                PreparedStatement ps;
+                ps = conn.prepareStatement(existsSql);
                 ps.setString(1, course);
-                ps.executeUpdate();
-            } catch (SQLException e) {
-                // this will throw exception when same tag alread exists.
-                // TODO: should check this and not throw exception
-                System.out.println("!! INSERTING COURSE " + course + " FAILED.");
+                ResultSet rs = ps.executeQuery();
+                if (!rs.next()) {
+                    ps = conn.prepareStatement(courseSql);
+                    ps.setString(1, course);
+                    ps.executeUpdate();
+                }
             }
-        }
 
-        addManyToManyCourses(courses, tip.getId());
+            addManyToManyCourses(courses, tip.getId());
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected void update(Tip tip, String uniqueField, String uniqueFieldValue) {
         System.out.println(tip);
         System.out.println(table);
         try {
-            
+
             String sql = "UPDATE " + table + " SET modified = CURRENT_TIMESTAMP, "
                     + "title = ?, author = ?, description = ?, " + uniqueField + " = ? WHERE id = ?";
 
