@@ -30,7 +30,7 @@ public class DatabaseTestSetup {
                 // System.out.println("polulla: " + x.getAbsolutePath());
 
                 // Path path = new File("ReadingTips/docs/luontilauseet.sql").toPath();
-                Path path = new File("docs/luontilauseet.sql").toPath();
+                Path path = new File(Dao.class.getResource("luontilauseet.sql").toURI()).toPath();
                 // lines with sql comments still existing
                 List<String> rawFileLines = Files.readAllLines(path, StandardCharsets.UTF_8);
                 // remove sql comments as PreparedStatement can't handle them.
