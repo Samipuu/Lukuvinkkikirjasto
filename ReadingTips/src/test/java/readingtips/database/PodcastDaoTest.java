@@ -6,8 +6,11 @@ import static org.junit.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import readingtips.Podcast;
@@ -39,6 +42,7 @@ public class PodcastDaoTest {
         dao.create(podcast);
         assertTrue(podcast.getId() > 0);
     }
+
     @Test
     public void listPodcast() {
         List<String> tags = Arrays.asList("tag1", "tag2");
@@ -51,7 +55,7 @@ public class PodcastDaoTest {
         List<Podcast> list = dao.list();
 
         assertTrue(list.size() > 1);
-    }    
+    }
     // NOT WORKING YET
     // @Test
     // public void updatePodcastUpdatesPodcast() {
@@ -63,8 +67,9 @@ public class PodcastDaoTest {
     //     dao.update(podcast2);
 
     //     List<Podcast> list = dao.list();
-        
     //     assertTrue(podcast2.equals(list.get(0)));
     // }
-
+    /**
+     * Test of create method, of class PodcastDao.
+     */
 }
