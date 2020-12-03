@@ -15,11 +15,6 @@ import java.util.List;
 import org.assertj.core.util.Arrays;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import static org.mockito.Mockito.*;
 import org.mockito.stubbing.OngoingStubbing;
 import readingtips.database.TipDao;
@@ -27,8 +22,8 @@ import readingtips.ui.IO;
 
 public class Stepdefs {
     //WebDriver driver = new ChromeDriver();
-    WebDriver driver = new HtmlUnitDriver();
-    String baseUrl = "http://localhost:4567";
+    //WebDriver driver = new HtmlUnitDriver();
+    //String baseUrl = "http://localhost:4567";
     Tui tui;
     TipDao mockDao;
     
@@ -163,9 +158,10 @@ public class Stepdefs {
         //assertTrue(io.getPrints().contains("Title"));
         //assertTrue(driver.getPageSource().contains("Title"));
         
-        driver.close();
+        //driver.close();
     
     } 
+    
     
     @When("book is edit with id 1 with attributes title {string} author {string} description {string}")
     public void bookCanBeEdit(String title, String author, String description) {

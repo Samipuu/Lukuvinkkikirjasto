@@ -1,6 +1,10 @@
 package readingtips.database;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Dao {
     
@@ -44,9 +49,11 @@ public abstract class Dao {
                 // System.out.println("polulla: " + x.getAbsolutePath());
 
                 // Path path = new File("ReadingTips/docs/luontilauseet.sql").toPath();
-                Path path = new File(Dao.class.getResource("luontilauseet.sql").toURI()).toPath();
+                List<String> rawFileLines;
+                InputStream luontiLauseetStream = Dao.class.getResourceAsStream("luontilauseet.sql");
+   
                 // lines with sql comments still existing
-                List<String> rawFileLines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                rawFileLines = new BufferedReader(new InputStreamReader(luontiLauseetStream, StandardCharsets.UTF_8)).lines().collect(Collectors.toList());    
                 // remove sql comments as PreparedStatement can't handle them.
                 List<String> fileLines = new ArrayList<String>();
                 for (String rivi : rawFileLines) {

@@ -62,7 +62,6 @@ public class DatabaseTestSetup {
     public void testaaJotain() {
 
         try {
-
             Connection conn = DriverManager.getConnection("jdbc:h2:./readingtips", "sa", "");
 
             // test insert something
