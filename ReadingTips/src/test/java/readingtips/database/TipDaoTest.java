@@ -70,7 +70,7 @@ public class TipDaoTest {
         String editedTitle = newTitle + "v2";
         book.setTitle(editedTitle);
         tipDao.editTip(book.getId());
-        assertEquals(tipDao.findTip(book.getId()), book);
+        assertEquals(tipDao.findTip(book.getId()).getTitle(), book.getTitle());
         // delete book
         tipDao.deleteTip(book.getId());
         assertNull(tipDao.findTip(book.getId()));
@@ -91,7 +91,7 @@ public class TipDaoTest {
         String editedTitle = newTitle + "v2";
         entity.setTitle(editedTitle);
         tipDao.editTip(entity.getId());
-        assertEquals(tipDao.findTip(entity.getId()), entity);
+        assertEquals(tipDao.findTip(entity.getId()).getTitle(), entity.getTitle());
         // delete blogpost
         tipDao.deleteTip(entity.getId());
         assertNull(tipDao.findTip(entity.getId()));
@@ -112,7 +112,7 @@ public class TipDaoTest {
         String editedTitle = newTitle + "v2";
         entity.setTitle(editedTitle);
         tipDao.editTip(entity.getId());
-        assertEquals(tipDao.findTip(entity.getId()), entity);
+        assertEquals(tipDao.findTip(entity.getId()).getTitle(), entity.getTitle());
         // delete podcast
         tipDao.deleteTip(entity.getId());
         assertNull(tipDao.findTip(entity.getId()));
@@ -133,7 +133,7 @@ public class TipDaoTest {
         String editedTitle = newTitle + "v2";
         entity.setTitle(editedTitle);
         tipDao.editTip(entity.getId());
-        assertEquals(tipDao.findTip(entity.getId()), entity);
+        assertEquals(tipDao.findTip(entity.getId()).getTitle(), entity.getTitle());
         // delete video
         tipDao.deleteTip(entity.getId());
         assertNull(tipDao.findTip(entity.getId()));
