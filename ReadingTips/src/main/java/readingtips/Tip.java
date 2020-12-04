@@ -22,7 +22,9 @@ public abstract class Tip extends Entity {
         this.description = description;
         this.type = type;
         this.title = title;
+        if(tags == null) tags = new ArrayList<String>();
         this.tags = tags;
+        if(courses == null) courses = new ArrayList<String>();
         this.courses = courses;
     }
 

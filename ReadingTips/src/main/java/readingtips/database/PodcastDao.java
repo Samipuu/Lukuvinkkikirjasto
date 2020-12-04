@@ -102,6 +102,6 @@ public class PodcastDao extends CommonDao {
     }
 
     public void update(Podcast podcast) {       
-        update(podcast, "podcastName", podcast.getPodcastName());
+        update(podcast, "nimi", podcast.getPodcastName());
     }
 }
