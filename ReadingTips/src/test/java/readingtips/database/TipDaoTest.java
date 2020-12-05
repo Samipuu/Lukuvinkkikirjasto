@@ -5,6 +5,9 @@
  */
 package readingtips.database;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -51,9 +54,11 @@ public class TipDaoTest {
         assertNotNull(tipDao.getAllBooksFromDatabase());
         assertNotNull(tipDao.getAllVideosFromDatabase());
         assertNotNull(tipDao.getAllPodcastsFromDatabase());
-        assertNotNull(tipDao.getAllBlogPostsFromDatabase());    
+        assertNotNull(tipDao.getAllBlogPostsFromDatabase());  
+        assertNotNull(tipDao.getAllTags());  
+        assertNotNull(tipDao.getTipsTagFiltered(new ArrayList<>())); 
     }
-
+    
     @Test
     public void createEditAndDeleteBookTest() {
 
@@ -137,5 +142,33 @@ public class TipDaoTest {
         // delete video
         tipDao.deleteTip(entity.getId());
         assertNull(tipDao.findTip(entity.getId()));
-    }            
+    }      
+    
+    @Test
+    public void getTagsTest() {
+        TipDao tipDao = new TipDao();
+        List<String> tagit = Arrays.asList(new String[]{"rauha","tomaatti","kirves","npc"});
+        Book book = new Book("newTitle", "tekijä", "kuvaus", tagit, null, "123-123");
+        tipDao.createTip(book);
+        assertTrue(tipDao.getAllTags().containsAll(tagit));
+    }
+    
+    @Test
+    public void findsTip() {
+        TipDao tipDao = new TipDao();
+        List<String> tagit = Arrays.asList(new String[]{"rauha","tomaatti","kirves","npc"});
+        Book book = new Book("newTitle", "tekijä", "kuvaus", tagit, null, "123-123");
+        tipDao.createTip(book);
+        assertTrue(tipDao.getTipsTagFiltered(tagit).contains(book));
+    }
+    
+    @Test
+    public void doesNotFindTip() {
+        TipDao tipDao = new TipDao();
+        List<String> tagit = Arrays.asList(new String[]{"rauha","tomaatti","kirves","npc"});
+        List<String> tagitTesti = Arrays.asList(new String[]{"tätä tagia ei löydy"});
+        Book book = new Book("newTitle", "tekijä", "kuvaus", tagit, null, "123-123");
+        tipDao.createTip(book);
+        assertTrue(tipDao.getTipsTagFiltered(tagitTesti).isEmpty());
+    }
 }

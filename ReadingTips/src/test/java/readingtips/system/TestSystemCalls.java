@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class TestSystemCalls {
-
+    /*
     public static void main(String[] args) {
         String komentoPolku = "/home/jussi/ohjeto_github/Reading-tips-2020-covid-edition/ReadingTips/src/test/java/readingtips/system";
         String mediaPolku = "/home/jussi/ohjeto_github/Reading-tips-2020-covid-edition/ReadingTips/downloaded_media_files";
@@ -31,5 +31,6 @@ public class TestSystemCalls {
             e.printStackTrace();
         }
     }
+    */
 
 }

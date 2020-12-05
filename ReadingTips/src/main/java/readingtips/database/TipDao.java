@@ -6,7 +6,10 @@
 package readingtips.database;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 import readingtips.BlogPost;
 import readingtips.Book;
 import readingtips.Podcast;
@@ -23,14 +26,20 @@ public class TipDao {
     protected VideoDao videoDao;
     protected PodcastDao podcastDao;
     protected BlogPostDao blogPostDao;
+    protected TagsDao tagsDao;
     protected List<Tip> allTips;
+    protected HashSet<String> allTags;
+   
 
     public TipDao() {
         bookDao = new BookDao();
         videoDao = new VideoDao();
         podcastDao = new PodcastDao();
         blogPostDao = new BlogPostDao();
-
+        tagsDao = new TagsDao();
+        
+        allTags = tagsDao.getAllTags();
+        
         allTips = new ArrayList();
 
         List<Book> books = getAllBooksFromDatabase();
@@ -44,10 +53,23 @@ public class TipDao {
 
         List<BlogPost> blogPosts = getAllBlogPostsFromDatabase();
         allTips.addAll(blogPosts);
+        
+        
+    }
+    
+    public List<Tip> getTipsTagFiltered(List<String> tags) {
+        return this.allTips.stream().filter(s -> s.getTags().containsAll(tags)).collect(Collectors.toList());
     }
 
     public List<Tip> getAllTips() {
         return allTips;
+    }
+    
+    public List<String> getAllTags() {
+        List<String> returnList = new ArrayList<>();
+        returnList.addAll(this.allTags);
+        Collections.sort(returnList);
+        return returnList;
     }
 
     List<Book> getAllBooksFromDatabase() {
@@ -76,6 +98,7 @@ public class TipDao {
 
     public void createTip(Tip tip) {
         allTips.add(tip);
+        allTags.addAll(tip.getTags());
         if (tip.getClass() == Book.class) {
             Book book = (Book) tip;
             bookDao.create(book);

@@ -14,7 +14,7 @@ import readingtips.Tip;
 public abstract class CommonDao extends Dao {
 
     protected String table;
-
+    
     public int getId(PreparedStatement ps) {
         try {
             ResultSet keys = ps.getGeneratedKeys();

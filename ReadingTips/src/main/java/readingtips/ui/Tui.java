@@ -27,7 +27,7 @@ public class Tui implements UI {
                 + "Delete : Delete specific readig tip\n"
                 + "Edit : Edit specific reading tip\n"
                 + "Print All : Print title of all reading tips\n"
-                + "Print : Print specific reading tip by title\n"
+                + "Print : Print specific reading. You can search by title and tags\n"
                 + "Exit : Close the program");
 
         while (true) {
@@ -74,12 +74,13 @@ public class Tui implements UI {
         author = scanner.nextLine();
         scanner.print("Description: ");
         description = scanner.nextLine();
+        printTags();
         scanner.print("Tags (comma seperated): ");
         String tagsString = scanner.nextLine();
-        tags = Arrays.asList(tagsString.split("\\s*, \\s*"));
+        tags = Arrays.asList(tagsString.split("\\s*,\\s*"));
         scanner.print("Courses (comma seperated): ");
         String courseString = scanner.nextLine();
-        courses = Arrays.asList(courseString.split("\\s*,"));
+        courses = Arrays.asList(courseString.split("\\s*,\\s*"));
 
         scanner.print("Available types: " + Arrays.toString(types));
         scanner.print("Type: ");
@@ -155,22 +156,62 @@ public class Tui implements UI {
             }
         }
     }
+    
+    private void printTagFiltered() {
+        printTags();
+        scanner.print("You can filter by one or more tags.\nTags (comma seperated): ");
+        String tagsString = scanner.nextLine();
+        List<String> tags = Arrays.asList(tagsString.split("\\s*,\\s*"));
+        List<Tip> tipList = tipDao.getTipsTagFiltered(tags);
+        printTips(tipList);
+    }
+    
+    private void printTags() {
+        List<String> tags = this.tipDao.getAllTags();
+        scanner.print("\nExisting tags: ");
+        scanner.print("");
+        for (String tag:tags) {
+            System.out.println(tag);
+        }
+        scanner.print("");
+    }
 
     private void delete() {
         scanner.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
         tipDao.deleteTip(id);
     }
-
-    private void printAll() {
-        List<Tip> tipList = tipDao.getAllTips();
+    
+    private void printTips(List<Tip> tipList) {
+        scanner.print("");
         for (Tip tip : tipList) {
             scanner.print(tip.toString());
             scanner.print("");
         }
+        
+    }
+
+    private void printAll() {
+        List<Tip> tipList = tipDao.getAllTips();
+        printTips(tipList);
     }
 
     private void printTip() {
+        while (true) {
+            scanner.print("For title search, type (title)\nFor tag search, type (tag)");
+            String answer = scanner.nextLine();
+            if (answer.toLowerCase().equals("title")) {
+                this.printTitleFiltered();
+                break;
+            }
+            if (answer.toLowerCase().equals("tag")) {
+                this.printTagFiltered();
+                break;
+            }
+        }
+    }
+    
+    private void printTitleFiltered() {
         scanner.print("Title: ");
         String title = scanner.nextLine();
         List<Tip> tipList = tipDao.getAllTips();
@@ -229,13 +270,13 @@ public class Tui implements UI {
                 case "tags":
                     scanner.print("Tags (comma seperated): ");
                     String tagsString = scanner.nextLine();
-                    List<String> tags = Arrays.asList(tagsString.split("\\s*, \\s*"));
+                    List<String> tags = Arrays.asList(tagsString.split("\\s*,\\s*"));
                     tip.setTags(tags);
                     continue;
                 case "courses":
                     scanner.print("Courses (comma seperated): ");
                     String coursesString = scanner.nextLine();
-                    List<String> courses = Arrays.asList(coursesString.split("\\s*, \\s*"));
+                    List<String> courses = Arrays.asList(coursesString.split("\\s*,\\s*"));
                     tip.setCourses(courses);
                     continue;
                 case "url":
