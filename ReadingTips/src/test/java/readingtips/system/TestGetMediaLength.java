@@ -8,7 +8,7 @@ import java.util.List;
 public class TestGetMediaLength {
 
     public static void main(String[] args) {
-        String media = "downloaded_media_files/videos/" + "Indochine - Un été français (Clip officiel).mp4";
+        String media = "downloaded_media_files/files/" + "Indochine - Un été français (Clip officiel).mp4";
         
         TestGetMediaLength taa = new TestGetMediaLength();
 

@@ -6,7 +6,7 @@ then
     exit 1
 fi
 
-media_path="downloaded_media_files/videos"
+media_path="downloaded_media_files/files"
 
 #media_file="Indochine - Un été français (Clip officiel).mp4"
 

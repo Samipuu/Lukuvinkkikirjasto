@@ -13,7 +13,7 @@ public class TestPlayingAudio {
     public static void main(String[] args) {
 
         TestPlayingAudio taa = new TestPlayingAudio();
-        String mediaPolku = "downloaded_media_files/audios";
+        String mediaPolku = "downloaded_media_files/files";
 
         Long media1Position;
         {

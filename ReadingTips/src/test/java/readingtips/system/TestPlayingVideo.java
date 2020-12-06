@@ -10,7 +10,7 @@ public class TestPlayingVideo {
     public static void main(String[] args) {
 
         TestPlayingVideo taa = new TestPlayingVideo();
-        String mediaPolku = "downloaded_media_files/videos";
+        String mediaPolku = "downloaded_media_files/files";
 
         Long media1Position;
         {
