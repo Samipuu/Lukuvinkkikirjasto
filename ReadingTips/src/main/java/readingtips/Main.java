@@ -8,19 +8,23 @@ import readingtips.ui.Tui;
 
 public class Main {
 
-    public static String this_is_environment = "this.is.environment";  // if set to development will use development database. otherwise test database.
+    // public static String this_is_environment = "this.is.environment";  // not used for now. { test, development, production }
+    public static String environment_database_name = "environment.database.name";  // used if set to something.
 
     public static String getDatabaseName() {
-        if ("development".equals(System.getProperty(Main.this_is_environment))) {
-            return "readingtips";
-        } else {
-            return "readingtips_test";
+        String databaseName;
+        {
+            databaseName = System.getProperty(Main.environment_database_name);
+            if (null == databaseName) {
+                databaseName="readingtips_test";
+            }
         }
+        return databaseName;
     }
 
     public static void main(String[] args) {
 
-        System.setProperty(Main.this_is_environment, "development");
+        System.setProperty(Main.environment_database_name, "readingtips");
           
         Scanner scanner = new Scanner(System.in);
         //Tui ui = new Tui(scanner);
