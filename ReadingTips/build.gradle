@@ -75,3 +75,7 @@ jacocoTestReport {
 run {
     standardInput = System.in
 }
+
+applicationDistribution.from('command/') {
+    into 'command'
+}
