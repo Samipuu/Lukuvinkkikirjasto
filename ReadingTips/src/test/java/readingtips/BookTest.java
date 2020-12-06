@@ -1,6 +1,7 @@
 package readingtips;
 
 import java.util.List;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
@@ -8,6 +9,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+//import jdk.jfr.Timestamp; //EI TOIMINUT LAURALLA. ONKO TÄMÄ KÄYTÖSSÄ?
+
 import static org.junit.Assert.*;
 
 public class BookTest {
@@ -170,4 +174,72 @@ public class BookTest {
 
         assertTrue(book.equals(book2));
     }
+
+    @Test
+    public void updateWorks() {
+        List<String> tags = new ArrayList();
+        List<String> courses = new ArrayList();        
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        tags.add("eka");
+        courses.add("tira"); 
+        book.update(1, LocalDateTime.now(), LocalDateTime.now(), "isbn2", "Title2", "Author", "Description", tags, courses);
+        assertTrue(book.getIsbn().equals("isbn2"));
+    }
+
+    @Test
+    public void equalsHuomaaNullin() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        Book book2 = new Book("Title", "Author", "Description", null, null, "isbn");
+
+        assertEquals(false, book.equals(null));
+    }
+    @Test
+    public void equalsHuomaaVaaranLuokan() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        Podcast podcast = new Podcast(null, "Author", "Description", null, null, null);
+        
+        assertEquals(false, book.equals(podcast));
+    }
+    @Test
+    public void equalsTarkistaaJaFeilaa() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        Book book2 = new Book("Title", "Author2", "Description", null, null, "isbn");
+
+        assertEquals(false, book.equals(book2));
+    }   
+    @Test
+    public void equalsTarkistaaJaFeilaa2() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        Book book2 = new Book("Title", "Author", "Description2", null, null, "isbn");
+
+        assertEquals(false, book.equals(book2));
+    }     
+    @Test
+    public void equalsTarkistaaJaFeilaa23() {
+        Book book = new Book("Title", "Author", "Description", null, null, "isbn");
+        Book book2 = new Book("Title2", "Author", "Description", null, null, "isbn");
+
+        assertEquals(false, book.equals(book2));
+    }
+   
+    @Test
+    public void toStringIlmanISBN2() {
+        Book book = new Book("Title", null, "Description", null, null, "");
+        String returnString = "";
+        returnString += "Type: " + "Book";
+        returnString += "\nTitle: " + "Title";
+      
+        returnString += "\nDescription: " + "Description";
+        //returnString += "\nISBN: " + "isbn";
+        assertEquals(returnString, book.toString());
+    }     
+
+// EN ONNISTUNUT TÄTÄ SUPER-TESTIÄ SAAMAAN MITÄÄN LISÄARVOA
+    public void superToimii() {
+        List<String> tags = new ArrayList();
+        List<String> courses = new ArrayList();        
+        Book book = new Book("Title", "Author", "Description", tags, courses, "isbn");
+
+        assertEquals(true, book.getDescription().equals("Description"));
+    }    
 }
