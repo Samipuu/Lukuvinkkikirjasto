@@ -50,5 +50,41 @@ public class PodcastTest {
                         
         assertEquals(returnString, podcast.toString());
     }
+    
+        @Test
+    public void equalsHuomaaNullin() {
+        Podcast podcast = new Podcast("Title", "Author", "Description", null, null, "isbn");
+        Podcast podcast2 = new Podcast("Title", "Author", "Description", null, null, "isbn");
+
+        assertEquals(false, podcast.equals(null));
+    }
+    @Test
+    public void equalsHuomaaVaaranLuokan() {
+        Podcast podcast = new Podcast("Title", "Author", "Description", null, null, "isbn");
+        Book book = new Book(null, "Author", "Description", null, null, null);
+        
+        assertEquals(false, podcast.equals(book));
+    }
+    @Test
+    public void equalsTarkistaaJaFeilaa() {
+        Podcast podcast = new Podcast("Title", "Author", "Description", null, null, "isbn");
+        Podcast podcast2 = new Podcast("Title", "Author2", "Description", null, null, "isbn");
+
+        assertEquals(false, podcast.equals(podcast2));
+    }   
+    @Test
+    public void equalsTarkistaaJaFeilaa2() {
+        Podcast podcast = new Podcast("Title", "Author", "Description", null, null, "isbn");
+        Podcast podcast2 = new Podcast("Title", "Author", "Description2", null, null, "isbn");
+
+        assertEquals(false, podcast.equals(podcast2));
+    }     
+    @Test
+    public void equalsTarkistaaJaFeilaa23() {
+        Podcast podcast = new Podcast("Title", "Author", "Description", null, null, "isbn");
+        Podcast podcast2 = new Podcast("Title2", "Author", "Description", null, null, "isbn");
+
+        assertEquals(false, podcast.equals(podcast2));
+    }
 
 }
