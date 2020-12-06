@@ -20,22 +20,22 @@ function lataa_youtube_dl() {
 }
 
 function lataile_videoita() {
-    mkdir videos/
+    mkdir -p files
     while IFS= read -r line
     do
         echo "info: downloading: $line"
         #$lataa -F "$line"   # list available formats
-        $lataa -f best -o videos/'%(title)s.%(ext)s' "$line" # the best (and probably only one with video and audio)
+        $lataa -f best -o files/'%(title)s.%(ext)s' "$line" # the best (and probably only one with video and audio)
     done < "some_videos.txt"
 }
 
 function lataile_audioita() {
-    mkdir audios/
+    mkdir -p files
     while IFS= read -r line
     do
         echo "info: downloading: $line"
         #$lataa -F "$line"   # list available formats
-        $lataa -f bestaudio -o audios/'%(title)s.%(ext)s' "$line" # the best audio
+        $lataa -f bestaudio -o files/'%(title)s.%(ext)s' "$line" # the best audio
     done < "some_audios.txt"
 }
 

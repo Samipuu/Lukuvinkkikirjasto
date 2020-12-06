@@ -10,7 +10,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo "jyy"
 fi
 
-echo 'audio files: audios/'
-ls -1 audios/
+echo 'audio files: '
+ls -1 files/*.{webm,m4a}
 
-$soita audios/*.*
+$soita files/*.{webm,m4a}

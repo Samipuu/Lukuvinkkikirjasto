@@ -16,16 +16,9 @@ function komento () {
   echo $seconds
 }
 
-tiedostot=audios/*.*
-for tiedosto in $tiedostot
+for tiedosto in files/*.{webm,m4a,mp4}
 do
   echo "tiedosto: $tiedosto"
   komento "$tiedosto"
 done
 
-tiedostot=videos/*.*
-for tiedosto in $tiedostot
-do
-  echo "tiedosto: $tiedosto"
-  komento "$tiedosto"
-done
