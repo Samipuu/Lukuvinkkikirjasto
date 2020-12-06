@@ -28,6 +28,7 @@ public class Tui implements UI {
                 + "Edit : Edit specific reading tip\n"
                 + "Print All : Print title of all reading tips\n"
                 + "Print : Print specific reading. You can search by title and tags\n"
+                + "Help : Prints commands"
                 + "Exit : Close the program");
 
         while (true) {
@@ -50,6 +51,9 @@ public class Tui implements UI {
                 case "edit":
                     edit();
                     continue;
+                case "help":
+                    help();
+                    continue;
                 default:
                     scanner.print("Invalid command.\n");
             }
@@ -58,8 +62,9 @@ public class Tui implements UI {
     }
 
     private void add() {
-        String[] types = new String[]{"Book", "Podcast", "Video", "Blog Post"};
-
+        String[] types = new String[]{"book", "podcast", "video", "blog post"};
+        
+        String type;
         String positionComment;
         Long position;
         String title;
@@ -67,7 +72,18 @@ public class Tui implements UI {
         String description;
         List<String> tags;
         List<String> courses;
-
+        
+        scanner.print("Available types: " + Arrays.toString(types));
+        while(true) {
+            scanner.print("Type: ");
+            type = scanner.nextLine().toLowerCase();
+            if(!Arrays.asList(types).contains(type)) {
+                System.out.println("Invalid type. Valid types " + Arrays.toString(types));
+            } else {
+                break;
+            }    
+        }
+        
         scanner.print("Title: ");
         title = scanner.nextLine();
         scanner.print("Author: ");
@@ -82,9 +98,7 @@ public class Tui implements UI {
         String courseString = scanner.nextLine();
         courses = Arrays.asList(courseString.split("\\s*,\\s*"));
 
-        scanner.print("Available types: " + Arrays.toString(types));
-        scanner.print("Type: ");
-        switch (scanner.nextLine().toLowerCase()) {
+        switch (type.toLowerCase()) {
             case "book":
                 scanner.print("ISBN :");
                 String isbn = scanner.nextLine();
@@ -326,6 +340,17 @@ public class Tui implements UI {
         
         tipDao.editTip(id);
 
+    }
+
+    private void help() {
+        scanner.print("Commands: \n"
+            + "Add : Add new reading tip\n"
+            + "Delete : Delete specific readig tip\n"
+            + "Edit : Edit specific reading tip\n"
+            + "Print All : Print title of all reading tips\n"
+            + "Print : Print specific reading. You can search by title and tags\n"
+            + "Help : Prints commands"
+            + "Exit : Close the program");
     }
 
 }

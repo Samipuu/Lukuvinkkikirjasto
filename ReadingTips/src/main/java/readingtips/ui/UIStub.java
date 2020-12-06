@@ -13,7 +13,7 @@ public class UIStub implements IO {
         this.inputs = inputs;
         this.outputs = new ArrayList<String>();
     }
-
+    
     // public String add() {
     //     return("Add");
     // }
