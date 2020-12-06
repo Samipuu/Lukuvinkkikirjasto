@@ -27,3 +27,6 @@ Lukuvinkkikirjastossa voi luoda uusia lukuvinkkejä komennolla ```Add```. Komenn
 
 Komennolla ```Exit``` lukuvinkkikirjasto voidaan sulkea.
 
+### Buildaaminen
+
+./gradlew distTar
