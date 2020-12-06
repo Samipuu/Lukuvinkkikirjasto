@@ -18,7 +18,7 @@ public class DaoTest {
     @Test
     public void alustaTietokantaTest() {
         // delete database
-        File file = new File("readingtips.mv.db");
+        File file = new File("readingtips_test.mv.db");
         file.delete();
         // no database exists
         BookDao dao = new BookDao();
