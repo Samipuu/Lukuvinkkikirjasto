@@ -29,7 +29,8 @@ Feature: User can add a book information
 
     Scenario: User can edit a book
         Given the system is launched
-        When book with id 1 is edit with attributes title "Title change" author "Change of author" description "Description is changed"
+        When tip is created with type "book" title "Test Book" author "Book Author" description "Book Description"
+        And book with id 1 is edit with attributes title "Title change" author "Change of author" description "Description is changed"
         Then book title "Title change" is returned
 
     Scenario: User can edit a podcast
