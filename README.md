@@ -30,3 +30,4 @@ Komennolla ```Exit``` lukuvinkkikirjasto voidaan sulkea.
 ### Buildaaminen
 
 ./gradlew distTar
+
