@@ -129,9 +129,9 @@ public class Stepdefs {
         tui2.launch();
     }    
 
-    @When("video is created with title {string} author {string} description {string}")
-    public void createVideo(String title, String description, String author) {
-        UIStub ui2 = new UIStub("add","video", title, "Author", "description", "1", "2",  "www.url.fi", "y", "0", "10", "10", "kommentti", "print all", "exit");
+    @When("video is created with title {string} author {string} description {string} url {string}")
+    public void createVideo(String title, String description, String author, String url) {
+        UIStub ui2 = new UIStub("add","video", title, "Author", "description", "1", "2",  url, "y", "0", "10", "10", "kommentti", "print all", "exit");
         Tui tui2 = new Tui(ui2, testDao);
         tui2.launch();
     } 
@@ -145,12 +145,19 @@ public class Stepdefs {
     }
 
     @When("commands print and tag are given")
-    public void commandPrint() {
+    public void commandPrintByTag() {
         ui = new UIStub("print", "tag", "kissat", "exit");
         Tui tui2 = new Tui(ui, testDao);
         tui2.launch();          
     }    
     
+    @When("commands print and title and {string} are given")
+    public void commandPrintByTitle(String title) {
+        ui = new UIStub("print", "title", title, "exit");
+        Tui tui2 = new Tui(ui, testDao);
+        tui2.launch();          
+    }
+
     @Then("tip with type {string} is returned")
     public void printAllShowsCreatedTip(String type) {
         Boolean contain = outputContainsString(type);
@@ -199,6 +206,13 @@ public class Stepdefs {
         tui2.launch(); 
     }
     
+    @When("book with id 1 is edit with attributes title {string} author {string} description {string} isbn {string}")
+    public void bookCanBeEditWithISBN(String title, String author, String description, String isbn) {
+        ui = new UIStub("edit", "1", "title", title, "isbn", isbn, "done", "print all", "exit");
+        Tui tui2 = new Tui(ui, testDao);
+        tui2.launch(); 
+    }
+
     @When("tip with title {string} is edit with attributes title {string} author {string} description {string} tags {string} courses {string}")
     public void editTip(String oldTitle, String title, String author, String description, String tags, String courses) {
         String id = String.valueOf(getTipByTitle(oldTitle).getId());
@@ -206,6 +220,22 @@ public class Stepdefs {
         Tui tui = new Tui(ui2, testDao);
         tui.launch();
     }
+
+    @When("tip with title {string} is edit with attributes title {string} author {string} description {string} url {string} podcast name {string}")
+    public void editTipPodcast(String oldTitle, String title, String author, String description, String url, String podcastName) {
+        String id = String.valueOf(getTipByTitle(oldTitle).getId());
+        UIStub ui2 = new UIStub("edit", id, "title", title, "author", author, "description", description, "url", url, "podcast name", podcastName, "done", "exit");
+        Tui tui = new Tui(ui2, testDao);
+        tui.launch();
+    }
+    
+    @When("video with title {string} is edit with attributes title {string} author {string} url {string}")
+    public void editVideo(String oldTitle, String title, String author, String url) {
+        String id = String.valueOf(getTipByTitle(oldTitle).getId());
+        UIStub ui2 = new UIStub("edit", id, "title", title, "author", author, "url", url, "done", "exit");
+        Tui tui = new Tui(ui2, testDao);
+        tui.launch();
+    }    
 
     @Then("tip has been changed with attributes {string} author {string} description {string} tags {string} courses {string}")
     public void checkTipChange(String title, String author, String description, String tags, String courses) {
@@ -220,6 +250,26 @@ public class Stepdefs {
         assertEquals(tagList, tip.getTags());
         assertEquals(courseList, tip.getCourses());
     }
+
+
+    @Then("tip has been changed with attributes {string} author {string} url {string}")
+    public void checkTipChangeUrl(String title, String author, String url) {
+        Tip tip = getTipByTitle(title);
+        assertEquals(title, tip.getTitle());
+        assertEquals(author, tip.getAuthor());
+        //assertEquals(url, tip.getUrl()); SAISIKO TÄN TOIMIMAAN?
+        
+    }
+
+    @Then("tip has been changed with attributes {string} author {string} description {string} url {string} podcast name {string}")
+    public void checkTipChangePodcast(String title, String author, String description, String tags, String courses) {
+        Tip tip = getTipByTitle(title);
+        assertEquals(title, tip.getTitle());
+        assertEquals(author, tip.getAuthor());
+        assertEquals(description, tip.getDescription());
+        //assertEquals(url, tip.getUrl());
+        //assertEquals(podcastName, tip.getPodcastName());
+    }    
     
     @When("tip with title {string} is commanded to print")
     public void printByTitle(String title) {

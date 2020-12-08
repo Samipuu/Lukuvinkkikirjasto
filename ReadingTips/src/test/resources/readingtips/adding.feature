@@ -35,6 +35,6 @@ Feature: User can add a tip
 
     Scenario: User can add a video with attributes
         Given the system is launched
-        When video is created with title "Test Video" author "Video Author" description "Video Description"
+        When video is created with title "Test Video" author "Video Author" description "Video Description" url "www.url.fi"
         When command print all is given
         Then video title "Test Video" is returned
