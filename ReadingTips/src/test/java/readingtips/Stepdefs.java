@@ -71,7 +71,7 @@ public class Stepdefs {
     
     @Then("tip with type {string} is created")
     public void checkType(String type) {
-        assertEquals(type, testDao.getAllTips().get(0).getType().toLowerCase());
+        assertEquals(type, testDao.getAllTips().get(testDao.getAllTips().size() - 1).getType().toLowerCase());
     }
     
     @When("tip is created with type {string} title {string}")
