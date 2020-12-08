@@ -109,6 +109,13 @@ public class Stepdefs {
         assertEquals(title, tip.getTitle());        
     }
 
+    @When("tip is created with type {string} title {string} tag {string}")
+    public void tipWithTagsIsCreated(String type, String title, String tag) {
+        UIStub ui2 = new UIStub("add", type, title, "Author", "description", tag, "2",  "isbn", "print all", "exit");
+        Tui tui2 = new Tui(ui2, testDao);
+        tui2.launch();                
+    }    
+
     @When("podcast is created with title {string} author {string} description {string}")
     public void createPodcast(String title, String description, String author) {
         UIStub ui2 = new UIStub("add","podcast", title, "Author", "description", "1", "2",  "Podcast name", "y", "0", "10", "10", "kommentti", "print all", "exit");
@@ -136,6 +143,13 @@ public class Stepdefs {
         Tui tui2 = new Tui(ui, testDao);
         tui2.launch();          
     }
+
+    @When("commands print and tag are given")
+    public void commandPrint() {
+        ui = new UIStub("print", "tag", "kissat", "exit");
+        Tui tui2 = new Tui(ui, testDao);
+        tui2.launch();          
+    }    
     
     @Then("tip with type {string} is returned")
     public void printAllShowsCreatedTip(String type) {
