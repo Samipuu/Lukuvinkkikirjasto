@@ -1,4 +1,4 @@
-Feature: User can add a book information
+Feature: User can add a tip
 
     Scenario: User can add a book
         Given the system is launched
@@ -27,20 +27,4 @@ Feature: User can add a book information
         When command print all is given
         Then podcast title "Test Podcast" is returned
 
-    Scenario: User can edit a book
-        Given the system is launched
-        When tip is created with type "book" title "Test Book" author "Book Author" description "Book Description"
-        And book with id 1 is edit with attributes title "Title change" author "Change of author" description "Description is changed"
-        Then book title "Title change" is returned
 
-    Scenario: User can edit a podcast
-        Given the system is launched
-        When tip is created with type "podcast" title "Funny podcast" author "Pena" description "This is a funny podcast"
-        When tip with title "Funny podcast" is edit with attributes title "Not so funny podcast" author "Matti" description "Author changed not funny anymore" tags "boring" courses "course1"
-        Then tip has been changed with attributes "Not so funny podcast" author "Matti" description "Author changed not funny anymore" tags "boring" courses "course1"
-
-    Scenario: User can print specific tip
-        Given the system is launched
-        When tip is created with type "book" title "This is a book"
-        When tip with title "This is a book" is commanded to print
-        Then tip with title "This is a book" is printed
