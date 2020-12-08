@@ -197,6 +197,22 @@ public class Stepdefs {
         Boolean contain = outputContainsString(title);
         assertEquals(true, contain);
     }
+
+    @When("book with title {string} is deleted")
+    public void deleteBook(String title) {
+        UIStub ui = new UIStub("exit");  
+        String id = String.valueOf(getTipByTitle(title).getId());   
+        ui = new UIStub("delete", id, "exit");           
+        Tui tui = new Tui(ui, testDao);
+        tui.launch();        
+    }
+
+    @Then("book title {string} is not printed")
+    public void tipHasNotBeenPrinted(String title) {
+        Boolean contain = outputContainsString(title);
+        assertEquals(false, contain);
+    }    
+
     
     private boolean outputContainsString(String value) {
         Boolean contain = false;
