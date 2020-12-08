@@ -5,3 +5,4 @@
 .settings/
 bin/
 *.db
+.gradle
