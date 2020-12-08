@@ -115,6 +115,20 @@ public class Stepdefs {
         Tui tui2 = new Tui(ui2, testDao);
         tui2.launch();
     }    
+    @When("blog post is created with title {string} author {string} description {string}")
+    public void createBlog(String title, String description, String author) {
+        UIStub ui2 = new UIStub("add","blog post", title, "Author", "description", "1", "2",  "www.url.fi", "print all", "exit");
+        Tui tui2 = new Tui(ui2, testDao);
+        tui2.launch();
+    }    
+
+    @When("video is created with title {string} author {string} description {string}")
+    public void createVideo(String title, String description, String author) {
+        UIStub ui2 = new UIStub("add","video", title, "Author", "description", "1", "2",  "www.url.fi", "y", "0", "10", "10", "kommentti", "print all", "exit");
+        Tui tui2 = new Tui(ui2, testDao);
+        tui2.launch();
+    } 
+
 
     @When("command print all is given")
     public void commandPrintAll() {
@@ -142,7 +156,16 @@ public class Stepdefs {
         tui2.launch(); 
         
     }
-    
+    @Then("blog post title {string} is returned")
+    public void printAllShowBlogPrints(String title) {
+        Boolean contain = outputContainsString(title);
+        assertEquals(true, contain);
+    }
+    @Then("video title {string} is returned")
+    public void printAllShowVideoPrints(String title) {
+        Boolean contain = outputContainsString(title);
+        assertEquals(true, contain);
+    }    
     
     
     @Then("program is quit")

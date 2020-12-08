@@ -27,4 +27,14 @@ Feature: User can add a tip
         When command print all is given
         Then podcast title "Test Podcast" is returned
 
+    Scenario: User can add a blog post with attributes
+        Given the system is launched
+        When blog post is created with title "Test Blog" author "Blog Author" description "Blog Description"
+        When command print all is given
+        Then blog post title "Test Blog" is returned
 
+    Scenario: User can add a video with attributes
+        Given the system is launched
+        When video is created with title "Test Video" author "Video Author" description "Video Description"
+        When command print all is given
+        Then video title "Test Video" is returned
