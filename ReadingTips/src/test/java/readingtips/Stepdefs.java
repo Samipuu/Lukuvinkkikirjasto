@@ -213,15 +213,36 @@ public class Stepdefs {
         assertEquals(false, contain);
     }    
 
+
+    @When("command {string} is given")
+    public void printHelp(String command) {
+        UIStub ui = new UIStub("exit");  
+        ui = new UIStub(command, "exit");           
+        Tui tui = new Tui(ui, testDao);
+        tui.launch();        
+    }
+
+    @Then("text {string} is printed")
+    public void printHelpCommands(String command) {
+        ui = new UIStub(command, "exit");           
+        Tui tui = new Tui(ui, testDao);
+        tui.launch();        
+        Boolean contain = outputContainsString(command);
+        assertEquals(true, contain);
+    }
+
+
+
+
+
+
     
     private boolean outputContainsString(String value) {
         Boolean contain = false;
         for(String output : ui.getOutputs()) {
-            if(output.contains(value)) {
-                
+            if(output.contains(value)) {              
                 contain = true;
-            }
-            
+            }          
         }
         return contain;
     }
