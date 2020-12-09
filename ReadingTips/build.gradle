@@ -93,4 +93,7 @@ applicationDistribution.from('command/') {
     into 'command'
 }
 
-
+applicationDistribution.from("downloaded_media_files") {
+    into 'downloaded_media_files'
+    include "*.sh"
+}

@@ -18,11 +18,11 @@ bash download_video_and_audiofiles.sh
 ## Ubuntu 20.04  
 
 ### to play videos install mplayer
-sudo apt install mplayer  
+sudo apt install mpv  
   
 ## Windows 10 with Msys2  
 
-### to play videos install mplayer
+### to play videos install mpv
 pacman -S mingw64/mingw-w64-x86_64-mpv  
   
 ## play videos  
