@@ -12,6 +12,7 @@ import readingtips.Tip;
 import readingtips.Video;
 import readingtips.database.PodcastDao;
 import readingtips.database.VideoDao;
+import readingtips.system.call.LinuxUbuntuCall;
 import readingtips.system.call.SystemCall;
 import readingtips.system.call.WindowsMsysCall;
 
@@ -23,7 +24,7 @@ public class SystemAccess {
     static {
         osToSystemCallMap = new HashMap<String, SystemCall>();
         osToSystemCallMap.put("Windows 10", new WindowsMsysCall()); // os.name: Windows 10
-        // TODO: osToSystemCallMap.put("Linux", new LinuxUbuntuCall()); 
+        osToSystemCallMap.put("Linux", new LinuxUbuntuCall()); // os.name: Linux
     }
 
     private static SystemCall systemSpecific() {
