@@ -8,7 +8,6 @@ then
     optional_seekposition="-ss $seconds"
 fi
 
-
 if [[ "$OS" == "Windows_NT" ]]; then
     # Windows 10 with Msys2
     soita="/mingw64/bin/mpv"    # Msys2: pacman -S mingw64/mingw-w64-x86_64-mpv

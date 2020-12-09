@@ -17,8 +17,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     fefe='ffmpeg' # ??
 fi
 
-fefe='/mingw64/bin/ffmpeg.exe'
-
 mediafile="$1"
 
 time_in_many_units=$($fefe -i "$mediafile" 2>&1 | grep Duration | cut -d ' ' -f 4 | sed s/,//)
