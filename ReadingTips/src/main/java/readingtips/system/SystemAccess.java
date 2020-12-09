@@ -78,7 +78,7 @@ public class SystemAccess {
             if (tip instanceof Video) {
                 Video video = (Video) tip;
                 long newPosition = playVideo(mediaPath + "/" + video.getUrl(), video.getPosition());
-                System.out.println("got new video position: " + newPosition + " seconds");
+                // System.out.println("got new video position: " + newPosition + " seconds");
                 video.setPosition(newPosition);
                 videoDao.update(video);
             }
@@ -92,14 +92,14 @@ public class SystemAccess {
                     openWebUrl(url);
                 } else if (url.endsWith(".mp4")) {
                     long newPosition = playVideo(mediaPath + "/" + url, podcast.getPosition());
-                    System.out.println("got new video position: " + newPosition + " seconds");
+                    // System.out.println("got new video position: " + newPosition + " seconds");
                     podcast.setPosition(newPosition);
                     podcastDao.update(podcast);
                 } else {
                     String[] audioSuffixes = new String[] { "webm", "m4a" };
                     if (Arrays.stream(audioSuffixes).anyMatch(entry -> url.endsWith(entry))) {
                         long newPosition = playAudio(mediaPath + "/" + url, podcast.getPosition());
-                        System.out.println("got new audio position: " + newPosition + " seconds");
+                        // System.out.println("got new audio position: " + newPosition + " seconds");
                         podcast.setPosition(newPosition);
                         podcastDao.update(podcast);
                     } else {
@@ -130,7 +130,7 @@ public class SystemAccess {
     private long playVideo(String filePath, long positionSeconds) {
         String commandPath = "command/play_video_with_mpv.sh";
         List<String> playVideoCommandLine = Arrays.asList(commandPath, filePath, positionSeconds + "");
-        System.out.println("playVideoCommandLine: " + playVideoCommandLine);
+        // System.out.println("playVideoCommandLine: " + playVideoCommandLine);
         String secondsString = systemCall.systemCall(playVideoCommandLine);
         long seconds = Long.parseLong(secondsString);
         return seconds;
@@ -139,7 +139,7 @@ public class SystemAccess {
     private long playAudio(String filePath, long positionSeconds) {
         String commandPath = "command/play_audio_with_mpv.sh";
         List<String> playAudioCommandLine = Arrays.asList(commandPath, filePath, positionSeconds + "");
-        System.out.println("playVideoAudioLine: " + playAudioCommandLine);
+        // System.out.println("playAudioCommandLine: " + playAudioCommandLine);
         String secondsString = systemCall.systemCall(playAudioCommandLine);
         long seconds = Long.parseLong(secondsString);
         return seconds;
