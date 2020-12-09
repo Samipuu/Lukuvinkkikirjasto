@@ -122,8 +122,8 @@ public class SystemAccess {
 
         } catch (Exception x) {
             // throw in developemnt
-            throw new RuntimeException(x);
-            // System.out.println("??what happened??");
+            // throw new RuntimeException(x);
+            System.out.println("??what happened??");
         }
     }
 

@@ -2,22 +2,25 @@ package readingtips.ui;
 
 import java.util.Arrays;
 import java.util.List;
+
 import readingtips.BlogPost;
 import readingtips.Book;
 import readingtips.Podcast;
 import readingtips.Tip;
 import readingtips.Video;
-import readingtips.database.Dao;
 import readingtips.database.TipDao;
+import readingtips.system.SystemAccess;
 
 public class Tui implements UI {
 
     IO scanner;
     TipDao tipDao;
+    SystemAccess systemAccess;
 
     public Tui(IO scanner, TipDao tipDao) {
         this.scanner = scanner;
         this.tipDao = tipDao;
+        this.systemAccess = new SystemAccess();
     }
     
     @Override
@@ -26,6 +29,7 @@ public class Tui implements UI {
                 + "Add : Add new reading tip\n"
                 + "Delete : Delete specific readig tip\n"
                 + "Edit : Edit specific reading tip\n"
+                + "Open : Open specific reading tip with external program\n"                
                 + "Print All : Print title of all reading tips\n"
                 + "Print : Print specific reading. You can search by title and tags\n"
                 + "Help : Prints commands"
@@ -50,6 +54,9 @@ public class Tui implements UI {
                     continue;
                 case "edit":
                     edit();
+                    continue;
+                case "open":
+                    open();
                     continue;
                 case "help":
                     help();
@@ -340,6 +347,20 @@ public class Tui implements UI {
         
         tipDao.editTip(id);
 
+    }
+
+    private void open() {
+        scanner.print("ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        Tip tip = getTipById(id);
+        
+        if(tip == null) {
+            System.out.println("ID not found");
+            return;
+        }
+
+        systemAccess.open(tip);
     }
 
     private void help() {

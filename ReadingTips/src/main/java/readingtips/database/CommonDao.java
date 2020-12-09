@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import readingtips.Book;
+import java.util.Map;
 
 import readingtips.Tip;
 
@@ -212,6 +212,29 @@ public abstract class CommonDao extends Dao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    protected void update(Tip tip, Map<String, Object> fieldValueMap) {
+        String sqlPart = "";
+        for (String key : fieldValueMap.keySet()) {
+            sqlPart = sqlPart + ", " + key + " = ?";            
+        }
+        try {
+            String sql = "UPDATE " + table + " SET modified = CURRENT_TIMESTAMP, "
+                    + "title = ?, author = ?, description = ?" + sqlPart +" WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            int count =1;
+            ps.setString(count++, tip.getTitle());
+            ps.setString(count++, tip.getAuthor());
+            ps.setString(count++, tip.getDescription());
+            for (Object value : fieldValueMap.values()) {
+                ps.setObject(count++, value);
+            }
+            ps.setString(count++, String.valueOf(tip.getId()));
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }        
     }
 
     protected void update(Tip tip, String uniqueField, String uniqueFieldValue) {

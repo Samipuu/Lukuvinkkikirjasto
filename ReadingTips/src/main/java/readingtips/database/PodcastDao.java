@@ -1,16 +1,14 @@
 package readingtips.database;
 
-import java.util.ArrayList;
-import java.util.List;
-import readingtips.Podcast;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import readingtips.BlogPost;
-import readingtips.Book;
+import java.util.Map;
+
+import readingtips.Podcast;
 
 public class PodcastDao extends CommonDao {
 
@@ -102,6 +100,11 @@ public class PodcastDao extends CommonDao {
     }
 
     public void update(Podcast podcast) {       
-        update(podcast, "nimi", podcast.getPodcastName());
+        Map<String, Object> podcastKentat = new HashMap<String, Object>();
+        podcastKentat.put("nimi", podcast.getPodcastName());
+        podcastKentat.put("length", podcast.getLength());
+        podcastKentat.put("position", podcast.getPosition());
+        podcastKentat.put("positionComment", podcast.getPositionComment());
+        update(podcast, podcastKentat);
     }
 }

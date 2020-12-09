@@ -19,6 +19,16 @@ task( browse, dependsOn: jar, type: JavaExec ) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+// try to fix windows encoding crap
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+    tasks.withType(Test) {
+       systemProperty "file.encoding", "UTF-8"
+    }
+}
+
 project.ext {
     cucumberVersion = '6.8.1'
     junitVersion = '4.13'    
@@ -82,3 +92,5 @@ run {
 applicationDistribution.from('command/') {
     into 'command'
 }
+
+

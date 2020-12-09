@@ -1,5 +1,6 @@
 package readingtips;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import readingtips.database.TipDao;
@@ -22,10 +23,20 @@ public class Main {
         return databaseName;
     }
 
+
     public static void main(String[] args) {
 
         System.setProperty(Main.environment_database_name, "readingtips");
-          
+
+        System.out.println(Arrays.asList(args));
+
+        // examples created when given "examples" as first argument
+        // in development: ./gradlew run --args="examples"
+        // in distribution: <something> examples (probably)
+        if(args.length > 0 && "examples".equals(args[0])) {
+            Examples.createExamples();
+        }
+
         Scanner scanner = new Scanner(System.in);
         //Tui ui = new Tui(scanner);
         TipDao tipDao = new TipDao();

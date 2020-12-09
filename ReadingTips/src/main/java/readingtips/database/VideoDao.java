@@ -5,14 +5,15 @@
  */
 package readingtips.database;
 
-import readingtips.Video;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import readingtips.Book;
+import java.util.Map;
+
+import readingtips.Video;
 
 /**
  *
@@ -106,7 +107,12 @@ public class VideoDao extends CommonDao {
     }
 
     public void update(Video video) {       
-        update(video, "url", video.getUrl());
+        Map<String, Object> videoKentat = new HashMap<String, Object>();
+        videoKentat.put("url", video.getUrl());
+        videoKentat.put("length", video.getLength());
+        videoKentat.put("position", video.getPosition());
+        videoKentat.put("positionComment", video.getPositionComment());
+        update(video, videoKentat);
     }
 
 }

@@ -6,7 +6,10 @@
 ## msys2
 # pacman -S mingw64/mingw-w64-x86_64-ffmpeg
 
-if [[ "$OSTYPE" == "msys" ]]; then
+echo "OS: $OS" >> logini.txt
+echo "OSTYPE: $OSTYPE" >> logini.txt
+
+if [[ "$OS" == "Windows_NT" ]]; then
     # Windows 10 with Msys2
     fefe='/mingw64/bin/ffmpeg.exe'
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -16,6 +19,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo "jyy. osx."
     fefe='ffmpeg' # ??
 fi
+
+fefe='/mingw64/bin/ffmpeg.exe'
 
 mediafile="$1"
 
