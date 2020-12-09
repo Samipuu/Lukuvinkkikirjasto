@@ -67,7 +67,10 @@ jacocoTestReport {
     }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['readingtips.Main'])
+            fileTree(dir: it, exclude: [
+                'readingtips.Main',
+                'readingtips/system/**'
+                ])
         }))
     }
 }
