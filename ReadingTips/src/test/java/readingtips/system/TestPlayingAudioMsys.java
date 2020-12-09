@@ -3,16 +3,18 @@ package readingtips.system;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
 // tää ei tunnu toimivan kunnolla ainakaan vscodesta ajettuna. pitäis ilmeisesti ajaa oikeesta bash-konsolista.
 
-public class TestPlayingAudio {
+public class TestPlayingAudioMsys {
 
     public static void main(String[] args) {
 
-        TestPlayingAudio taa = new TestPlayingAudio();
+        TestPlayingAudioMsys taa = new TestPlayingAudioMsys();
         String mediaPolku = "downloaded_media_files/files";
 
         Long media1Position;
@@ -43,9 +45,14 @@ public class TestPlayingAudio {
     private long playAudio(String mediaPath, String mediaFile, long seconds) {
         String komentoPolku = "command";
         String scripti = "play_audio_with_mpv.sh";
-        String[] komentoRiviOsina = new String[]{"/usr/bin/bash",komentoPolku + "/" + scripti, mediaPath + "/" + mediaFile, seconds+""};
-        List<String> komentoJaArgumentit = List.of(komentoRiviOsina);
-        ProcessBuilder pb = new ProcessBuilder(komentoJaArgumentit);
+        // String[] komentoRiviOsina = new String[]{"/usr/bin/bash",komentoPolku + "/" + scripti, mediaPath + "/" + mediaFile, seconds+""};
+        // List<String> komentoJaArgumentit = List.of(komentoRiviOsina);
+
+        List<String> shinyCommand = new ArrayList<String>(Arrays.asList("C:\\msys64\\msys2_shell.cmd", 
+            "-no-start", "-defterm", "-here"));
+        shinyCommand.addAll(Arrays.asList(komentoPolku + "/" + scripti, mediaPath + "/" + mediaFile, seconds+""));
+
+        ProcessBuilder pb = new ProcessBuilder(shinyCommand);
         String sekunnit;
         try {
             Process process = pb.start();
