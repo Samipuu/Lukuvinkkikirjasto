@@ -18,10 +18,10 @@ public class Tui implements UI {
     TipDao tipDao;
     SystemAccess systemAccess;
 
-    public Tui(IO scanner, TipDao tipDao) {
+    public Tui(IO scanner, TipDao tipDao, SystemAccess systemAccess) {
         this.scanner = scanner;
         this.tipDao = tipDao;
-        this.systemAccess = new SystemAccess();
+        this.systemAccess = systemAccess;
     }
     
     @Override
@@ -32,7 +32,7 @@ public class Tui implements UI {
                 + "Edit : Edit a specific reading tip\n"
                 + "Open : Open a specific reading tip with an external program\n"                
                 + "Print All : Print titles of all reading tips\n"
-                + "Print : Print a specific reading tip. You can search by title and tags\n"
+                + "Print : Print a specific reading tip. You can search by title, tags and courses\n"
                 + "Help : Print all commands\n"
                 + "Exit : Close the program\n");
 

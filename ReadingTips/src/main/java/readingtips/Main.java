@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import readingtips.database.TipDao;
+import readingtips.system.SystemAccess;
 import readingtips.ui.Konsoli;
 import readingtips.ui.Tui;
 
@@ -38,8 +39,9 @@ public class Main {
             Examples.createExamples();
         }
 
+        SystemAccess systemAccess = new SystemAccess();
         TipDao tipDao = new TipDao();
-        Tui ui = new Tui(new Konsoli(), tipDao);
+        Tui ui = new Tui(new Konsoli(), tipDao, systemAccess);
         ui.launch();
     }
     

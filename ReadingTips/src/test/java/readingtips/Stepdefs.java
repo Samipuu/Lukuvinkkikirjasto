@@ -21,6 +21,7 @@ import static org.mockito.Mockito.*;
 import org.mockito.stubbing.OngoingStubbing;
 import readingtips.database.TipDao;
 import readingtips.database.TipDaoTest;
+import readingtips.system.SystemAccess;
 import readingtips.ui.IO;
 
 public class Stepdefs {
@@ -30,6 +31,7 @@ public class Stepdefs {
     Tui tui;
     TipDao testDao;
     UIStub ui;
+    SystemAccess systemAccess;
     
     @Before
     public void setUp() {
@@ -38,6 +40,7 @@ public class Stepdefs {
 
     @Given("the system is launched")
     public void launched() {
+        systemAccess = mock(SystemAccess.class);
         this.testDao = new TipDao();
     }
     
@@ -45,7 +48,7 @@ public class Stepdefs {
     @When("command exit is given")
     public void commandExit() {
         UIStub ui = new UIStub("exit");
-        new Tui(ui, testDao).launch();
+        new Tui(ui, testDao, systemAccess).launch();
     }
     
     
@@ -66,7 +69,7 @@ public class Stepdefs {
                 ui = new UIStub("add", type, "title", "Author", "description", "1", "2",  "Podcast name", "y", "0", "10", "10", "kommentti", "exit");
                 break;
         }
-        Tui tui = new Tui(ui, testDao);
+        Tui tui = new Tui(ui, testDao, systemAccess);
         tui.launch();
     }
     
@@ -97,7 +100,7 @@ public class Stepdefs {
                 ui = new UIStub("add", type, title, author, description, "1", "2",  "Podcast name", "y", "0", "10", "10", "kommentti", "exit");
                 break;
         }
-        Tui tui = new Tui(ui, testDao);
+        Tui tui = new Tui(ui, testDao, systemAccess);
         tui.launch();
     }
     
@@ -113,63 +116,58 @@ public class Stepdefs {
     @When("tip is created with type {string} title {string} tag {string}")
     public void tipWithTagsIsCreated(String type, String title, String tag) {
         UIStub ui2 = new UIStub("add", type, title, "Author", "description", tag, "2",  "isbn", "print all", "exit");
-        Tui tui2 = new Tui(ui2, testDao);
+        Tui tui2 = new Tui(ui2, testDao, systemAccess);
         tui2.launch();                
     }
 
     @When("tip is created with type {string} title {string} course {string}")
     public void tipWithCourseIsCreated(String type, String title, String course) {
         UIStub ui2 = new UIStub("add", type, title, "Author", "description", "1", course,  "isbn", "print all", "exit");
-        Tui tui2 = new Tui(ui2, testDao);
+        Tui tui2 = new Tui(ui2, testDao, systemAccess);
         tui2.launch();                
     }        
 
     @When("podcast is created with title {string} author {string} description {string}")
     public void createPodcast(String title, String description, String author) {
         UIStub ui2 = new UIStub("add","podcast", title, "Author", "description", "1", "2",  "Podcast name", "y", "0", "10", "10", "kommentti", "print all", "exit");
-        Tui tui2 = new Tui(ui2, testDao);
+        Tui tui2 = new Tui(ui2, testDao, systemAccess);
         tui2.launch();
     }    
     @When("blog post is created with title {string} author {string} description {string}")
     public void createBlog(String title, String description, String author) {
         UIStub ui2 = new UIStub("add","blog post", title, "Author", "description", "1", "2",  "www.url.fi", "print all", "exit");
-        Tui tui2 = new Tui(ui2, testDao);
+        Tui tui2 = new Tui(ui2, testDao, systemAccess);
         tui2.launch();
     }    
 
-    @When("video is created with title {string} author {string} description {string} url {string}")
-    public void createVideo(String title, String description, String author, String url) {
-        UIStub ui2 = new UIStub("add","video", title, "Author", "description", "1", "2",  url, "y", "0", "10", "10", "kommentti", "print all", "exit");
-        Tui tui2 = new Tui(ui2, testDao);
-        tui2.launch();
-    } 
+
 
 
     @When("command print all is given")
     public void commandPrintAll() {
         ui = new UIStub("print all", "exit");
-        Tui tui2 = new Tui(ui, testDao);
+        Tui tui2 = new Tui(ui, testDao, systemAccess);
         tui2.launch();          
     }
 
     @When("commands print and tag and {string} are given")
     public void commandPrintByTag(String tag) {
         ui = new UIStub("print", "tag", tag, "end", "exit");
-        Tui tui2 = new Tui(ui, testDao);
+        Tui tui2 = new Tui(ui, testDao, systemAccess);
         tui2.launch();          
     }
 
     @When("commands print and course and {string} are given")
     public void commandPrintByCourse(String course) {
         ui = new UIStub("print", "course", course, "end", "exit");
-        tui = new Tui(ui, testDao);
+        tui = new Tui(ui, testDao, systemAccess);
         tui.launch();
     }
     
     @When("commands print and title and {string} are given")
     public void commandPrintByTitle(String title) {
         ui = new UIStub("print", "title", title, "end", "exit");
-        Tui tui2 = new Tui(ui, testDao);
+        Tui tui2 = new Tui(ui, testDao, systemAccess);
         tui2.launch();          
     }
 
@@ -188,7 +186,7 @@ public class Stepdefs {
     @Then("podcast title {string} is returned")
     public void printAllShowPodcastPrints(String title) {
         UIStub ui2 = new UIStub("add","podcast", title, "description", "Author", "1", "2",  "Podcast name", "y", "0", "10", "10", "kommentti", "print all", "exit");
-        Tui tui2 = new Tui(ui2, testDao);
+        Tui tui2 = new Tui(ui2, testDao, systemAccess);
         tui2.launch(); 
         
     }
@@ -217,14 +215,14 @@ public class Stepdefs {
     @When("book with id 1 is edit with attributes title {string} author {string} description {string}")
     public void bookCanBeEdit(String title, String author, String description) {
         ui = new UIStub("edit", "1", "title", title, "done", "print all", "exit");
-        Tui tui2 = new Tui(ui, testDao);
+        Tui tui2 = new Tui(ui, testDao, systemAccess);
         tui2.launch(); 
     }
     
     @When("book with id 1 is edit with attributes title {string} author {string} description {string} isbn {string}")
     public void bookCanBeEditWithISBN(String title, String author, String description, String isbn) {
         ui = new UIStub("edit", "1", "title", title, "isbn", isbn, "done", "print all", "exit");
-        Tui tui2 = new Tui(ui, testDao);
+        Tui tui2 = new Tui(ui, testDao, systemAccess);
         tui2.launch(); 
     }
 
@@ -232,7 +230,7 @@ public class Stepdefs {
     public void editTip(String oldTitle, String title, String author, String description, String tags, String courses) {
         String id = String.valueOf(getTipByTitle(oldTitle).getId());
         UIStub ui2 = new UIStub("edit", id, "title", title, "author", author, "description", description, "tags", tags, "courses", courses, "done", "exit");
-        Tui tui = new Tui(ui2, testDao);
+        Tui tui = new Tui(ui2, testDao, systemAccess);
         tui.launch();
     }
 
@@ -240,7 +238,7 @@ public class Stepdefs {
     public void editTipPodcast(String oldTitle, String title, String author, String description, String url, String podcastName) {
         String id = String.valueOf(getTipByTitle(oldTitle).getId());
         UIStub ui2 = new UIStub("edit", id, "title", title, "author", author, "description", description, "url", url, "podcast name", podcastName, "done", "exit");
-        Tui tui = new Tui(ui2, testDao);
+        Tui tui = new Tui(ui2, testDao, systemAccess);
         tui.launch();
     }
     
@@ -248,7 +246,7 @@ public class Stepdefs {
     public void editVideo(String oldTitle, String title, String author, String url) {
         String id = String.valueOf(getTipByTitle(oldTitle).getId());
         UIStub ui2 = new UIStub("edit", id, "title", title, "author", author, "url", url, "done", "exit");
-        Tui tui = new Tui(ui2, testDao);
+        Tui tui = new Tui(ui2, testDao, systemAccess);
         tui.launch();
     }    
 
@@ -289,7 +287,7 @@ public class Stepdefs {
     @When("tip with title {string} is commanded to print")
     public void printByTitle(String title) {
         ui = new UIStub("print all", "title", title, "exit");
-        tui = new Tui(ui, testDao);
+        tui = new Tui(ui, testDao, systemAccess);
         tui.launch();
     }
     
@@ -305,7 +303,7 @@ public class Stepdefs {
         UIStub ui = new UIStub("exit");  
         String id = String.valueOf(getTipByTitle(title).getId());   
         ui = new UIStub("delete", id, "exit");           
-        Tui tui = new Tui(ui, testDao);
+        Tui tui = new Tui(ui, testDao, systemAccess);
         tui.launch();        
     }
 
@@ -320,20 +318,49 @@ public class Stepdefs {
     public void printHelp(String command) {
         UIStub ui = new UIStub("exit");  
         ui = new UIStub(command, "exit");           
-        Tui tui = new Tui(ui, testDao);
+        Tui tui = new Tui(ui, testDao, systemAccess);
         tui.launch();        
     }
 
     @Then("text {string} is printed")
     public void printHelpCommands(String command) {
         ui = new UIStub(command, "exit");           
-        Tui tui = new Tui(ui, testDao);
+        Tui tui = new Tui(ui, testDao, systemAccess);
         tui.launch();        
         Boolean contain = outputContainsString(command);
         assertEquals(true, contain);
     }
+    
+    @When("video is created with title {string} author {string} description {string} url {string}")
+    public void createVideo(String title, String author, String description, String url) {
+        UIStub ui2 = new UIStub("add","video", title, author, description, "1", "2",  url, "y", "0", "10", "10", "kommentti", "print all", "exit");
+        tui = new Tui(ui2, testDao, systemAccess);
+        tui.launch();
+    } 
+    
+    @When("command open is given with ID of video with title {string}")
+    public void openVideo(String title) {
+        String id = String.valueOf(getTipByTitle(title).getId());
+        ui = new UIStub("open", id, "exit");
+        tui = new Tui(ui, testDao, systemAccess);
+        tui.launch();
+    }
+    
+    @When("command open is given with ID of podcast with title {string}")
+    public void openPodcast(String title) {
+        openVideo(title);
+    }
 
-
+    @Then("video will open with title {string}")
+    public void checkVideoTitle(String title) {
+        Tip tip = getTipByTitle(title);
+        verify(systemAccess).open(tip);
+    }
+    
+    @Then("podcast will open with title {string}")
+    public void checkPodCastOpen(String title) {
+        checkVideoTitle(title);
+    }
 
 
 
