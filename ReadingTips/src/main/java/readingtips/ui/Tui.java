@@ -27,14 +27,14 @@ public class Tui implements UI {
     @Override
     public void launch() {
         scanner.print("Commands: \n"
-                + "Add : Add new reading tip\n"
-                + "Delete : Delete specific readig tip\n"
-                + "Edit : Edit specific reading tip\n"
-                + "Open : Open specific reading tip with external program\n"                
-                + "Print All : Print title of all reading tips\n"
-                + "Print : Print specific reading. You can search by title and tags\n"
-                + "Help : Prints commands"
-                + "Exit : Close the program");
+                + "Add : Add a new reading tip\n"
+                + "Delete : Delete a specific reading tip\n"
+                + "Edit : Edit a specific reading tip\n"
+                + "Open : Open a specific reading tip with an external program\n"                
+                + "Print All : Print titles of all reading tips\n"
+                + "Print : Print a specific reading tip. You can search by title and tags\n"
+                + "Help : Print all commands\n"
+                + "Exit : Close the program\n");
 
         while (true) {
             scanner.print("Command:");
@@ -70,6 +70,7 @@ public class Tui implements UI {
     }
 
     private void add() {
+        scanner.print("\nYou are adding a new reading tip. Please give the inputs.");        
         String[] types = new String[]{"book", "podcast", "video", "blog post"};
         
         String type;
@@ -109,7 +110,7 @@ public class Tui implements UI {
 
         switch (type.toLowerCase()) {
             case "book":
-                scanner.print("ISBN :");
+                scanner.print("ISBN: ");
                 String isbn = scanner.nextLine();
                 Book book = new Book(title, author, description, tags, courses, isbn);
                 tipDao.createTip(book);
@@ -121,27 +122,27 @@ public class Tui implements UI {
                 position = this.getTime();
                 if (position != -1) {
                     podcast.setPosition(position);
-                    scanner.print("Timestamp information :");
+                    scanner.print("Timestamp information: ");
                     positionComment = scanner.nextLine();
                     podcast.setPositionComment(positionComment);
                 }
                 tipDao.createTip(podcast);
                 break;
             case "video":
-                scanner.print("URL :");
+                scanner.print("URL: ");
                 String url = scanner.nextLine();
                 Video video = new Video(title, author, description, tags, courses, url);
                 position = this.getTime();
                 if (position != -1) {
                     video.setPosition(position);
-                    scanner.print("Timestamp information :");
+                    scanner.print("Timestamp information: ");
                     positionComment = scanner.nextLine();
                     video.setPositionComment(positionComment);
                 }
                 tipDao.createTip(video);
                 break;
             case "blog post":
-                scanner.print("URL :");
+                scanner.print("URL: ");
                 String urlBlog = scanner.nextLine();
                 Tip blogpost = new BlogPost(title, author, description, tags, courses, urlBlog);
                 tipDao.createTip(blogpost);
@@ -154,7 +155,7 @@ public class Tui implements UI {
 
     private Long getTime() {
         scanner.print("Insert timestamp? Type (y) if yes :");
-        String answer = scanner.nextLine().toLowerCase(); 
+        String answer = scanner.nextLine().toLowerCase();
         if (!answer.equals("y")) {
             return (long) -1;
         }
@@ -171,7 +172,7 @@ public class Tui implements UI {
                 }
                 return (long) hours * 3600 + minutes * 60 + seconds;
             } catch (Exception e) {
-                scanner.print("All values must be positive integers. Minutes and seconds must be in a range of 0-60");
+                scanner.print("All values must be positive integers. Minutes and seconds must be in the range of 0-60\n");
             }
         }
     }
@@ -213,7 +214,16 @@ public class Tui implements UI {
     private void delete() {
         scanner.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
+
+        Tip tip = getTipById(id);
+        if(tip == null) {
+            System.out.println("ID not found");
+            return;
+        }        
+        String header = tip.getTitle();
+        String text= "Delete successfull. You deleted " + header + "\n";
         tipDao.deleteTip(id);
+        scanner.print(text);
     }
     
     private void printTips(List<Tip> tipList) {
@@ -226,6 +236,7 @@ public class Tui implements UI {
     }
 
     private void printAll() {
+        scanner.print("\nAll existing reading tips: \n");
         List<Tip> tipList = tipDao.getAllTips();
         printTips(tipList);
     }
@@ -238,8 +249,9 @@ public class Tui implements UI {
             scanner.print("For title search, type (title)\n"
                 + "For tag search, type (tag)\n"
                 + "For course search, type (course)\n"
-                + "Type (end) to end search");
+                + "Type (end) to end search\n");
             scanner.print("Search type:");
+
             String answer = scanner.nextLine();
             switch (answer.toLowerCase()) {
                 case "title":
@@ -261,6 +273,7 @@ public class Tui implements UI {
     }
     
     private void printTitleFiltered() {
+        scanner.print("\nSearching by title: \n");
         scanner.print("Title: ");
         String title = scanner.nextLine();
         List<Tip> tipList = tipDao.getAllTips();
@@ -286,6 +299,7 @@ public class Tui implements UI {
     }
 
     private void edit() {
+        scanner.print("\nYou are editing a reading tip. Please give the inputs: \n");
         scanner.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
 
@@ -299,7 +313,7 @@ public class Tui implements UI {
         System.out.println(tip);
         Boolean run = true;
         while (run) {
-            scanner.print("Choose attribute to change. Type 'done' when ready.");
+            scanner.print("Choose an attribute to change. Type 'done' when ready.\n");
             switch (scanner.nextLine().toLowerCase()) {
                 case "title":
                     scanner.print("Title: ");
@@ -393,13 +407,13 @@ public class Tui implements UI {
 
     private void help() {
         scanner.print("Commands: \n"
-            + "Add : Add new reading tip\n"
-            + "Delete : Delete specific readig tip\n"
-            + "Edit : Edit specific reading tip\n"
-            + "Print All : Print title of all reading tips\n"
-            + "Print : Print specific reading. You can search by title, tags or courses\n"
-            + "Help : Prints commands"
-            + "Exit : Close the program");
+            + "Add : Add a new reading tip\n"
+            + "Delete : Delete a specific reading tip\n"
+            + "Edit : Edit a specific reading tip\n"
+            + "Print All : Print titles of all reading tips\n"
+            + "Print : Print a specific reading tip. You can search by title, tags or courses\n"
+            + "Help : Print all commands\n"
+            + "Exit : Close the program\n");
     }
 
 }
