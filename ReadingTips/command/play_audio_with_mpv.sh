@@ -18,20 +18,18 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo "jyy"
 fi
 
-# toimii
-# bash command/play_audio_with_mpv.sh 'downloaded_media_files/audios/Unfuck Yourself Audiobook By Gary John Bishop.m4a' 100
-
 faketty () {
     script -qefc "$(printf "%q " "$@")"
 }
 
 # take row with positon information and parse seconds from it
-temppifile=temp/script.out
+temppifile=temp.out
 touch $temppifile
 echo "">$temppifile
 tail -F $temppifile &
 tail_process_id=$!
 rivi=$(faketty $soita -osdlevel 3 -fs $optional_seekposition "$videofile" |  tee $temppifile | tr [:cntrl:] '\n' | grep A: | tail -n1 )
+rm -f typescript
 kill $tail_process_id
 rm $temppifile
 

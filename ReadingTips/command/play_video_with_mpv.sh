@@ -18,17 +18,13 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     echo "jyy"
 fi
 
-# toimii
-# bash command/play_video_with_mpv.sh 'downloaded_media_files/videos/Indochine - Nos célébrations (Clip officiel).mp4'
-# bash command/play_video_with_mpv.sh 'downloaded_media_files/videos/Joe Rogan Experience #1531 - Miley Cyrus.mp4'
-# bash command/play_video_with_mpv.sh 'downloaded_media_files/videos/Indochine - Un été français (Clip officiel).mp4' 165
-
 faketty () {
     script -qefc "$(printf "%q " "$@")"
 }
 
 # take row with positon information and parse seconds from it
 rivi=$(faketty $soita -osdlevel 3 -fs $optional_seekposition "$videofile" |  tr [:cntrl:] '\n' | grep AV: | tail -n1 )
+rm -f typescript
 
 # echo "raakarivi: $rivi"
 
