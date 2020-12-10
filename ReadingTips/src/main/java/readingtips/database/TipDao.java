@@ -29,6 +29,8 @@ public class TipDao {
     protected TagsDao tagsDao;
     protected List<Tip> allTips;
     protected HashSet<String> allTags;
+    protected CoursesDao coursesDao;
+    protected List<String> allCourses;
    
 
     public TipDao() {
@@ -37,8 +39,12 @@ public class TipDao {
         podcastDao = new PodcastDao();
         blogPostDao = new BlogPostDao();
         tagsDao = new TagsDao();
+        coursesDao = new CoursesDao();
         
         allTags = tagsDao.getAllTags();
+        
+        
+        allCourses = coursesDao.getAllCourses();
         
         allTips = new ArrayList();
 
@@ -60,6 +66,10 @@ public class TipDao {
     public List<Tip> getTipsTagFiltered(List<String> tags) {
         return this.allTips.stream().filter(s -> s.getTags().containsAll(tags)).collect(Collectors.toList());
     }
+    
+    public List<Tip> getTipsCourseFiltered(List<String> courses) {
+        return this.allTips.stream().filter(s -> s.getCourses().containsAll(courses)).collect(Collectors.toList());
+    }
 
     public List<Tip> getAllTips() {
         return allTips;
@@ -70,6 +80,10 @@ public class TipDao {
         returnList.addAll(this.allTags);
         Collections.sort(returnList);
         return returnList;
+    }
+    
+    public List<String> getAllCourses() {
+        return allCourses;
     }
 
     List<Book> getAllBooksFromDatabase() {

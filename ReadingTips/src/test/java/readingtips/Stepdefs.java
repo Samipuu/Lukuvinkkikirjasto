@@ -146,14 +146,14 @@ public class Stepdefs {
 
     @When("commands print and tag are given")
     public void commandPrintByTag() {
-        ui = new UIStub("print", "tag", "kissat", "exit");
+        ui = new UIStub("print", "tag", "kissat", "end", "exit");
         Tui tui2 = new Tui(ui, testDao);
         tui2.launch();          
     }    
     
     @When("commands print and title and {string} are given")
     public void commandPrintByTitle(String title) {
-        ui = new UIStub("print", "title", title, "exit");
+        ui = new UIStub("print", "title", title, "end", "exit");
         Tui tui2 = new Tui(ui, testDao);
         tui2.launch();          
     }
@@ -343,32 +343,5 @@ public class Stepdefs {
         }
         return null;
     }
-
-    // Scenario: User can read a book's isbn
-    //     Given a book with a title and an isbn is added
-    //     When command getIsbn is given
-    //     Then isbn is printed
-
-    // @Given("a book with a title and an isbn is added")
-    // public void searchForISBN() {
-    //     Book book1 = new Book("BookTitle", null, null, null, null, "isbn");
-    //     //driver.get(baseUrl);
-    //     //WebElement element = driver.findElement(By.linkText("login"));       
-    //     //element.click();   
-    // }
-
-    // @When("command getIsbn is given")
-    // public void commandGetIsbnIsGiven() {
-    //     // Write code here that turns the phrase above into concrete actions
-    //     Book book2 = new Book("BookTitle", null, null, null, null, "isbn");
-    //     book2.getIsbn();        
-    //     throw new io.cucumber.java.PendingException();
-    // }
-
-    // @Then("isbn is printed")
-    // public void systemWillRespond(String isbn) throws Throwable {
-    //     assertTrue(driver.getPageSource().contains("isbn"));
-    //     //assertTrue(pageContent("isbn"));
-    // }
 
 }

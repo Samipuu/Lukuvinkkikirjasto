@@ -1,5 +1,6 @@
 package readingtips.ui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -97,10 +98,11 @@ public class Tui implements UI {
         author = scanner.nextLine();
         scanner.print("Description: ");
         description = scanner.nextLine();
-        printTags();
+        printList("tags");
         scanner.print("Tags (comma seperated): ");
         String tagsString = scanner.nextLine();
         tags = Arrays.asList(tagsString.split("\\s*,\\s*"));
+        printList("courses");
         scanner.print("Courses (comma seperated): ");
         String courseString = scanner.nextLine();
         courses = Arrays.asList(courseString.split("\\s*,\\s*"));
@@ -152,22 +154,18 @@ public class Tui implements UI {
 
     private Long getTime() {
         scanner.print("Insert timestamp? Type (y) if yes :");
-        String answer = scanner.nextLine().toLowerCase(); //TÄMÄ TOIMII LAURALLA
-        //String answer = scanner.nextLine().strip().toLowerCase(); //TÄMÄ TOIMII MUILLA  
+        String answer = scanner.nextLine().toLowerCase(); 
         if (!answer.equals("y")) {
             return (long) -1;
         }
         while (true) {
             try {
                 scanner.print("Hours: ");
-                long hours = Long.parseLong(scanner.nextLine()); //TÄMÄ TOIMII LAURALLA
-                //long hours = Long.parseLong(scanner.nextLine().strip()); //TÄMÄ TOIMII MUILLA              
+                long hours = Long.parseLong(scanner.nextLine());            
                 scanner.print("Minutes: ");
-                long minutes = Long.parseLong(scanner.nextLine()); //TÄMÄ TOIMII LAURALLA
-                //long minutes = Long.parseLong(scanner.nextLine().strip()); //TÄMÄ TOIMII MUILLA 
+                long minutes = Long.parseLong(scanner.nextLine()); 
                 scanner.print("Seconds: ");
-                //long seconds = Long.parseLong(scanner.nextLine().strip()); //TÄMÄ TOIMII MUILLA 
-                long seconds = Long.parseLong(scanner.nextLine()); //TÄMÄ TOIMII LAURALLA             
+                long seconds = Long.parseLong(scanner.nextLine());         
                 if (hours < 0 | minutes < 0 | minutes > 60 | seconds < 0 | seconds > 60) {
                     throw new IllegalArgumentException();
                 }
@@ -179,7 +177,7 @@ public class Tui implements UI {
     }
     
     private void printTagFiltered() {
-        printTags();
+        printList("tags");
         scanner.print("You can filter by one or more tags.\nTags (comma seperated): ");
         String tagsString = scanner.nextLine();
         List<String> tags = Arrays.asList(tagsString.split("\\s*,\\s*"));
@@ -187,12 +185,27 @@ public class Tui implements UI {
         printTips(tipList);
     }
     
-    private void printTags() {
-        List<String> tags = this.tipDao.getAllTags();
-        scanner.print("\nExisting tags: ");
+    private void printCoursesFiltered() {
+        printList("courses");
+        scanner.print("You can filter by one or more courses.\nCourses (comma seperated): ");
+        String coursesString = scanner.nextLine();
+        List<String> courses = Arrays.asList(coursesString.split("\\s*,\\s*"));
+        List<Tip> courseList = tipDao.getTipsCourseFiltered(courses);
+        printTips(courseList);        
+    }
+    
+    private void printList(String type) {
+        List<String> list = new ArrayList<>();
+        if(type.equals("courses")) {
+            list = tipDao.getAllCourses();
+        } else if (type.equals("tags")) {
+            list = tipDao.getAllTags();
+        }
+        
+        scanner.print("\nExisting " + type + ": ");
         scanner.print("");
-        for (String tag:tags) {
-            System.out.println(tag);
+        for (String item : list) {
+            System.out.println(item);
         }
         scanner.print("");
     }
@@ -218,16 +231,31 @@ public class Tui implements UI {
     }
 
     private void printTip() {
+
+        
+        OUTER:
         while (true) {
-            scanner.print("For title search, type (title)\nFor tag search, type (tag)");
+            scanner.print("For title search, type (title)\n"
+                + "For tag search, type (tag)\n"
+                + "For course search, type (course)\n"
+                + "Type (end) to end search");
+            scanner.print("Search type:");
             String answer = scanner.nextLine();
-            if (answer.toLowerCase().equals("title")) {
-                this.printTitleFiltered();
-                break;
-            }
-            if (answer.toLowerCase().equals("tag")) {
-                this.printTagFiltered();
-                break;
+            switch (answer.toLowerCase()) {
+                case "title":
+                    this.printTitleFiltered();
+                    break;
+                case "tag":
+                    this.printTagFiltered();
+                    break;
+                case "course":
+                    this.printCoursesFiltered();
+                    break;
+                case "end":
+                    break OUTER;
+                    
+                default:
+                    System.out.println("Invalid search type");
             }
         }
     }
@@ -369,7 +397,7 @@ public class Tui implements UI {
             + "Delete : Delete specific readig tip\n"
             + "Edit : Edit specific reading tip\n"
             + "Print All : Print title of all reading tips\n"
-            + "Print : Print specific reading. You can search by title and tags\n"
+            + "Print : Print specific reading. You can search by title, tags or courses\n"
             + "Help : Prints commands"
             + "Exit : Close the program");
     }

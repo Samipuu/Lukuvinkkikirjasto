@@ -37,8 +37,6 @@ public class Main {
             Examples.createExamples();
         }
 
-        Scanner scanner = new Scanner(System.in);
-        //Tui ui = new Tui(scanner);
         TipDao tipDao = new TipDao();
         Tui ui = new Tui(new Konsoli(), tipDao);
         ui.launch();
