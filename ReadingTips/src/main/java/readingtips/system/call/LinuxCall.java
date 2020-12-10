@@ -9,7 +9,7 @@ public class LinuxCall extends SystemCall {
     public String systemCall(List<String> bashScriptCommandLine) {
         List<String> msysCommand = new ArrayList<String>(
                 Arrays.asList(
-                    "/usr/bin/bash"));
+                    "bash"));
         msysCommand.addAll(bashScriptCommandLine);
         return super.systemCall(msysCommand);
     }
