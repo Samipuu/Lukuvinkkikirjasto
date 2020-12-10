@@ -17,7 +17,7 @@ bash download_video_and_audiofiles.sh
 
 ## Ubuntu 20.04  
 
-### to play videos install mplayer
+### to play videos install mpv
 sudo apt install mpv  
   
 ## Windows 10 with Msys2  
