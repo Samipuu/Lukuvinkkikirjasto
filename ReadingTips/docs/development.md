@@ -2,12 +2,14 @@
 
 ## Tools
 
-## Build Automation
+### Build Automation
 
-### Gradle
+#### Gradle
 
 **Suorittaminen Gradlella**
-Ohjelma voidaan suorittaa komennolla ```./gradlew run``` komentorivillä projektin juuressa kansiossa ReadingTips. Buildattu release voidaan suorittaa komennolla ```java -jar Readingtips.jar```.
+Lukuvinkkikirjasto voidaan suorittaa komennolla ```./gradlew run``` komentorivillä projektin juuressa kansiossa ReadingTips. Buildattu release voidaan suorittaa komennolla ```java -jar Readingtips.jar```.
+
+Lukuvinkkikirjaston voi suorittaa esimerkkilukuvinkeillä suorittamalla komennon ```./gradlew run args="examples"``` projektin juuressa. Tällöin esimerkkilukuvinkit luodaan tietokantaan.
 
 **Buildaaminen ja suorittaminen**
 Lukuvinkkikirjaston voi buildata jaettavaksi paketiksi komennolla ```./gradlew distTar```, jonka jälkeen luotu build/distributions/ReadingTips.tar tulee purkaa esimerkiksi komennolla tar -xvf ReadingTips.tar  
