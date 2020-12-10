@@ -5,6 +5,7 @@ import readingtips.database.BookDao;
 import readingtips.database.PodcastDao;
 import readingtips.database.VideoDao;
 import readingtips.system.SystemAccess;
+import java.util.*;
 
 /**
  * Luokka jossa esimerkkidataa
@@ -45,24 +46,33 @@ public class Examples {
         PodcastDao podcastDao = new PodcastDao();
         BlogPostDao blogPostDao = new BlogPostDao();
         BookDao bookDao = new BookDao();
+        List<String> art_tag = new ArrayList();
+        art_tag.add("art");
+        List<String> adventure_tag = new ArrayList();
+        art_tag.add("adventure");   
+        List<String> tec_tag = new ArrayList();
+        art_tag.add("technology");              
+        List<String> music_tag = new ArrayList();
+        art_tag.add("music");
+        
 
         {
             Podcast podcast = new Podcast("Joe Rogan Experience #1531 - Miley Cyrus", "Joe",
-                    "Joe ja Miley juttelee asioista", null, null,
+                    "Joe ja Miley juttelee asioista", music_tag, null,
                     "Joe Rogan Experience #1531 - Miley Cyrus.mp4");
             systemAccess.updateLength(podcast);
             podcastDao.create(podcast);
         }
         {
             Video video = new Video("Karmee stara", "Ranskalainen trubaduuri",
-                    "Ranskalainen trubaduuri on kaikkien idoli", null, null,
+                    "Ranskalainen trubaduuri on kaikkien idoli", art_tag, null,
                     "Indochine - Karma Girls (Clip officiel).mp4");
             systemAccess.updateLength(video);
             videoDao.create(video);
         }
         {
             Video video = new Video("Laulu kesästä", "Ranskalainen trubaduuri",
-                    "Ranskalainen trubaduuri laulaa kesästä", null, null,
+                    "Ranskalainen trubaduuri laulaa kesästä", art_tag, null,
                     "Indochine - Un été français (Clip officiel).mp4");
             systemAccess.updateLength(video);
             videoDao.create(video);
@@ -70,7 +80,7 @@ public class Examples {
 
         {
             Podcast podcast = new Podcast("Elon ja Lex", "Lex Friman",
-                    "Elon Musk - Tesla Autopilot _ Lex Fridman Podcast #18", null, null,
+                    "Elon Musk - Tesla Autopilot _ Lex Fridman Podcast #18", tec_tag, null,
                     "Elon Musk - Tesla Autopilot _ Lex Fridman Podcast #18.mp4");
             systemAccess.updateLength(podcast);
             podcastDao.create(podcast);
@@ -79,7 +89,7 @@ public class Examples {
         {
             // 'Indochine - Nos célébrations (Clip officiel).mp4'
             Video video = new Video("Brexit bileet", "Ranskalainen trubaduuri",
-                    "Ranskalainen trubaduuri laulaa bileistä", null, null,
+                    "Ranskalainen trubaduuri laulaa bileistä", music_tag, null,
                     "Indochine - Nos célébrations (Clip officiel).mp4");
             systemAccess.updateLength(video);
             videoDao.create(video);
@@ -88,7 +98,7 @@ public class Examples {
         {
             // use podcastname same as filename when local file
             Podcast podcast = new Podcast("Dr. Clarence Ellies: The Developer Who Helped us Collaborate", "Red Hat",
-                    "COMMAND_LINE HEROES", null, null,
+                    "COMMAND_LINE HEROES", tec_tag, null,
                     "https://www.redhat.com/en/command-line-heroes/season-6/clarence-ellis");
             podcastDao.create(podcast);
         }
@@ -98,7 +108,7 @@ public class Examples {
                     "Cyberpunk 2077 Includes Visual Effects Designed To Trigger Epileptic Seizure ", "Slashdot.org",
                     "Macthorpe writes:"
                             + "solution it will implement \"as soon as possible.\" Hopefully, that will include a way to turn off strobing effects.",
-                    null, null, "https://games.slashdot.org/story/20/12/08/2052258/");
+                    tec_tag, null, "https://games.slashdot.org/story/20/12/08/2052258/");
             blogPostDao.create(blogPost);
         }
 
