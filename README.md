@@ -12,34 +12,27 @@
 
 [Sprint 3 BackLog](https://docs.google.com/spreadsheets/d/1kZ0gFiGDwlGnhyhhpXqEHOJM38GCwa6GD7lcROB76bw/edit#gid=514061083)
 
-Definition of Done
+**Definition of Done**
 
 Määrittelemme valmiiksi tehdyn tarkoittamaan sitä, että vaatimus on analysoitu, suunniteltu, ohjelmoitu, testattu, testaus automatisoitu, dokumentoitu, integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön. 
 
 ## Asennusohje
 
-### Suorittaminen
-
-Ohjelma voidaan suorittaa komennolla ```./gradlew run``` komentorivillä projektin juuressa kansiossa ReadingTips.
-
-### Jaettavan paketin buildaaminen, purkaminen ja ajaminen
-
-Lukuvinkkikirjaston voi buildata jaettavaksi paketiksi komennolla ```./gradlew distTar```, jonka jälkeen luotu build/distributions/ReadingTips.tar tulee purkaa esimerkiksi komennolla tar -xvf ReadingTips.tar  
-Purkamisen jälkeen ohjelman voi suoritaa komennolla ```bin/ReadingTips``` (tai Windowsissa bin/ReadingTips.bat).  
+**[Ohje Gradlella suorittamiseen sekä asentamiseen](https://github.com/Samipuu/Reading-tips-2020-covid-edition/blob/main/ReadingTips/docs/development.md)**
 
 ## Esimerkkivinkit
 
-Argumentilla examples sovelluksen tietokanta täyttyy muutamista esimerkkivinkeistä ( bin/ReadingTips examples ).
+Argumentilla examples sovelluksen tietokanta täyttyy muutamista esimerkkivinkeistä (bin/ReadingTips examples).
 
 Vinkeissä määritellyt mediatiedostot yritetään ladata downloaded_media_files/files/ -hakemistosta. Jakelupaketissa ja versionhallinnassa näitä tiedostoja ei kuitenkaan ole koska niiden koko on yhteensä useita gigatavuja. downloaded_media_files/ -hakemistosta löytyy scripti download_video_and_audiofiles.sh jonka suorittamalla voi ladata esimerkeissä käytettyjä video- ja audiotiedostoja youtubesta downloaded_media_files/files/ -hakemistoon.
 
-### Lukuvinkkikirjaston käyttö
-
 ## Käyttöohje
+
+Käynnisettäessä lukuvinkkisovellus tulostaa komentoriville käytettävissä olevat komennot. Komennot voi suorittaa kirjoittamalla ne komentoriville ja painamalla ENTERiä.
 
 ### Uuden lukuvinkin lisääminen
 
-Uuden lukuvinkin voi lisätä komenonlla ```add```. Tämän jälkeen ohjelma pyytää syöttämään lukuvinkin tyypin (book, video, podcast, blogpost) sekä lukuvinkkin tiedot.
+Uuden lukuvinkin voi lisätä komenonlla ```add```. Tämän jälkeen ohjelma pyytää syöttämään lukuvinkin tyypin (book, video, podcast, blogpost) sekä lukuvinkin tiedot, kuten lukuvinkin nimen, tekijän sekä kuvauksen vinkistä.
 
 ### Lukuvinkkien tulostaminen
 
@@ -47,7 +40,7 @@ Kaikki lukuvinkkikirjastoon tallennetut lukuvinkit voi tulostaa komennolla ```pr
 
 ### Lukuvinkin muokkaaminen
 
-Lukuvinkkikirjastossa olevaa lukuvinkkiä voi muokata komennolla ```edit```, jonka jälkeen ohjelma pyytää syöttämään muokattavan lukuvinkin ID:n. Jos ID:llä löytyy lukuvinkkikirjastosta lukuvinkki, pyytää ohjelma syöttämään lukuvinkin kentän, jota halutaan muuttaa.
+Lukuvinkkikirjastossa olevaa lukuvinkkiä voi muokata komennolla ```edit```, jonka jälkeen ohjelma pyytää syöttämään muokattavan lukuvinkin ID:n. Jos ID:llä löytyy lukuvinkkikirjastosta lukuvinkki, pyytää ohjelma syöttämään lukuvinkin kentän, jota halutaan muuttaa. Lukuvinkin ID:n voi tarkistaa tulostamalla kaikki lukuvinkit.
 
 ### Lukuvinkin avaaminen
 
