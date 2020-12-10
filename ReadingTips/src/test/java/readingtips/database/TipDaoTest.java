@@ -154,6 +154,25 @@ public class TipDaoTest {
     }
     
     @Test
+    public void findsCourse() {
+        TipDao tipDao = new TipDao();
+        List<String> courses = Arrays.asList(new String[]{"ohtu","ohja","lapio","linis"});
+        Book book = new Book("newTitle", "tekijä", "kuvaus", null , courses, "123-123");
+        tipDao.createTip(book);
+        assertTrue(tipDao.getTipsCourseFiltered(courses).contains(book));
+    }
+    
+    @Test
+    public void doesNotFindCourse() {
+        TipDao tipDao = new TipDao();
+        List<String> courses = Arrays.asList(new String[]{"ohtu","ohja","lapio","linis"});
+        List<String> coursesTesti = Arrays.asList(new String[]{"tätä kurssia ei löydy"});
+        Book book = new Book("newTitle", "tekijä", "kuvaus", null , courses, "123-123");
+        tipDao.createTip(book);
+        assertTrue(tipDao.getTipsCourseFiltered(coursesTesti).isEmpty());
+    }    
+    
+    @Test
     public void findsTip() {
         TipDao tipDao = new TipDao();
         List<String> tagit = Arrays.asList(new String[]{"rauha","tomaatti","kirves","npc"});
