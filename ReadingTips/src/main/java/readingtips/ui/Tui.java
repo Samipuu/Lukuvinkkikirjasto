@@ -410,6 +410,7 @@ public class Tui implements UI {
             + "Add : Add a new reading tip\n"
             + "Delete : Delete a specific reading tip\n"
             + "Edit : Edit a specific reading tip\n"
+            + "Open : Open a specific reading tip with an external program\n"             
             + "Print All : Print titles of all reading tips\n"
             + "Print : Print a specific reading tip. You can search by title, tags or courses\n"
             + "Help : Print all commands\n"
