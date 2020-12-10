@@ -1,4 +1,5 @@
 package readingtips;
+import readingtips.entity.Tip;
 import java.util.Scanner;
 import readingtips.ui.UIStub;
 import readingtips.ui.Tui;

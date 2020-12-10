@@ -1,4 +1,4 @@
-package readingtips;
+package readingtips.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

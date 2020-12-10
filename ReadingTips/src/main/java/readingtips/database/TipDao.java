@@ -10,11 +10,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-import readingtips.BlogPost;
-import readingtips.Book;
-import readingtips.Podcast;
-import readingtips.Tip;
-import readingtips.Video;
+import readingtips.entity.BlogPost;
+import readingtips.entity.Book;
+import readingtips.entity.Podcast;
+import readingtips.entity.Tip;
+import readingtips.entity.Video;
 
 /**
  *

@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import readingtips.Book;
+import readingtips.entity.Book;
 
 public class BookDaoTest {
 

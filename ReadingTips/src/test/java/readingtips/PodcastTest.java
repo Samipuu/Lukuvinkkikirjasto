@@ -1,5 +1,7 @@
 package readingtips;
 
+import readingtips.entity.Podcast;
+import readingtips.entity.Book;
 import java.util.List;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;

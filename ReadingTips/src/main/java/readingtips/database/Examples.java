@@ -1,5 +1,9 @@
-package readingtips;
+package readingtips.database;
 
+import readingtips.entity.Podcast;
+import readingtips.entity.Video;
+import readingtips.entity.BlogPost;
+import readingtips.entity.Book;
 import readingtips.database.BlogPostDao;
 import readingtips.database.BookDao;
 import readingtips.database.PodcastDao;

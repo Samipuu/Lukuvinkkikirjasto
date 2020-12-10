@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import readingtips.BlogPost;
-import readingtips.Book;
-import readingtips.Podcast;
-import readingtips.Tip;
-import readingtips.Video;
+import readingtips.entity.BlogPost;
+import readingtips.entity.Book;
+import readingtips.entity.Podcast;
+import readingtips.entity.Tip;
+import readingtips.entity.Video;
 import readingtips.database.PodcastDao;
 import readingtips.database.VideoDao;
 import readingtips.system.call.LinuxUbuntuCall;

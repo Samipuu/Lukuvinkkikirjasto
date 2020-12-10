@@ -1,4 +1,4 @@
-package readingtips;
+package readingtips.entity;
 
 import java.util.List;
 import java.util.Objects;

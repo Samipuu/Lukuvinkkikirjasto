@@ -1,40 +1,33 @@
-package readingtips;
+package readingtips.entity;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public class Podcast extends Tip {
+public class Video extends Tip {
 
-    private String podcastName;
+    private String url;
     private Long length;
     private Long position;
     private String positionComment;
-    private String url;
 
-    public Podcast() {
-        this.setType("Podcast");
+    public Video() {
+        this.setType("Video");
     }
 
-    public Podcast(String title, String author, String description, List<String> tags, List<String> courses, String podcastName) {
-        super("Podcast", title, author, description, tags, courses);
-        this.podcastName = podcastName;
+    public Video(String title, String author, String description, List<String> tags, List<String> courses, String url) {
+        super("Video", title, author, description, tags, courses);
+        this.url = url;
     }
 
-    // NOT WORKING YET
-    // public void update(LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags, List<String> courses, String podcastName) {
-    //     this.podcastName = podcastName;
-    //     updateCommon(created, modified, title, author, description, tags, courses);
-    // }    
-    public String getPodcastName() {
-        if (this.podcastName != null) {
-            return this.podcastName;
+    public String getUrl() {
+        if (this.url != null) {
+            return this.url;
         }
         return "";
     }
 
-    public void setPodcastName(String podcastName) {
-        this.podcastName = podcastName;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Long getLength() {
@@ -73,8 +66,8 @@ public class Podcast extends Tip {
     @Override
     public String toString() {
         String returnString = super.toString();
-        if (!this.getPodcastName().isEmpty()) {
-            returnString += "\nPodcast: " + this.getPodcastName();
+        if (!this.getUrl().isEmpty()) {
+            returnString += "\nURL: " + this.getUrl();
         }
         if (this.getLength() != 0) {
             returnString += "\nLength: ";
@@ -87,6 +80,7 @@ public class Podcast extends Tip {
         if (!this.getPositionComment().isEmpty()) {
             returnString += "\nTimestamp information: " + this.getPositionComment();
         }
+
         return returnString;
     }
 
@@ -101,8 +95,8 @@ public class Podcast extends Tip {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Podcast other = (Podcast) obj;
-        return !(!Objects.equals(this.podcastName, other.podcastName) || !Objects.equals(this.getAuthor(), other.getAuthor())
+        final Video other = (Video) obj;
+        return !(!Objects.equals(this.url, other.url) || !Objects.equals(this.getAuthor(), other.getAuthor())
                 || !Objects.equals(this.getTitle(), other.getTitle()) || !Objects.equals(this.getDescription(), other.getDescription()));
     }
 }

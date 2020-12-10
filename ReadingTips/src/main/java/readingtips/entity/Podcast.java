@@ -1,33 +1,41 @@
-package readingtips;
+package readingtips.entity;
 
+import readingtips.entity.Tip;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-public class Video extends Tip {
+public class Podcast extends Tip {
 
-    private String url;
+    private String podcastName;
     private Long length;
     private Long position;
     private String positionComment;
+    private String url;
 
-    public Video() {
-        this.setType("Video");
+    public Podcast() {
+        this.setType("Podcast");
     }
 
-    public Video(String title, String author, String description, List<String> tags, List<String> courses, String url) {
-        super("Video", title, author, description, tags, courses);
-        this.url = url;
+    public Podcast(String title, String author, String description, List<String> tags, List<String> courses, String podcastName) {
+        super("Podcast", title, author, description, tags, courses);
+        this.podcastName = podcastName;
     }
 
-    public String getUrl() {
-        if (this.url != null) {
-            return this.url;
+    // NOT WORKING YET
+    // public void update(LocalDateTime created, LocalDateTime modified, String title, String author, String description, List<String> tags, List<String> courses, String podcastName) {
+    //     this.podcastName = podcastName;
+    //     updateCommon(created, modified, title, author, description, tags, courses);
+    // }    
+    public String getPodcastName() {
+        if (this.podcastName != null) {
+            return this.podcastName;
         }
         return "";
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPodcastName(String podcastName) {
+        this.podcastName = podcastName;
     }
 
     public Long getLength() {
@@ -66,8 +74,8 @@ public class Video extends Tip {
     @Override
     public String toString() {
         String returnString = super.toString();
-        if (!this.getUrl().isEmpty()) {
-            returnString += "\nURL: " + this.getUrl();
+        if (!this.getPodcastName().isEmpty()) {
+            returnString += "\nPodcast: " + this.getPodcastName();
         }
         if (this.getLength() != 0) {
             returnString += "\nLength: ";
@@ -80,7 +88,6 @@ public class Video extends Tip {
         if (!this.getPositionComment().isEmpty()) {
             returnString += "\nTimestamp information: " + this.getPositionComment();
         }
-
         return returnString;
     }
 
@@ -95,8 +102,8 @@ public class Video extends Tip {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Video other = (Video) obj;
-        return !(!Objects.equals(this.url, other.url) || !Objects.equals(this.getAuthor(), other.getAuthor())
+        final Podcast other = (Podcast) obj;
+        return !(!Objects.equals(this.podcastName, other.podcastName) || !Objects.equals(this.getAuthor(), other.getAuthor())
                 || !Objects.equals(this.getTitle(), other.getTitle()) || !Objects.equals(this.getDescription(), other.getDescription()));
     }
 }

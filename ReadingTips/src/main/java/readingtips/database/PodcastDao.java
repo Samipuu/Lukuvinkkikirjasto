@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import readingtips.Podcast;
+import readingtips.entity.Podcast;
 
 public class PodcastDao extends CommonDao {
 

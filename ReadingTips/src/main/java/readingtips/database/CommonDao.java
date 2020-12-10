@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import readingtips.Tip;
+import readingtips.entity.Tip;
 
 public abstract class CommonDao extends Dao {
 

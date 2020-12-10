@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import readingtips.BlogPost;
-import readingtips.Book;
-import readingtips.Podcast;
-import readingtips.Tip;
-import readingtips.Video;
+import readingtips.entity.BlogPost;
+import readingtips.entity.Book;
+import readingtips.entity.Podcast;
+import readingtips.entity.Tip;
+import readingtips.entity.Video;
 import readingtips.database.TipDao;
 import readingtips.system.SystemAccess;
 

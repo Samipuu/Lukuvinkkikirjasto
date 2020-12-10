@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import readingtips.Podcast;
+import readingtips.entity.Podcast;
 
 public class PodcastDaoTest {
 

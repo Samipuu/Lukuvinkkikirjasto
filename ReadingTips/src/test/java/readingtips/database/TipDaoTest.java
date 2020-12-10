@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
-import readingtips.BlogPost;
-import readingtips.Book;
-import readingtips.Podcast;
-import readingtips.Video;
+import readingtips.entity.BlogPost;
+import readingtips.entity.Book;
+import readingtips.entity.Podcast;
+import readingtips.entity.Video;
 
 /**
  *

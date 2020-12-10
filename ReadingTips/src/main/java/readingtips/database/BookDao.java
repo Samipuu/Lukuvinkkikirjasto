@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import readingtips.Book;
+import readingtips.entity.Book;
 
 public class BookDao extends CommonDao {
 
