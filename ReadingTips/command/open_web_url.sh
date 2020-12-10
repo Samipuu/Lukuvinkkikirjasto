@@ -9,8 +9,8 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Ubuntu 20.04 and such
     avaaja=firefox
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "jyy. osx."
-    avaaja='open' # ??
+    # macOs
+    avaaja='open' # (?not tested..)
 else
     echo "jaajaa: $OSTYPE"
 fi

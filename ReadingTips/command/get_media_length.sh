@@ -13,8 +13,8 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Ubuntu 20.04 and such
     fefe='ffmpeg'
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "jyy. osx."
-    fefe='ffmpeg' # ??
+    # macOs (?not tested..)
+    fefe='ffmpeg'
 fi
 
 mediafile="$1"

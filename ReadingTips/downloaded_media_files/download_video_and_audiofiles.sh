@@ -15,7 +15,10 @@ function lataa_youtube_dl() {
         chmod a+rx bin/youtube-dl
         lataa='bin/youtube-dl'
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        echo "jyy. osx."
+        # macOS (?not tested..)
+        curl -L https://yt-dl.org/downloads/latest/youtube-dl -o bin/youtube-dl
+        sudo chmod a+rx bin/youtube-dl    
+        lataa='bin/youtube-dl'
     fi
 }
 

@@ -1,18 +1,17 @@
 package readingtips.system;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import readingtips.database.PodcastDao;
+import readingtips.database.VideoDao;
 import readingtips.entity.BlogPost;
 import readingtips.entity.Book;
 import readingtips.entity.Podcast;
 import readingtips.entity.Tip;
 import readingtips.entity.Video;
-import readingtips.database.PodcastDao;
-import readingtips.database.VideoDao;
-import readingtips.system.call.LinuxUbuntuCall;
+import readingtips.system.call.LinuxCall;
+import readingtips.system.call.MacOsCall;
 import readingtips.system.call.SystemCall;
 import readingtips.system.call.WindowsMsysCall;
 
@@ -20,15 +19,29 @@ public class SystemAccess {
 
     private final String mediaPath = "downloaded_media_files/files";
 
-    private final static Map<String, SystemCall> osToSystemCallMap;
-    static {
-        osToSystemCallMap = new HashMap<String, SystemCall>();
-        osToSystemCallMap.put("Windows 10", new WindowsMsysCall()); // os.name: Windows 10
-        osToSystemCallMap.put("Linux", new LinuxUbuntuCall()); // os.name: Linux
-    }
+    private final static WindowsMsysCall windowsMsysSysteemi = new WindowsMsysCall();
+    private final static LinuxCall linuxSysteemi = new LinuxCall();
+    private final static MacOsCall macOsSysteemi = new MacOsCall();
 
     private static SystemCall systemSpecific() {
-        return osToSystemCallMap.get(System.getProperty("os.name"));
+        String osName = System.getProperty("os.name");
+        SystemCall returnValue;
+        if(null == osName) {
+            System.out.println("os.name IS NULL");
+            returnValue = null;
+        } else {
+            if (osName.toLowerCase().contains("windows")) {
+                returnValue = windowsMsysSysteemi;
+            } else if (osName.toLowerCase().contains("linux")) {
+                returnValue = linuxSysteemi;
+            } else if(osName.toLowerCase().contains("darwin")) {
+                returnValue = macOsSysteemi;
+            } else {
+                System.out.println("os.name tuntematon: " + osName);
+                returnValue = null;
+            }
+        }
+        return returnValue;
     }
 
     private SystemCall systemCall;
@@ -49,7 +62,7 @@ public class SystemAccess {
             video.setLength(seconds);
         } catch (Exception x) {
             // ok to fail here.
-            // throw new RuntimeException(x);   // development
+            throw new RuntimeException(x);   // development
         }
     }
 
@@ -68,7 +81,7 @@ public class SystemAccess {
             podcast.setLength(seconds);
         } catch (Exception x) {
             // ok to fail here.
-            // throw new RuntimeException(x);   // development            
+            throw new RuntimeException(x);   // development            
         }
     }
 
@@ -122,8 +135,8 @@ public class SystemAccess {
 
         } catch (Exception x) {
             // throw in developemnt
-            // throw new RuntimeException(x);
-            System.out.println("??what happened??");
+            throw new RuntimeException(x);
+            // System.out.println("??what happened??");
         }
     }
 
