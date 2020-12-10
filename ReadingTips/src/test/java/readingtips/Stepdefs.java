@@ -115,7 +115,14 @@ public class Stepdefs {
         UIStub ui2 = new UIStub("add", type, title, "Author", "description", tag, "2",  "isbn", "print all", "exit");
         Tui tui2 = new Tui(ui2, testDao);
         tui2.launch();                
-    }    
+    }
+
+    @When("tip is created with type {string} title {string} course {string}")
+    public void tipWithCourseIsCreated(String type, String title, String course) {
+        UIStub ui2 = new UIStub("add", type, title, "Author", "description", "1", course,  "isbn", "print all", "exit");
+        Tui tui2 = new Tui(ui2, testDao);
+        tui2.launch();                
+    }        
 
     @When("podcast is created with title {string} author {string} description {string}")
     public void createPodcast(String title, String description, String author) {
@@ -145,12 +152,19 @@ public class Stepdefs {
         tui2.launch();          
     }
 
-    @When("commands print and tag are given")
-    public void commandPrintByTag() {
-        ui = new UIStub("print", "tag", "kissat", "end", "exit");
+    @When("commands print and tag and {string} are given")
+    public void commandPrintByTag(String tag) {
+        ui = new UIStub("print", "tag", tag, "end", "exit");
         Tui tui2 = new Tui(ui, testDao);
         tui2.launch();          
-    }    
+    }
+
+    @When("commands print and course and {string} are given")
+    public void commandPrintByCourse(String course) {
+        ui = new UIStub("print", "course", course, "end", "exit");
+        tui = new Tui(ui, testDao);
+        tui.launch();
+    }
     
     @When("commands print and title and {string} are given")
     public void commandPrintByTitle(String title) {

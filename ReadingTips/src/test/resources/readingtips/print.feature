@@ -14,7 +14,7 @@ Feature: User can print a tip
     Scenario: User can print tips with specific tags
         Given the system is launched
         When tip is created with type "book" title "Kissakirja" tag "kissat"        
-        And commands print and tag are given
+        And commands print and tag and "kissat" are given
         Then tip with title "Kissakirja" is printed
 
     Scenario: User can print tips with title
@@ -22,3 +22,9 @@ Feature: User can print a tip
         When tip is created with type "book" title "Kissakirja" tag "kissat"        
         And commands print and title and "Kissakirja" are given
         Then tip with title "Kissakirja" is printed
+
+    Scenario: User can print tips with specific course
+        Given the system is launched
+        When tip is created with type "book" title "Koirakirja" course "koiranhoito"
+        And commands print and course and "koiranhoito" are given
+        Then tip with title "Koirakirja" is printed
