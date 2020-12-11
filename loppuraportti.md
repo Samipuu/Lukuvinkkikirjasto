@@ -6,6 +6,7 @@
 
 Projekti kesti kolme viikkoa. Jokainen viikko kului saman aikataulun mukaan:
 
+Päivä | Mitä tehtiin
 ------- | -------------
 Torstai | Asiakastapaaminen ja sprintin karkea suunnittelu
 Lauantai | Dailyscrum: Sprint on lähtenyt käyntiin ja käydään läpi tarkemmin vaatimusten määrittely sekä tehtävien jako
