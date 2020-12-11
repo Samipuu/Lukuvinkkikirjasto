@@ -3,6 +3,8 @@
 #ffmpeg
 # sudo snap install ffmpeg
 
+# macos: brew install mpv
+
 function komento () {
 
   mediafile=$1

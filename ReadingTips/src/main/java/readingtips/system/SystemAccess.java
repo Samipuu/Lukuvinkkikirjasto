@@ -34,7 +34,8 @@ public class SystemAccess {
                 returnValue = windowsMsysSysteemi;
             } else if (osName.toLowerCase().contains("linux")) {
                 returnValue = linuxSysteemi;
-            } else if(osName.toLowerCase().contains("darwin")) {
+            } else if(osName.toLowerCase().contains("darwin") || osName.toLowerCase().contains("mac")) {
+                //  Mac OS X
                 returnValue = macOsSysteemi;
             } else {
                 System.out.println("os.name tuntematon: " + osName);
@@ -62,7 +63,7 @@ public class SystemAccess {
             video.setLength(seconds);
         } catch (Exception x) {
             // ok to fail here.
-            throw new RuntimeException(x);   // development
+            // throw new RuntimeException(x);   // development
         }
     }
 
@@ -81,7 +82,7 @@ public class SystemAccess {
             podcast.setLength(seconds);
         } catch (Exception x) {
             // ok to fail here.
-            throw new RuntimeException(x);   // development            
+            // throw new RuntimeException(x);   // development            
         }
     }
 
@@ -135,13 +136,18 @@ public class SystemAccess {
 
         } catch (Exception x) {
             // throw in developemnt
-            throw new RuntimeException(x);
+            // throw new RuntimeException(x);
             // System.out.println("??what happened??");
         }
     }
 
     private long playVideo(String filePath, long positionSeconds) {
         String commandPath = "command/play_video_with_mpv.sh";
+        {
+            if(systemCall instanceof MacOsCall) {
+                commandPath = "command/macOS_play_video_with_mpv.sh";
+            }
+        }
         List<String> playVideoCommandLine = Arrays.asList(commandPath, filePath, positionSeconds + "");
         // System.out.println("playVideoCommandLine: " + playVideoCommandLine);
         String secondsString = systemCall.systemCall(playVideoCommandLine);
@@ -151,6 +157,11 @@ public class SystemAccess {
 
     private long playAudio(String filePath, long positionSeconds) {
         String commandPath = "command/play_audio_with_mpv.sh";
+        {
+            if(systemCall instanceof MacOsCall) {
+                commandPath = "command/macOS_play_audio_with_mpv.sh";
+            }
+        }
         List<String> playAudioCommandLine = Arrays.asList(commandPath, filePath, positionSeconds + "");
         // System.out.println("playAudioCommandLine: " + playAudioCommandLine);
         String secondsString = systemCall.systemCall(playAudioCommandLine);

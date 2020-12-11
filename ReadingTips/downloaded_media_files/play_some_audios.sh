@@ -8,7 +8,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     soita='/usr/bin/mpv'     # Ubuntu 20.04: apt install mpv
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOs (?not tested..)
-    soita='open -a mpv'
+    soita='mpv'
 fi
 
 echo 'audio files: '
