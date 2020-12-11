@@ -62,14 +62,20 @@ Komennolla ```exit``` lukuvinkkikirjasto voidaan sulkea.
 
 Lukuvinkkien avaaminen käyttöjärjestelmässä tehdään Bash-komentotulkin kautta. Tämä toiminnallisuus on experimental-statuksella, tuettuna vain muutamalla alustalla ja saattaa toimia tai olla toimimatta. Jälkimmäisen tapahtuessa järjestelmä jatkaa toimintaansa muuten normaalisti halliten mahdollisen poikkeustilanteen. 
 
-## Ubuntu 20.04  
+## Ubuntu 20.04 (testattu) / Debian pohjainen Linux / Muut Linuxit ?
   
-Ensisijainen alusta jolla järjestelmäintegraatio testattu. Järjestelmässä täytyy ajaa seuraavat komennot jotta integraatio toimii:  
+Järjestelmässä täytyy ajaa seuraavat komennot jotta integraatio toimii:  
 * sudo apt install mpv  
 * sudo apt install ffmpeg  
   
-## Windows 10 ja Msys2  
+## Windows 10 ja Msys2 (testattu) / Windows 7-8-10 ja Msys ?
   
 Seuraavat komennot jotta integraatio toimii:  
 * pacman -S mingw64/mingw-w64-x86_64-mpv  
 * pacman -S mingw64/mingw-w64-x86_64-ffmpeg  
+
+## MacOS Catalina (testattu) / MacOS <versio x> ?
+  
+Seuraavat komennot jotta integraatio toimii:  
+* asenna Homebrew
+* brew install mpv
