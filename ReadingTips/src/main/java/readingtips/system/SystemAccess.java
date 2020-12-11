@@ -142,10 +142,12 @@ public class SystemAccess {
     }
 
     private long playVideo(String filePath, long positionSeconds) {
-        String commandPath = "command/play_video_with_mpv.sh";
+        String commandPath;
         {
             if(systemCall instanceof MacOsCall) {
                 commandPath = "command/macOS_play_video_with_mpv.sh";
+            } else {
+                commandPath = "command/play_video_with_mpv.sh";
             }
         }
         List<String> playVideoCommandLine = Arrays.asList(commandPath, filePath, positionSeconds + "");
@@ -156,10 +158,12 @@ public class SystemAccess {
     }
 
     private long playAudio(String filePath, long positionSeconds) {
-        String commandPath = "command/play_audio_with_mpv.sh";
+        String commandPath;
         {
             if(systemCall instanceof MacOsCall) {
                 commandPath = "command/macOS_play_audio_with_mpv.sh";
+            } else {
+                commandPath = "command/play_audio_with_mpv.sh";                
             }
         }
         List<String> playAudioCommandLine = Arrays.asList(commandPath, filePath, positionSeconds + "");
