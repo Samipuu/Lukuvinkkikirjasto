@@ -34,6 +34,12 @@ Käynnisettäessä lukuvinkkisovellus tulostaa komentoriville käytettävissä o
 
 Uuden lukuvinkin voi lisätä komenonlla ```add```. Tämän jälkeen ohjelma pyytää syöttämään lukuvinkin tyypin (book, video, podcast, blogpost) sekä lukuvinkin tiedot, kuten lukuvinkin nimen, tekijän sekä kuvauksen vinkistä.
 
+**Tagin ja kurssin lisääminen lukuvinkille**
+
+Lukuvinkkiä luotaessa lukuvinkille voi joko lisätä olemassa olevan tagin sekä kurssin, johon lukuvinkki liittyy tai lisätä uusia kursseja ja tageja. Jos haluaa käyttää olemassa olevaa kurssia tai tagia, tulostuu ennen syöttämistä lista tietokannasta löytyvistä kursseista tai tageista.
+
+Syötettäessä kursseja sekä tageja erotetaan yksittäiset arvot toisistaan pilkulla.
+
 ### Lukuvinkkien tulostaminen
 
 Kaikki lukuvinkkikirjastoon tallennetut lukuvinkit voi tulostaa komennolla ```print all```.
