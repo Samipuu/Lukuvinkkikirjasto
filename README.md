@@ -28,7 +28,7 @@ Vinkeissä määritellyt mediatiedostot yritetään ladata downloaded_media_file
 
 ## Käyttöohje
 
-Käynnisettäessä lukuvinkkisovellus tulostaa komentoriville käytettävissä olevat komennot. Komennot voi suorittaa kirjoittamalla ne komentoriville ja painamalla ENTERiä.
+Käynnisettäessä lukuvinkkisovellus tulostaa komentoriville käytettävissä olevat komennot. Komennot voi suorittaa kirjoittamalla ne komentoriville ja painamalla ENTER:iä.
 
 ### Uuden lukuvinkin lisääminen
 
