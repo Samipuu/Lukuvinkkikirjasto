@@ -21,9 +21,13 @@ Torstai | Asiakaspalaverin jälkeen retrospektiivi. Katsotaan miten viikko sujui
 
 kerrataan jokaisen sprintin aikana kohdatut ongelmat (prosessiin-, projektityöskentelyyn- ja teknisiin asioihin liittyvät)
 
+Ensimmäisessä sprintissä aiheutti ongelmia eri toimintavaiheiden hahmottaminen yhtenä kokonaisuutena. Tietokantaa oli hankala lähteä luomaan ennenkuin tiedään vinkkien luokkienrakenne. Sovelluslogiikkaa oli hankala lähteä luomaan ilman vinkkien luokkarakennetta ja tietokantaa. Mentiin enemmän periaatteella se joka luo kyseisen asian suunnittelee sen samalla ja liittyvät osat suunnitellaan tämän mukaan seuraavan toimesta. Tämä toimi meillä, koska ihmiset saivat aikataulutettua aikansa eri päiville, mutta voisi olla suurempi ongelma kaikkien toimiessa samanaikaisesti. Tältä olisi tietenkin voitu välttyä hieman tarkemmalla suunnittelulla. 
+
 #### Sprint 2
 
 Teknisiä ongelmia
+
+Mockiton käyttö cucumber testeissä databasen mockkaamiseen aiheutti ongelmia. Testien saaminen loogisesti järkeväksi oli tällä tavalla hankalaa. Luovuimmekin databasen mockkaamisesta ja loimme tälle vain erillisen testikannan. Mockiton käyttöönotto ei kuitenkaan mennyt täysin hukkaan, koska sitä käytettiin Sprint 3 tehdyn ulkoisen sovelluksen avaamisen testaamiseen. Tähän tarkoitukseen kirjasto toimikin hyvin. 
 
 #### Sprint 3
 
@@ -31,7 +35,7 @@ Aikataulutusta?
 
 ### Onnistumiset
 
-Yhteistyö sujui.
+Yhteistyö sujui. Kaikki pääsivät joustavasti paikalle tapaamisiin ja apua/tietoa eri osien toiminnasta sai telegramin kautta suhteellisen nopeasti melkein kellonajasta riippumatta.
 
 Saatiin pääosa user storyistä valmiiksi.
 
