@@ -41,6 +41,13 @@ Yhteistyö sujui erittäin hyvin. Viikkoaikataulu sovittiin heti projektin alett
 
 Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekemään yksi user story kerrallaan, vaan teimme niitä pienempiä taskejä, jotka user storylle kirjattiin. Nämä taskit olisi pitänyt ajatella tarkemmin ja kattavammin heti aluksi ja ajatella työn etenemistä user story kerrallaan, jotta saataisiin aina yksi user story valmiiksi, eikä kovin monta olisi yhtä aikaa kesken.
 
+#### Mitä olisi voinut tehdä paremmin teknisesti:  
+  
+1. Tietokannan olisi voinut suunnitella helpommin laajennettavaksi vähentämällä tyypitystä JA piilottaen tietokannan toteutuksen funktiorajapinnan taakse niin ettei Javassa tarvitsisi kirjoittaa ollenkaan SQL-lauseita funktiokutsujen lisäksi. Tämä olisi ollut työläämpi mutta jatkoakehitystä ajatellen parempi ratkaisu. Tämän projektin puitteissa valittu ratkaisu oli kuitenkin toimiva ja aikarajoitteen takia parempi.  
+
+2. Käyttöliittymän koodin olisi voinut jakaa yhdestä isosta luokasta osiin, joka komento omaksi luokakseen ja luokkarakenteella joka sallisi helpon laajennettavuuden erilaisiin käyttöliittymiin ( esim. teksti väriteksti, JavaFX ). Myös unit-testien kirjoittaminen olisi helpottunut huomattavasti. Tässäkin projektin aikaraja tuli vastaan loppudemon lähestyessä eikä hyötyjä olisi juuri saavutettu tämän projektin puitteissa.  
+
+
 ### Mitä opittiin?
 
 Kurssin aikana opittiin erityisesti testaamisesta. Jokaisella oli myös eri taustat ja osasivat asioita eri pohjilta. Varmasti kukin oppi hieman erilaisia asioita, kun jokainen teki projektiin liittyenkin vähän eri asioita.
