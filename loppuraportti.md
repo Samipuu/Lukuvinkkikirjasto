@@ -39,7 +39,7 @@ Yhteistyö sujui erittäin hyvin. Viikkoaikataulu sovittiin heti projektin alett
 
 ### Parannukset seuraavaa kertaa varten
 
-Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekemään yksi user story kerrallaan, vaan teimme niitä pienempiä taskejä, jotka user storylle kirjattiin. Nämä taskit olisi pitänyt ajatella tarkemmin ja kattavammin heti aluksi ja ajatella työn etenemistä user story kerrallaan, jotta saataisiin aina yksi user story valmiiksi, eikä kovin monta olisi yhtä aikaa kesken.
+Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekemään yksi user story kerrallaan, vaan teimme niitä pienempiä taskejä, jotka user storylle kirjattiin. Nämä taskit olisi pitänyt ajatella tarkemmin ja kattavammin heti aluksi ja ajatella työn etenemistä user story kerrallaan, jotta saataisiin aina yksi user story valmiiksi, eikä kovin monta olisi yhtä aikaa kesken. Tätä varten olisi voitu käyttää esimerkiksi jonkinlaisia WIP-rajoitteita, joilla olisi rajattu työ aina yhteen user storyyn kerrallaan. Tässä oltaisi voitu käyttää lisäksi apuna esim. Kanban-taulua.
 
 #### Mitä olisi voinut tehdä paremmin teknisesti:  
   
@@ -52,7 +52,9 @@ Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekem
 
 Kurssin aikana opittiin erityisesti testaamisesta. Jokaisella oli myös eri taustat ja osasivat asioita eri pohjilta. Varmasti kukin oppi hieman erilaisia asioita, kun jokainen teki projektiin liittyenkin vähän eri asioita.
 
-Myös työn ajatteleminen user storyn kannalta oli asia, joka opittiin.
+Myös työn ajatteleminen user storyn kannalta oli asia, joka opittiin. Lisäksi opittiin myös jakamaan user storyt pienempiin osiin teknisiksi taskeiksi sekä hieman arvioimaan sekä user storyjen että myös teknisten taskien vaatimaa työmäärää. Projekti opetti myös teknisten taskien jakamista muiden ryhmän jäsenten kanssa, saman teknisen taskin koodaamista useamman koodarin toimesta.
+
+Projekti opetti lisäksi hyvin agilen ja scrumin toimintatapoja käytännössä sekä sitä, miten itseohjautuva tiimi organisoituu ja toimii.
 
 ### Mitä oltaisiin haluttu lisäksi oppia?
 
@@ -64,7 +66,7 @@ Varsinaista turhaa työtä ei tehty. Varsinaiseen suunnitteluun olisi voinut kä
 
 ### Lopuksi
 
-Joku kiva lausahdus tähän.
+Yhteenvetona projekti onnistui hyvin pienistä haasteista huolimatta.
 
 ###### Osallistujat
 * Laura North
