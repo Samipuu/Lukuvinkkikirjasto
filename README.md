@@ -83,5 +83,6 @@ Seuraavat komennot jotta integraatio toimii:
 ## MacOS Catalina (testattu) / MacOS <versio x> ?
   
 Seuraavat komennot jotta integraatio toimii:  
-* asenna Homebrew
-* brew install mpv
+* asenna Homebrew  
+* brew install expect  
+* brew install mpv  
