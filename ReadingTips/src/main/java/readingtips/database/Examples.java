@@ -125,6 +125,13 @@ public class Examples {
             bookDao.create(book);
         }
 
+        {
+            // use podcastname same as filename when local file
+            Podcast podcast = new Podcast("The Ancestors Tale by Richard Dawkins.webm", "Richard Dawkins",
+                    "Tale", tec_tag, null,
+                    "The Ancestors Tale by Richard Dawkins.webm");
+            systemAccess.updateLength(podcast);
+            podcastDao.create(podcast);
+        }
     }
-
 }
