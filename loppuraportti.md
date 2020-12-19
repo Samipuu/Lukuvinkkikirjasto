@@ -23,15 +23,21 @@ Kerrataan jokaisen sprintin aikana kohdatut ongelmat (prosessiin-, projektityös
 
 Ensimmäisessä sprintissä aiheutti ongelmia eri toimintavaiheiden hahmottaminen yhtenä kokonaisuutena. Tietokantaa oli hankala lähteä luomaan ennenkuin tiedään vinkkien luokkienrakenne. Sovelluslogiikkaa oli hankala lähteä luomaan ilman vinkkien luokkarakennetta ja tietokantaa. Mentiin enemmän periaatteella, että se joka luo kyseisen asian, suunnittelee sen samalla. Myöhemmät liittyvät osat suunnitellaan sitten tämän mukaan seuraavan tekijän toimesta. Tämä toimi meillä, koska ihmiset saivat aikataulutettua aikansa eri päiville, mutta voisi olla suurempi ongelma kaikkien toimiessa samanaikaisesti. Tältä olisi tietenkin voitu välttyä hieman tarkemmalla suunnittelulla. 
 
+Me olimme kuitenkin tyytyväisiä sprinttimme aikaansaannokseemme, ja asiakkaallakaan ei ollut siitä moitteita. Olimme onnistuneet luomaan jykevän walking skeletonin, joka tarjosi hyvät mahdollisuudet jatkokehitystä varten.
+
 #### Sprint 2
 
 Teknisiä ongelmia ilmeni ryhmän jäsenten tietokoneiden yhteentoimivuudessa. Tausta-asennuksissa oli eroavaisuuksia, minkä takia kaikki kirjastojen osat eivät toimineet kaikilla. Tähän kului turhaa aikaa. Loppupeleissä ongelma selätettiin kommentoimalla toimimattomat osat jokaisella kerralla pois ja jälleen takaisin.
 
 Mockiton käyttö cucumber testeissä databasen mockkaamiseen aiheutti ongelmia. Testien saaminen loogisesti järkeväksi oli tällä tavalla hankalaa. Luovuimmekin databasen mockkaamisesta ja loimme tälle vain erillisen testikannan. Mockiton käyttöönotto ei kuitenkaan mennyt täysin hukkaan, koska sitä käytettiin Sprint 3 tehdyn ulkoisen sovelluksen avaamisen testaamiseen. Tähän tarkoitukseen kirjasto toimikin hyvin. 
 
+Asiakastapaaminen sujui pääosin hyvin, mutta testikattavuudestamme tuli pieniä moitteita. Olimme myös ryhmän kesken tietoisia tästä puutteesta, ja suoritimme korjauliikkeen seuraavan seuraavan sprintin aikana.
+
 #### Sprint 3
 
 Sovellus alkoi olemaan hyvässä vaiheessa. Pieniä ongelmia aiheutti kuitenkin sen päättäminen, mitkä user storyt viimeiseen sprinttiin otettaisiin. Lopuksi aiheutti vielä aikatauluhaasteita valittujen user storyjen loppuunsaattaminen erityisesti testien osalta. 
+
+Sovelluksen demotilaisuus meni tiimiltämme erinomaisesti. Olimme hyvin valmistuneita ja kaikille oli oma rooli esityksessä, mikä heijasti ammattimaisuutta ja tiimimme yhtenäisyyttä.
 
 ### Onnistumiset
 
