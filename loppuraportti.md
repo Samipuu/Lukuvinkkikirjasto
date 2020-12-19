@@ -17,9 +17,9 @@ Torstai | Asiakaspalaverin jälkeen retrospektiivi. Katsotaan miten viikko sujui
 
 ### Ongelmat
 
-#### Sprint 1
+Kerrataan jokaisen sprintin aikana kohdatut ongelmat (prosessiin-, projektityöskentelyyn- ja teknisiin asioihin liittyvät).
 
-kerrataan jokaisen sprintin aikana kohdatut ongelmat (prosessiin-, projektityöskentelyyn- ja teknisiin asioihin liittyvät)
+#### Sprint 1
 
 Ensimmäisessä sprintissä aiheutti ongelmia eri toimintavaiheiden hahmottaminen yhtenä kokonaisuutena. Tietokantaa oli hankala lähteä luomaan ennenkuin tiedään vinkkien luokkienrakenne. Sovelluslogiikkaa oli hankala lähteä luomaan ilman vinkkien luokkarakennetta ja tietokantaa. Mentiin enemmän periaatteella, että se joka luo kyseisen asian, suunnittelee sen samalla. Myöhemmät liittyvät osat suunnitellaan sitten tämän mukaan seuraavan tekijän toimesta. Tämä toimi meillä, koska ihmiset saivat aikataulutettua aikansa eri päiville, mutta voisi olla suurempi ongelma kaikkien toimiessa samanaikaisesti. Tältä olisi tietenkin voitu välttyä hieman tarkemmalla suunnittelulla. 
 
