@@ -8,7 +8,7 @@ Projekti kesti kolme viikkoa. Jokainen viikko kului saman aikataulun mukaan:
 
 Päivä | Mitä tehtiin
 ------- | -------------
-Torstai | Asiakastapaaminen ja sprintin karkea suunnittelu
+Torstai | Asiakastapaaminen ja sprintin karkea suunnittelu.
 Lauantai | Dailyscrum: Sprint on lähtenyt käyntiin ja käydään läpi tarkemmin vaatimusten määrittely sekä tehtävien jako.
 Sunnuntai | Dailyscrum: Tarkistetaan, että työt sujuvat ja katsotaan tarkemmin, että aikataulu pitää.
 Tiistai | Dailyscrum: Tarkistetaan sprintin tilanne. Työt pitäisi tältä viikolta olla suunnilleen tehty.
@@ -25,21 +25,23 @@ Ensimmäisessä sprintissä aiheutti ongelmia eri toimintavaiheiden hahmottamine
 
 #### Sprint 2
 
-Teknisiä ongelmia ilmeni ryhmän jäsenten tietokoneiden yhteentoimivuudessa. Tausta-asennuksissa oli eroavaisuuksia, jonka takia kaikki kirjastojen osat eivät toimineet kaikilla. Tähän kului turhaa aikaa. Loppupeleissä ongelma selätettiin kommentoimalla toimimattomat osat jokaisella kerralla pois ja jälleen takaisin.
+Teknisiä ongelmia ilmeni ryhmän jäsenten tietokoneiden yhteentoimivuudessa. Tausta-asennuksissa oli eroavaisuuksia, minkä takia kaikki kirjastojen osat eivät toimineet kaikilla. Tähän kului turhaa aikaa. Loppupeleissä ongelma selätettiin kommentoimalla toimimattomat osat jokaisella kerralla pois ja jälleen takaisin.
 
 Mockiton käyttö cucumber testeissä databasen mockkaamiseen aiheutti ongelmia. Testien saaminen loogisesti järkeväksi oli tällä tavalla hankalaa. Luovuimmekin databasen mockkaamisesta ja loimme tälle vain erillisen testikannan. Mockiton käyttöönotto ei kuitenkaan mennyt täysin hukkaan, koska sitä käytettiin Sprint 3 tehdyn ulkoisen sovelluksen avaamisen testaamiseen. Tähän tarkoitukseen kirjasto toimikin hyvin. 
 
 #### Sprint 3
 
-Sovellus alkoi olemaan hyvässä vaiheessa. Pieniä ongelmia aiheutti kuitenkin sen päättäminen, mitkä user storyt viimeiseen sprinttiin otettaisiin. Lopuksi aiheutti vielä aikatauluhaasteita valittujen user storyjen loppuunsaattaminen erityisesti testien osalta.
+Sovellus alkoi olemaan hyvässä vaiheessa. Pieniä ongelmia aiheutti kuitenkin sen päättäminen, mitkä user storyt viimeiseen sprinttiin otettaisiin. Lopuksi aiheutti vielä aikatauluhaasteita valittujen user storyjen loppuunsaattaminen erityisesti testien osalta. 
 
 ### Onnistumiset
 
-Yhteistyö sujui erittäin hyvin. Viikkoaikataulu sovittiin heti projektin alettua ja kaikki pääsivät paikalle tapaamisiin joka kerta. Tapaamisissa sovittiin aikataulu ja toteutettavat toiminnallisuudet. Apua ja tietoa eri osien toiminnasta sai Telegramin kautta suhteellisen nopeasti melkein kellonajasta riippumatta. Kukin teki osuutensa ja user storyistä saatiin suurin osa valmiiksi testejä myöten.
+Yhteistyö sujui erittäin hyvin. Viikkoaikataulu sovittiin heti projektin alettua ja kaikki pääsivät paikalle tapaamisiin joka kerta. Tapaamisissa sovittiin aikataulu ja toteutettavat toiminnallisuudet. Apua ja tietoa eri osien toiminnasta sai Telegramin kautta suhteellisen nopeasti melkein kellonajasta riippumatta. Kukin teki osuutensa ja user storyistä saatiin suurin osa definition of done -tasolle.
 
 ### Parannukset seuraavaa kertaa varten
 
-Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekemään yksi user story kerrallaan, vaan teimme niitä pienempiä taskejä, jotka user storylle kirjattiin. Nämä taskit olisi pitänyt ajatella tarkemmin ja kattavammin heti aluksi ja ajatella työn etenemistä user story kerrallaan, jotta saataisiin aina yksi user story valmiiksi, eikä kovin monta olisi yhtä aikaa kesken. Tätä varten olisi voitu käyttää esimerkiksi jonkinlaisia WIP-rajoitteita, joilla olisi rajattu työ aina yhteen user storyyn kerrallaan. Tässä oltaisi voitu käyttää lisäksi apuna esim. Kanban-taulua.
+Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekemään yksi user story kerrallaan, vaan teimme niitä pienempiä taskejä, jotka user storylle kirjattiin. Nämä taskit olisi pitänyt ajatella tarkemmin ja kattavammin heti aluksi ja ajatella työn etenemistä user story kerrallaan, jotta saataisiin aina yksi user story valmiiksi, eikä kovin monta olisi yhtä aikaa kesken. Tarkempi user storien jakaminen taskeiksi olisi helpottanut myös eri sprintissä toteutettavien ominaisuuksien keskinäisten riippuvuuksien havainnointia,jonka avulla olisimme suorittaneet tarvittavat taskit optimaalisessa järjestyksessä. 
+
+Edellämainittuja parannuksia voidaan saada aikaan ketterien menetelmien avulla. Olisimme voineet käyttää esimerkiksi jonkinlaisia WIP-rajoitteita, joilla olisi rajattu työ aina yhteen user storyyn kerrallaan. Tässä oltaisi voitu käyttää lisäksi apuna esim. Kanban-taulua.
 
 #### Mitä olisi voinut tehdä paremmin teknisesti:  
   
@@ -52,13 +54,15 @@ Haasteita aiheutti työn eteneminen user storyä ajatellen. Emme pyrkineet tekem
 
 Kurssin aikana opittiin erityisesti testaamisesta. Jokaisella oli myös eri taustat ja osasivat asioita eri pohjilta. Varmasti kukin oppi hieman erilaisia asioita, kun jokainen teki projektiin liittyenkin vähän eri asioita.
 
-Myös työn ajatteleminen user storyn kannalta oli asia, joka opittiin. Lisäksi opittiin myös jakamaan user storyt pienempiin osiin teknisiksi taskeiksi sekä hieman arvioimaan sekä user storyjen että myös teknisten taskien vaatimaa työmäärää. Projekti opetti myös teknisten taskien jakamista muiden ryhmän jäsenten kanssa, saman teknisen taskin koodaamista useamman koodarin toimesta.
+Myös työn ajatteleminen user storyn kannalta oli asia, joka opittiin. Lisäksi opittiin myös jakamaan user storyt pienempiin osiin teknisiksi taskeiksi sekä hieman arvioimaan sekä user storyjen että myös teknisten taskien vaatimaa työmäärää. Projekti opetti myös teknisten taskien jakamista muiden ryhmän jäsenten kanssa ja saman teknisen taskin koodaamista useamman koodarin toimesta.
 
 Projekti opetti lisäksi hyvin agilen ja scrumin toimintatapoja käytännössä sekä sitä, miten itseohjautuva tiimi organisoituu ja toimii.
 
 ### Mitä oltaisiin haluttu lisäksi oppia?
 
 Vastaavasti, kuin edellisessä kohdassa, koska jokainen teki eri asioita, saattoi tietyt asiat jäädä aina kultakin vähemmälle oppimiselle. Osa teki cucumberia, osa mockitoa ja osa tietokantaa. Kattava oppiminen jäi vähän vähemmälle.
+
+Suhteessa kurssin oppimistavoitteisiin keskityimme ehkä jopa liikaa itse tekniseen toteutukseen. 
 
 ### Mikä oli turhaa?
 
