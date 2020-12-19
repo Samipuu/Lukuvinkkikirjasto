@@ -12,6 +12,8 @@
 
 [Sprint 3 BackLog](https://docs.google.com/spreadsheets/d/1kZ0gFiGDwlGnhyhhpXqEHOJM38GCwa6GD7lcROB76bw/edit#gid=514061083)
 
+##[Loppuraportti](https://github.com/Samipuu/Reading-tips-2020-covid-edition/blob/main/loppuraportti.md)
+
 **Definition of Done**
 
 Määrittelemme valmiiksi tehdyn tarkoittamaan sitä, että vaatimus on analysoitu, suunniteltu, ohjelmoitu, testattu, testaus automatisoitu, dokumentoitu, integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön. 
