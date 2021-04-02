@@ -41,24 +41,30 @@ public class Tui implements UI {
             switch (scanner.nextLine().toLowerCase()) {
                 case "add":
                     add();
+                    continue;
                 case "delete":
                     delete();
+                    continue;
                 case "exit":
                     return;
                 case "print all":
                     printAll();
+                    continue;
                 case "print":
                     printTip();
+                    continue;
                 case "edit":
                     edit();
+                    continue;
                 case "open":
                     open();
+                    continue;
                 case "help":
                     help();
+                    continue;
                 default:
                     scanner.print("Invalid command.\n");
             }
-            continue;
         }
     }
 
