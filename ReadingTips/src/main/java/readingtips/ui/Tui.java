@@ -65,7 +65,6 @@ public class Tui implements UI {
                 default:
                     scanner.print("Invalid command.\n");
             }
-
         }
     }
 
